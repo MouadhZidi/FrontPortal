@@ -1,0 +1,55 @@
+           
+
+ <h6>Sélectionner un type de bulletin</h6>
+
+
+
+  <br>
+  <div class="example-header">
+    Selection:
+    <b><span id="selectedRows"></span></b>
+  </div>
+  <ag-grid-angular 
+    style="width: 100%; height: 300px;" 
+    class="ag-theme-alpine"
+    [rowData]="perso11.mode_payement" 
+    [columnDefs]="columnDefs"
+    [defaultColDef]="defaultColDef"
+    [pagination]="true"
+    [rowSelection]="rowSelection"
+    [animateRows]="true"
+    [modules]="modules"
+    (selectionChanged)="onSelectionChanged($event)"
+
+    (gridReady)="getpers($event)"
+
+    [masterDetail]="true"
+
+    >
+</ag-grid-angular>
+<hr>
+<ag-grid-angular 
+*ngIf="gridOpen"
+    style="width: 100%; height: 300px;" 
+    class="ag-theme-alpine"
+    [rowData]="rowData" 
+    [columnDefs]="columnDefss"
+    [defaultColDef]="defaultColDef"
+    [pagination]="true"
+    [modules]="modules"
+    [animateRows]="true"
+
+    >
+</ag-grid-angular>
+<!-- <ag-grid-angular
+    #agGrid
+    style="width: 100%; height: 100%;"
+    id="myGrid"
+    class="ag-theme-alpine"
+    [columnDefs]="columnDefs"
+    [defaultColDef]="defaultColDef"
+    [masterDetail]="true"
+    [detailCellRendererParams]="detailCellRendererParams"
+    [rowData]="perso11.mode_payement"
+    (firstDataRendered)="onFirstDataRendered($event)"
+  ></ag-grid-angular> -->

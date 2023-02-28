@@ -1,0 +1,135 @@
+<div class="account-pages my-5 pt-sm-5">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8 col-lg-6 col-xl-5">
+
+        <div class="card overflow-hidden">
+          <div class="bg-soft bg-primary">
+            <div class="row">
+              <div class="col-7">
+                <div class="text-primary p-4">
+                  <h5 class="text-primary">{{"Inscription gratuite" | translate}}</h5>
+                  <p>{{"Obtenez votre compte gratuit maintenant" | translate}}.</p>
+                </div>
+              </div>
+              <div class="col-5 align-self-end">
+                <img
+                  src="assets/images/profile-img.png"
+                  alt=""
+                  class="img-fluid"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="card-body pt-0">
+            <div>
+              <a routerLink="/">
+                <div class="avatar-md profile-user-wid mb-4">
+                  <span class="avatar-title rounded-circle bg-light">
+                    <img
+                      src="assets/images/round.png"
+                      alt=""
+                      class="rounded-circle"
+                      height="70"
+                    />
+                  </span>
+                </div>
+              </a>
+            </div>
+            <div class="p-2">
+              <form
+                class="needs-validation"
+                name="signupForm"
+                #userform="ngForm"
+                novalidate
+              >
+                <div class="mb-3">
+                  <label for="username" class="form-label">{{"Email" | translate}}</label>
+                  <input
+                    type="text"
+                    required=""
+                    class="form-control"
+                    name="adrelectronique"
+                    [(ngModel)]="user.adrelectronique"
+                    required
+                    #adrelectronique="ngModel"
+                    placeholder="Email"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="email" class="form-label">{{"Nom" | translate}} </label>
+
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="use_lname"
+                    [(ngModel)]="user.use_lname"
+                    required
+                    placeholder="Nom"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="email" class="form-label">{{"Prénom" | translate}} </label>
+
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="use_fname"
+                    [(ngModel)]="user.use_fname"
+                    required
+                    placeholder="Prénom"
+                  />
+                </div>
+
+               
+                <div class="mb-3">
+                  <label for="password" class="form-label">{{"Mot de passe" | translate}}</label>
+
+                  <input type="password"
+                  class="form-control"
+                  name="usepswd"
+                  [(ngModel)]="user.use_pswd"
+                  #use_pswd
+                
+                  required
+                 placeholder="Mot de passe"
+                 minlength="6" />
+
+
+
+                </div>
+                <div *ngIf="use_pswd.invalid && use_pswd.touched" class="alert alert-danger" > {{"le mot de passe doit etre minimum avec 6 chiffre" | translate}}</div>
+
+                <div class="mt-4 d-grid">
+                  <button
+                    class="btn btn-primary"
+                    [disabled]="userform.invalid"
+                    type="submit"
+                    (click)="add()"
+                  >
+                    {{"S'inscrire" | translate}}
+                  </button>
+                </div>
+
+                <div class="mt-4 text-center"></div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <!-- end card -->
+
+        <div class="mt-5 text-center">
+          <p>
+            {{"Vous avez déjà un compte ?" | translate}}
+            <a routerLink="/account/login" class="fw-medium text-primary">
+              {{"Connexion" | translate}}</a
+            >
+          </p>
+        </div>
+      </div>
+      <!-- end col -->
+    </div>
+    <!-- end row -->
+  </div>
+  <!-- end container -->
+</div>

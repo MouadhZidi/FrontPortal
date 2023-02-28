@@ -1,0 +1,685 @@
+<div class="container-fluid">
+  <div class="checkout-tabs">
+    <div class="row">
+      <div class="col-xl-2 col-sm-3">
+        <ul ngbNav #nav="ngbNav" [activeId]="1" class="nav-pills flex-column">
+          <li [ngbNavItem]="1">
+            <a ngbNavLink>
+              <i class="bx bxs-user d-block check-nav-icon mt-4 mb-2"></i>
+              <p class="fw-bold mb-4">{{'Information Générale' | translate}}</p>
+              <p class="card-title" *ngIf="fiche">{{'Prenom' | translate}} :{{fiche.pren_pers}}</p>
+              <p class="card-title" *ngIf="fiche">{{'Nom' | translate}} :{{fiche.nom_pers}}</p>
+              <p class="card-title" *ngIf="fiche">{{'Matricule' | translate}} :{{fiche.mat_pers}}</p>
+            </a>
+            <ng-template ngbNavContent>
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-12">
+                    <div class="card">
+                      <div class="card-body">
+                        <h1 class="card-title">{{'Information Générale' | translate}}</h1>
+
+                        <p class="card-title-desc">Information</p>
+
+                        <ag-grid-angular
+                          style="width: 100%; height: 300px"
+                          class="ag-theme-alpine"
+                          [rowData]="rowData"
+                          [columnDefs]="columnDefs"
+                          [defaultColDef]="defaultColDef"
+                          [pagination]="true"
+                          [rowSelection]="rowSelection"
+                          [modules]="modules"
+                          (selectionChanged)="onSelectionChanged($event)"
+                          (gridReady)="getpers($event)"
+                        >
+                        </ag-grid-angular>
+                      </div>
+                    </div>
+
+                    <div *ngIf="fiche" class="card">
+                      <div class="card-body">
+                        <form>
+                          <div class="row">
+                            <div class="col-sm-6">
+                              <div class="mb-3">
+                                <label for="productname">{{'N°Retraite' | translate}}</label>
+                                <input
+                                  [value]="fiche.num_retr"
+                                  id="productname"
+                                  name="productname"
+                                  type="text"
+                                  class="form-control"
+                                />
+                              </div>
+
+                              <div class="mb-3">
+                                <label for="metakeywords">{{'Assurance' | translate}} </label>
+                                <input
+                                  id="metakeywords"
+                                  [value]="fiche.cod_assur"
+                                  name="manufacturername"
+                                  type="text"
+                                  class="form-control"
+                                /><input
+                                  id="metakeywords"
+                                  [value]="fiche.num_assur"
+                                  name="manufacturername"
+                                  type="text"
+                                  class="form-control"
+                                />
+                                <!-- <input
+                                  disabled
+                                  id="metakeywords"
+                                  name="manufacturername"
+                                  type="text"
+                                  class="form-control"
+                                /> -->
+                              </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                              <div class="mb-3">
+                                <label for="metakeywords"
+                                  >{{'Allocation familiale' | translate}}</label
+                                >
+                                <input
+                                  *ngIf="fiche.fct_fam == 'O'"
+                                  value="Oui"
+                                  id="metakeywords"
+                                  name="manufacturername"
+                                  type="text"
+                                  class="form-control"
+                                />
+
+                                <input
+                                  *ngIf="fiche.fct_fam == 'N'"
+                                  id="metakeywords"
+                                  value="Non"
+                                  name="manufacturername"
+                                  type="text"
+                                  class="form-control"
+                                />
+                                <input
+                                  *ngIf="fiche.fct_fam == null"
+                                  id="metakeywords"
+                                  value=""
+                                  name="manufacturername"
+                                  type="text"
+                                  class="form-control"
+                                />
+                              </div>
+                              <div class="mb-3">
+                                <label class="control-label"
+                                  >{{'N°Accident de travail' | translate}}</label
+                                >
+                                <input
+                                  id="manufacturerbrand"
+                                  [value]="fiche.num_acc"
+                                  name="manufacturerbrand"
+                                  type="text"
+                                  class="form-control"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                          <div class="d-flex flex-wrap gap-2 mt-2"></div>
+                        </form>
+
+                        <div class="col-sm-6 col-md-4 col-xl-3">
+                          <div class="my-4 text-center">
+                      
+                          </div>
+                        </div>
+
+         
+                      </div>
+                    </div>
+                  </div>
+                </div>
+         
+              </div>
+           
+            </ng-template>
+          </li>
+          <li [ngbNavItem]="2">
+            <a ngbNavLink>
+              <i class="bx bx-notepad d-block check-nav-icon mt-4 mb-2"></i>
+              <p class="fw-bold mb-4">{{'Information Familiale' | translate}}</p>
+            </a>
+            <ng-template ngbNavContent>
+              <div class="container-fluid">
+          
+
+                <div class="row">
+                  <div class="col-12">
+                    <div class="card">
+                      <div class="card-body">
+                        <p class="card-title">{{'Information Familiale' | translate}}</p>
+                        <p class="card-title-desc">Information</p>
+
+                        <form *ngIf="fiche">
+                          <div class="row">
+                            <div class="col-sm-6">
+                              <div *ngIf="fiche.cod_sit == 'M'" class="mb-3">
+                                <label for="productname"
+                                  >{{'Situation familiale' | translate}}</label
+                                >
+                                <input
+                                  *ngIf="fiche.cod_sit == 'M'"
+                                  value="Marié"
+                                  id="productname"
+                                  name="productname"
+                                  type="text"
+                                  class="form-control"
+                                />
+                                <input
+                                  *ngIf="fiche.cod_sit == 'C'"
+                                  value="Celebataire"
+                                  id="productname"
+                                  name="productname"
+                                  type="text"
+                                  class="form-control"
+                                />
+                                <input
+                                  *ngIf="fiche.cod_sit == 'D'"
+                                  value="Divorcé"
+                                  id="productname"
+                                  name="productname"
+                                  type="text"
+                                  class="form-control"
+                                />
+                                <input
+                                  *ngIf="fiche.cod_sit == 'V'"
+                                  value="Veufe"
+                                  id="productname"
+                                  name="productname"
+                                  type="text"
+                                  class="form-control"
+                                />
+                                <input
+                                  *ngIf="fiche.cod_sit == null"
+                                  value=""
+                                  id="productname"
+                                  name="productname"
+                                  type="text"
+                                  class="form-control"
+                                />
+                              </div>
+                              <div *ngIf="fiche.chef_fam == 'N'" class="mb-3">
+                                <label for="manufacturername"
+                                  >{{'Chef famille' | translate}}</label
+                                >
+                                <input
+                                  value="Non"
+                                  id="manufacturername"
+                                  name="manufacturername"
+                                  type="text"
+                                  class="form-control"
+                                />
+                              </div>
+                              <div *ngIf="fiche.chef_fam == 'O'" class="mb-3">
+                                <label for="manufacturername"
+                                  >{{'Chef famille' | translate}}</label
+                                >
+                                <input
+                                  value="Oui"
+                                  id="manufacturername"
+                                  name="manufacturername"
+                                  type="text"
+                                  class="form-control"
+                                />
+                              </div>
+                              <div *ngIf="fiche.chef_fam == null" class="mb-3">
+                                <label for="manufacturername"
+                                  >{{'Chef famille' | translate}}</label
+                                >
+                                <input
+                                  value=""
+                                  id="manufacturername"
+                                  name="manufacturername"
+                                  type="text"
+                                  class="form-control"
+                                />
+                              </div>
+                              <div *ngIf="fiche.fct_fam=='O'" class="mb-3">
+                                <label for="manufacturerbrand"
+                                  >{{'Salaire unique' | translate}}
+                                </label>
+                                <input
+                                  id="manufacturerbrand"
+                                  value="Oui"
+                                  name="manufacturerbrand"
+                                  type="text"
+                                  class="form-control"
+                                />
+                              </div>
+                              <div *ngIf="fiche.fct_fam=='N'" class="mb-3">
+                                <label for="manufacturerbrand"
+                                  >{{'Salaire unique' | translate}}
+                                </label>
+                                <input
+                                  id="manufacturerbrand"
+                                  value="Non"
+                                  name="manufacturerbrand"
+                                  type="text"
+                                  class="form-control"
+                                />
+                              </div>
+
+                              <div class="mb-3">
+                                <label for="price">{{'Nombre d\'enfant' | translate}}</label>
+                                <input
+                                  [value]="fiche.nbre_enf"
+                                  type="text"
+                                  class="form-control"
+                                />
+                                <div class="invalid-feedback"></div>
+                              </div>
+                              <div class="mb-3">
+                                <label for="manufacturerbrand"
+                                  >{{'Enfant imposable' | translate}}</label
+                                >
+                                <input
+                                  id="manufacturerbrand"
+                                  [value]="fiche.charg_enf"
+                                  name="manufacturerbrand"
+                                  type="text"
+                                  class="form-control"
+                                />
+                              </div>
+                              <div class="mb-3">
+                                <label class="control-label"
+                                  >{{'Etat de sante' | translate}}</label
+                                >
+                                <input
+                                  id="manufacturerbrand"
+                                  [value]="fiche.typ_handicap"
+                                  name="manufacturerbrand"
+                                  type="text"
+                                  class="form-control"
+                                />
+                              </div>
+                              <div class="mb-3">
+                                <label class="control-label"
+                                  >{{'Date effet fiche' | translate}}</label
+                                >
+                                <input
+                                  id="manufacturerbrand"
+                                  [value]="fiche.dat_eff_fich_hand"
+                                  name="manufacturerbrand"
+                                  type="text"
+                                  class="form-control"
+                                />
+                              </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                              <div class="mb-3">
+                                <label class="control-label"
+                                  >{{'Enfant allocataire' | translate}}
+                                </label>
+                                <input
+                                  id="manufacturerbrand"
+                                  [value]="fiche.charg_all"
+                                  name="manufacturerbrand"
+                                  type="text"
+                                  class="form-control"
+                                />
+                              </div>
+                              <div class="mb-3">
+                                <label class="control-label"
+                                  >{{'Etat de sante' | translate}}</label
+                                >
+                                <input
+                                  *ngIf="fiche.typ_handicap == '0'"
+                                  id="manufacturerbrand"
+                                  value="Non Handicapé"
+                                  name="manufacturerbrand"
+                                  type="text"
+                                  class="form-control"
+                                />
+                                <input
+                                  *ngIf="fiche.typ_handicap == '1'"
+                                  id="manufacturerbrand"
+                                  value=" Handicapé"
+                                  name="manufacturerbrand"
+                                  type="text"
+                                  class="form-control"
+                                />
+                                <input
+                                  *ngIf="fiche.typ_handicap == '2'"
+                                  id="manufacturerbrand"
+                                  value=" Handicapé"
+                                  name="manufacturerbrand"
+                                  type="text"
+                                  class="form-control"
+                                />
+                                <input
+                                  *ngIf="fiche.typ_handicap == '3'"
+                                  id="manufacturerbrand"
+                                  value=" Handicapé"
+                                  name="manufacturerbrand"
+                                  type="text"
+                                  class="form-control"
+                                />
+                              </div>
+                              <div class="mb-3">
+                                <label for="manufacturerbrand"
+                                  >{{'N° d\'identité' | translate}}
+                                </label>
+                                <input
+                                  id="manufacturerbrand"
+                                  [value]="fiche.cin"
+                                  name="manufacturerbrand"
+                                  type="text"
+                                  class="form-control"
+                                />
+                              </div>
+                              <div class="mb-3">
+                                <label for="manufacturerbrand">{{'Taux IPP' | translate}} </label>
+                                <input
+                                  id="manufacturerbrand"
+                                  [value]="fiche.pourcent_hand"
+                                  name="manufacturerbrand"
+                                  type="text"
+                                  class="form-control"
+                                />
+                              </div>
+                              <div class="mb-3">
+                                <label for="manufacturerbrand"
+                                  >{{'N°Fiche handicap' | translate}}
+                                </label>
+                                <input
+                                  id="manufacturerbrand"
+                                  [value]="fiche.num_fich_hand"
+                                  name="manufacturerbrand"
+                                  type="text"
+                                  class="form-control"
+                                />
+                              </div>
+                              <div class="mb-3">
+                                <label class="control-label"
+                                  >{{'Degré handicap' | translate}}</label
+                                >
+                                <input
+                                  *ngIf="fiche.typ_handicap == '0'"
+                                  id="manufacturerbrand"
+                                  value="Non Handicapé"
+                                  name="manufacturerbrand"
+                                  type="text"
+                                  class="form-control"
+                                />
+                                <input
+                                  *ngIf="fiche.typ_handicap == '1'"
+                                  id="manufacturerbrand"
+                                  value="Handicap Normal"
+                                  name="manufacturerbrand"
+                                  type="text"
+                                  class="form-control"
+                                />
+                                <input
+                                  *ngIf="fiche.typ_handicap == '2'"
+                                  id="manufacturerbrand"
+                                  value="Handicap Proprietaire"
+                                  name="manufacturerbrand"
+                                  type="text"
+                                  class="form-control"
+                                />
+                                <input
+                                  *ngIf="fiche.typ_handicap == null"
+                                  id="manufacturerbrand"
+                                  value=""
+                                  name="manufacturerbrand"
+                                  type="text"
+                                  class="form-control"
+                                />
+                                <input
+                                  *ngIf="fiche.typ_handicap == '3'"
+                                  id="manufacturerbrand"
+                                  value="'Handicap Accompagné'"
+                                  name="manufacturerbrand"
+                                  type="text"
+                                  class="form-control"
+                                />
+                              </div>
+                              <div class="mb-3">
+                                <label for="manufacturerbrand"
+                                  >{{'Date effet fin fiche' | translate}}</label
+                                >
+                                <input
+                                  id="manufacturerbrand"
+                                  [value]="fiche.dat_fin_fich_hand"
+                                  name="manufacturerbrand"
+                                  type="text"
+                                  class="form-control"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                          <div class="d-flex flex-wrap gap-2 mt-2"></div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- end row -->
+              </div>
+            </ng-template>
+          </li>
+          <li [ngbNavItem]="3">
+            <a ngbNavLink>
+              <i class="bx bx-badge-check d-block check-nav-icon mt-4 mb-2"></i>
+              <p class="fw-bold mb-4">{{'Conjoint' | translate}}</p>
+            </a>
+            <ng-template ngbNavContent>
+              <div class="container-fluid">
+              <div class="card">
+                <div class="card-body">
+                  <p class="card-title">{{'Conjoint' | translate}}</p>
+                  <p class="card-title-desc">Information</p>
+                  <div class="card shadow-none border mb-0">
+                    <div class="card-body">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th scope="col">{{'Numéro famille' | translate}}</th>
+                            <th scope="col">{{'Prenom' | translate}}</th>
+                            <th scope="col">{{'Nom' | translate}}</th>
+                            <th scope="col">{{'Date de naissance' | translate}}</th>
+                            <th scope="col">{{'Date cin' | translate}}</th>
+                            <th scope="col">{{'Date de mariage' | translate}}</th>
+                            <th scope="col">{{'Prénom 2eme langue' | translate}}</th>
+                            <th scope="col">{{'Cin' | translate}}</th>
+                            <th scope="col">{{'Lieu Emission' | translate}}</th>
+                            <th scope="col">{{'Nom 2éme langue' | translate}}</th>      <th scope="col">{{'Numero Assurance Conjoint' | translate}}</th>
+
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let c of cjt">
+                            <td>{{ c.num_fam }}</td>
+
+                            <td>{{ c.prenom }}</td>
+                            <td>{{ c.nom_jf }}</td>
+                            <td>{{ c.dat_naiss }}</td>
+                            <td>{{ c.dat_cin }}</td>
+                            <td>{{ c.dat_mar }}</td>
+                            <td>{{ c.prenom_a }}</td>
+                            <td>{{ c.cin }}</td>
+                            <td>{{ c.lieu_cin }}</td>
+                            <td>{{ c.nom_jf_a }}</td>
+                            <td>{{ c.num_ass_conj }}</td>
+
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </ng-template>
+          </li>
+          <li [ngbNavItem]="4">
+            <a ngbNavLink>
+              <i
+                class="bx bx-add-to-queue -check d-block check-nav-icon mt-4 mb-2"
+              ></i>
+              <p class="fw-bold mb-4">{{'Enfant' | translate}}</p>
+            </a>
+            <ng-template ngbNavContent>
+              <div class="container-fluid">
+                <!-- start page title -->
+
+                <!-- end page title -->
+
+                <div class="row">
+                  <div class="col-12">
+                    <div class="card">
+                      <div class="card-body">
+                        <p class="card-title">{{'Enfant' | translate}}</p>
+                  <p class="card-title-desc">Information</p>
+
+                        <table class="table">
+                          <thead>
+                            <tr>
+                              <th>{{'Prenom' | translate}}</th>
+                              <th>{{'Date de naissance' | translate}}</th>
+                              <th>{{'Activité' | translate}}</th>
+                              <th>{{'Boursier' | translate}}</th>
+                              <th>{{'Sexe' | translate}}</th>
+                              <th>{{'Handicap' | translate}}</th>
+
+                              <th>{{'Etat' | translate}}</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let item of enfant">
+                              <th>{{ item.prenom }}</th>
+                              <td>{{ item.dat_naiss }}</td>
+                              <td>{{ item.libactt }}</td>
+                              <td>{{ item.boursier }}</td>
+                              <th>{{ item.sexe }}</th>
+                              <td>{{ item.handicap }}</td>
+                              <td>{{ item.etat_fam }}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- end row -->
+              </div>
+              <!-- container-fluid -->
+            </ng-template>
+          </li>
+          <li [ngbNavItem]="6">
+            <a ngbNavLink>
+              <i class="bx bx-file-blank d-block check-nav-icon mt-4 mb-2"></i>
+              <p class="fw-bold mb-4">{{'Scolarité Enfant' | translate}}</p>
+            </a>
+            <ng-template ngbNavContent>
+              <div class="container-fluid">
+                <!-- start page title -->
+
+                <!-- end page title -->
+
+                <div class="row">
+                  <div class="col-12">
+                    <div class="card">
+                      <div class="card-body">
+                        <p class="card-title">{{'Scolarité Enfant' | translate}}</p>
+                        <p class="card-title-desc">Information</p>
+                        <table class="table">
+                          <thead>
+                            <tr>
+                              <th scope="col">{{'Nom & Prenom' | translate}}</th>
+                              <th scope="col">{{'Année scolaire' | translate}}</th>
+                              <th scope="col">{{'Resultat niveau' | translate}}</th>
+                              <th scope="col">{{'Boursier' | translate}}</th>
+                              <th scope="col">{{'Date fin Indemnité' | translate}}</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let item of famsoc">
+                              <td>{{ item.libprenom }}</td>
+                              <td>{{ item.annee_scolaire }}</td>
+                              <td>{{ item.result_niv }}</td>
+                              <td>{{ item.boursier }}</td>
+
+                              <td>{{ item.date_ind_fin }}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <!--<app-exprienceprof></app-exprienceprof>-->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- end row -->
+              </div>
+              <!-- container-fluid -->
+            </ng-template>
+          </li>
+          <li [ngbNavItem]="5">
+            <a ngbNavLink>
+              <i
+                class="bx bx-italic -check d-block check-nav-icon mt-4 mb-2"
+              ></i>
+              <p class="fw-bold mb-4">{{'Affiliation' | translate}}</p>
+            </a>
+            <ng-template ngbNavContent>
+
+              <div class="container-fluid">
+                <!-- start page title -->
+
+                <!-- end page title -->
+
+                <div class="row">
+                  <div class="col-12">
+                    <div class="card">
+                      <div class="card-body">
+                        <p class="card-title">{{'Affiliation' | translate}}</p>
+                        <p class="card-title-desc">Information</p>
+
+                        <table class="table">
+                          <thead>
+                            <tr>
+                              <th scope="col">{{'Affiliation' | translate}}</th>
+                              <th scope="col">Type</th>
+                              <th scope="col">{{'Code affiliation' | translate}}</th>
+
+                              <th scope="col">{{'Libellé affiliation' | translate}}</th>
+                              <th scope="col">{{'Date Affiliation' | translate}}</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let item of aff">
+                              <td>{{ item.typ_affil }}</td>
+                              <td>{{ item.type_affiliation }}</td>
+                              <td>{{ item.cod_affil }}</td>
+
+                              <td>{{ item.libaffil }}</td>
+                              <td>{{ item.dat_Affil }}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- end row -->
+              </div>
+              <!-- container-fluid -->
+            </ng-template>
+          </li>
+        </ul>
+      </div>
+      <div class="col-lg-10">
+        <div [ngbNavOutlet]="nav"></div>
+      </div>
+    </div>
+  </div>
+</div>

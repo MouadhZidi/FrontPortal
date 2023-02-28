@@ -1,0 +1,159 @@
+<app-loader></app-loader>
+
+<div class="container-fluid">
+
+  <div class="row">
+    <div class="col-12">
+      <div
+        class="page-title-box d-flex align-items-center justify-content-between"
+      >
+        <h4 class="mb-0 font-size-18">{{ "Tableau de bord" | translate }}</h4>
+        <div class="page-title-right">
+          <ol class="breadcrumb m-0">
+            <li class="breadcrumb-item active">
+              {{ "Bienvenue dans le tableau de bord" | translate }}
+            </li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-xl-6">
+      <div class="card overflow-hidden">
+        <div class="bg-primary bg-soft">
+          <div class="row">
+            <div class="col-7">
+              <div class="text-primary p-3">
+                <h5 class="text-primary">{{ "Bienvenue" | translate }} !</h5>
+
+                <p *ngIf="role">
+                  {{ "Bienvenu dans l'espace :" | translate }} <b>{{ role }}</b>
+                </p>
+                <p></p>
+
+                <p>
+                  {{ "Matricule:" | translate }} <b>{{ pers.mat_pers }}</b>
+                </p>
+                <span class="text-muted font-16">{{ pers.lib_adm_tech }}</span>
+              </div>
+            </div>
+            <div class="col-5 align-self-end">
+              <img
+                src="assets/images/profile-img.png"
+                alt=""
+                class="img-fluid"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="card-body pt-0">
+          <div class="row">
+            <div class="col-sm-4">
+              <div class="avatar-md profile-user-wid mb-4">
+                <img
+                  src="assets/images/users/avatar-1.jpg"
+                  alt=""
+                  class="img-thumbnail rounded-circle"
+                />
+              </div>
+              <h5>{{ pers.nom_pers }} {{ pers.pren_pers }}</h5>
+              <p>{{ pers.lib_adm_tech }}</p>
+              
+            </div>
+
+            <div class="col-sm-8">
+              <div class="pt-4">
+                <div class="mt-4">
+                  <a
+                    href="/employe/infopers"
+                    class="btn btn-primary btn-sm"
+                    style="float: right"
+                    >{{ "Voir profil" | translate }}
+                    <i class="mdi mdi-arrow-right ms-1"></i
+                  ></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+          
+          <div class="row mt-4">
+         
+            <div class="dropdown d-inline-block" ngbDropdown style="margin-top: -5%;">
+              <button
+                type="button"
+                class="btn header-item"
+                id="page-header-user-dropdown"
+                ngbDropdownToggle
+              >
+              
+                <b>Selectionner les éléments à afficher :</b>
+              </button>
+              <div class="dropdown-menu dropdown-menu-start" ngbDropdownMenu>
+                <label *ngFor="let element of elements" class="dropdown-item">
+                  <input
+                    type="checkbox"
+                    name="selectedElements"
+                    [(ngModel)]="selectedElements[element.libelle]"
+                  />
+                  {{ element.libelle }}
+                </label>
+              </div>
+            </div>
+            <div id="flexbox">
+              <div class="enfant"
+                *ngFor="let element of elements"
+                
+              >
+                <div *ngIf="selectedElements[element.libelle]" style="margin-left: 10px;">
+                  <div class="social-source text-center mt-3">
+                    <div class="avatar-xs mx-auto mb-3">
+                      <span
+                        class="avatar-title rounded-circle {{
+                          element.color
+                        }} font-size-16"
+                      >
+                        <i [class]="element.avatar"></i>
+                      </span>
+                    </div>
+                    <h5 class="font-size-15">
+                      {{ element.libelle | translate }}
+                    </h5>
+                    <span class="text-muted font-16">{{
+                      pers[element.code]
+                    }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <app-saas></app-saas>
+    
+    </div>
+
+    <div class="col-xl-6">
+     
+      <div class="card">
+        <div class="card-body">
+          <div class="d-sm-flex flex-wrap"></div>
+
+          <app-evenement></app-evenement>
+        </div>
+      </div>
+
+      <div class="col-xl-12">
+        <app-crypto></app-crypto>
+      </div>
+    </div>
+  </div>
+</div>

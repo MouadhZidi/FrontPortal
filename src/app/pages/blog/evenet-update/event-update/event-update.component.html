@@ -1,0 +1,167 @@
+<div class="container-fluid">
+  <app-page-title
+    title="Espace évenement"
+    [breadcrumbItems]="breadCrumbItems"
+  ></app-page-title>
+
+  <div class="row">
+    <div class="col-xl-12 col-lg-8">
+      <div class="card">
+        <ul
+          ngbNav
+          #nav="ngbNav"
+          [activeId]="1"
+          class="nav-tabs nav-tabs-custom justify-content-center pt-2"
+        >
+          <li [ngbNavItem]="1">
+            <a ngbNavLink> {{"Toues les évenements" | translate}} </a>
+            <ng-template ngbNavContent>
+              <div class="row justify-content-center">
+                <div class="col-xl-8">
+                  <div>
+                    <div class="row align-items-center">
+                      <div class="col-4">
+                        <div>
+                          <h5 class="mb-0">{{"Liste des évenements" | translate}}</h5>
+                        </div>
+                      </div>
+
+                      <div class="col-8">
+                        <div class="">
+                          <ul class="nav nav-pills justify-content-end">
+                            <li class="nav-item">
+                              <a
+                                class="nav-link disabled"
+                                href="javascript: void(0);"
+                                tabindex="-1"
+                                aria-disabled="true"
+                                >{{"Voir" | translate}} :</a
+                              >
+                            </li>
+
+                            <li
+                              class="nav-item"
+                              data-toggle="tooltip"
+                              data-placement="top"
+                              ngbTooltip="Grid"
+                            >
+                              <a
+                                class="nav-link active"
+                                routerLink="/blog/grid"
+                              >
+                                <i class="mdi mdi-view-grid-outline"></i>
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+
+                    <hr class="mb-4" />
+
+                    <div class="row">
+                      <div class="card-body p-4">
+                        <div class="search-box">
+                         
+                          <div class="position-relative">
+                            <input
+                              type="text"
+                              class="form-control rounded bg-light border-light"
+                              placeholder="Rechercher .."
+                              [(ngModel)]="term"
+                            />
+                            <i class="mdi mdi-magnify search-icon"></i>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div
+                        *ngFor="
+                          let item of events
+                            | filter : term
+                            | paginate : { itemsPerPage: 4, currentPage: p };
+                          let i = index
+                        "
+                        class="col-sm-4"
+                      >
+                        <div class="card p-1 border shadow-none">
+                          <div class="p-3">
+                            <h5>
+                              <a class="text-dark">{{ item.libelle }}</a>
+                            </h5>
+                            <p class="text-muted mb-0">
+                              <b>{{"Date évenement" | translate}} :</b> {{ item.date_even }}
+                              <br />
+                              <b>{{"Date éxpiration" | translate}} :</b>{{ item.date_expiration }}
+                            </p>
+                          </div>
+
+                          <div class="position-relative">
+                            <img
+                            [src]="item.imageUrl"
+                            *ngIf="item.imageUrl"
+                            alt="xxxxxxx"
+                              class="img-thumbnail"
+                              style="width: 100%;"
+                            />
+                          </div>
+
+                          <div class="p-3">
+                            <ul class="list-inline">
+                              <li class="list-inline-item me-3">
+                                <a
+                                  href="javascript: void(0);"
+                                  class="text-muted"
+                                >
+                                  <i
+                                    class="bx bx-purchase-tag-alt align-middle text-muted me-1"
+                                  ></i>
+                                  <b>{{"Type d'évenement" | translate}} :</b> {{ item.typ_even }}
+                                </a>
+                              </li>
+                              <li class="list-inline-item me-3">
+                                <a
+                                  href="javascript: void(0);"
+                                  class="text-muted"
+                                >
+                                  <i
+                                    class="bx bx-comment-dots align-middle text-muted me-1"
+                                  ></i>
+                                  <b>{{"Type droit" | translate}} :</b> {{ item.typ_droit }}
+                                </a>
+                              </li>
+                            </ul>
+                            <p>{{ item.libelle }}</p>
+
+                            <div>
+                              <a
+                                routerLink="/blog/detail/{{
+                                  item.id_evenement
+                                }}"
+                                class="text-primary"
+                                >{{"Voir détail" | translate}} <i class="mdi mdi-arrow-right"></i
+                              ></a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <hr class="my-4" />
+                    <div class="text-center">
+                      <pagination-controls
+                        (pageChange)="p = $event"
+                      ></pagination-controls>
+                    </div>
+
+                    <hr class="my-4" />
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </li>
+        </ul>
+        <div [ngbNavOutlet]="nav" class="p-4"></div>
+      </div>
+    </div>
+  </div>
+</div>

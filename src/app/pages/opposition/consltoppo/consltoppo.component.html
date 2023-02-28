@@ -1,0 +1,278 @@
+<div class="container-fluid">
+  <app-page-title title="Consultation d'opposition "> </app-page-title>
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="col-sm-6">
+            <label for="manufacturername">{{"Choisir code pret" | translate}}</label>
+          </div>
+          <div class="col-sm-1">
+            <select
+              (change)="test()"
+              [(ngModel)]="codepret"
+              name="option"
+              class="form-control"
+              id="selectAction"
+              *ngIf="array"
+              style="width: 100%"
+            >
+              
+              <option *ngFor="let op of array" [ngValue]="op">
+                {{ op }}
+              </option>
+            </select>
+          </div>
+
+          <hr />
+          <div *ngIf="ereur">
+
+            <div class="">
+              <div class="alert alert-danger" role="alert">
+                  <h4 class="alert-heading">Alert!</h4>
+                  <p>Pas d'information à afficher</p>
+                  <hr>
+                  <p class="mb-0">Veuillez vérifier votre recherche.</p>
+              </div>
+          </div>
+    
+          </div>
+          
+          <table
+            class="table table-borderless i_table"
+            style="width: 100%"
+            *ngIf="list"
+          >
+            <tbody>
+              <tr>
+                <td scope="row">{{"Groupe" | translate}}</td>
+                <td *ngIf="list">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="inputPassword3"
+                    disabled
+                    placeholder=""
+                    style="font-size: 12px"
+                    value="{{ list.cod_grp_pret }}"
+                  />
+                </td>
+                <td scope="row">{{"Type Prêt" | translate}}</td>
+                <td *ngIf="list">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="inputPassword3"
+                    placeholder=""
+                    disabled
+                    style="font-size: 12px"
+                    value="{{ list.typ_pret }}"
+                  />
+                </td>
+                <td scope="row">{{"Libellé" | translate}}</td>
+                <td *ngIf="list">
+                  <input
+                    type="text"
+                    class="form-control"
+                    disabled
+                    id="inputPassword3"
+                    placeholder=""
+                    style="font-size: 12px"
+                    value="{{ list.cod_typ_bul }}"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td scope="row">{{"Date demande" | translate}}</td>
+                <td *ngIf="list">
+                  <input
+                    type="text"
+                    disabled
+                    class="form-control"
+                    id="inputPassword3"
+                    placeholder=""
+                    style="font-size: 12px"
+                    value="{{ list.prt_dat_dem }}"
+                  />
+                </td>
+                <td scope="row">{{"Montant demandé" | translate}}</td>
+                <td *ngIf="list">
+                  <input
+                    type="text"
+                    class="form-control"
+                    disabled
+                    id="inputPassword3"
+                    placeholder=""
+                    style="font-size: 12px"
+                    value="{{ list.prt_mnt_dem }}"
+                  />
+                </td>
+                <td scope="row">{{"Montant accordé" | translate}}</td>
+                <td *ngIf="list">
+                  <input
+                    type="text"
+                    class="form-control"
+                    disabled
+                    id="inputPassword3"
+                    placeholder=""
+                    style="font-size: 12px"
+                    value="{{ list.prt_mnt_glb }}"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td scope="row">{{"Mois début" | translate}}</td>
+                <td *ngIf="list">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="inputPassword3"
+                    placeholder=""
+                    disabled
+                    style="font-size: 12px"
+                    value="{{ list.prt_dat_fin }}"
+                  />
+                </td>
+                <td scope="row">{{"Membre mentualités payées" | translate}}</td>
+                <td>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="inputPassword3"
+                    placeholder=""
+                    disabled
+                    style="font-size: 12px"
+                  />
+                </td>
+                <td scope="row">{{"Mois fin" | translate}}</td>
+                <td *ngIf="list">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="inputPassword3"
+                    disabled
+                    placeholder=""
+                    style="font-size: 12px"
+                    value="{{ list.prt_dat_fin }}"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td scope="row">{{"Date saisie" | translate}}</td>
+                <td *ngIf="list">
+                  <input
+                    type="text"
+                    disabled
+                    class="form-control"
+                    id="inputPassword3"
+                    placeholder=""
+                    style="font-size: 12px"
+                    value="{{ list.dat_saisie }}"
+                  />
+                </td>
+                <td scope="row">{{"Rembouressement mensuel" | translate}}</td>
+                <td *ngIf="list">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="inputPassword3"
+                    disabled
+                    placeholder=""
+                    style="font-size: 12px"
+                    value="{{ list.rem_men }}"
+                  />
+                </td>
+                <td scope="row">{{"Code Prêt" | translate}}</td>
+                <td *ngIf="list">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="inputPassword3"
+                    placeholder=""
+                    disabled
+                    style="font-size: 12px"
+                    value="{{ list.cod_pret }}"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td scope="row">{{"Dérniere retenue" | translate}}</td>
+                <td *ngIf="list">
+                  <input
+                    type="text"
+                    disabled
+                    class="form-control"
+                    id="inputPassword3"
+                    placeholder=""
+                    style="font-size: 12px"
+                    value="{{ list.nbr_retenue }}"
+                  />
+                </td>
+                <td scope="row">{{"Etat Prêt" | translate}}</td>
+                <td *ngIf="list">
+                  <input
+                    type="text"
+                    disabled
+                    class="form-control"
+                    id="inputPassword3"
+                    placeholder=""
+                    style="font-size: 12px"
+                    value="{{ list.cod_etat_pret }}"
+                  />
+                </td>
+                <td scope="row">{{"Ref session" | translate}}</td>
+                <td *ngIf="list">
+                  <input
+                    type="text"
+                    disabled
+                    class="form-control"
+                    id="inputPassword3"
+                    placeholder=""
+                    style="font-size: 12px"
+                    value="{{ list.ref_pret }}"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td scope="row">{{"Montant remboursé" | translate}}</td>
+                <td *ngIf="list">
+                  <input
+                    type="text"
+                    class="form-control"
+                    disabled
+                    id="inputPassword3"
+                    placeholder=""
+                    style="font-size: 12px"
+                    value="{{ list.rem_men }}"
+                  />
+                </td>
+
+                <td *ngIf="listL"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="cadre-table-scroll">
+            <br />
+          </div>
+          <div *ngIf="listlig">
+          <ag-grid-angular
+            style="width: 100%; height: 500px"
+            class="ag-theme-alpine"
+            [rowData]="listlig"
+            [columnDefs]="columnDefs"
+            [defaultColDef]="defaultColDef"
+            [pagination]="true"
+            [modules]="modules"
+          >
+          </ag-grid-angular>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

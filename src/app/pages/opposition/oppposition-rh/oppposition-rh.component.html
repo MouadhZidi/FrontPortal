@@ -1,0 +1,332 @@
+<div class="container-fluid">
+  <app-page-title title="Opposition : "
+    ><h6 style="color: #001b85"></h6
+  ></app-page-title>
+
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title-desc">
+            <i class="bx bx-user-pin"></i> Consultation d'opposition 
+          </h2>
+          <h5 class="card-title">Chercher une opposition</h5>
+          <p class="card-title-desc">
+              Veuillez entrez les informations nécessaire .
+          </p>
+          
+
+   <div class="cadre-table-scroll">
+                 <div class="cadre-table-scroll">
+  
+
+  
+                  <br>
+                
+                  <form [formGroup]="formDocument">
+                    <div class="form-group row">
+
+                        <div class="col-md-3">
+                          <div class="form-floating mb-3">
+                              <select class="form-select" id="floatingSelectGrid"
+                                  aria-label="Floating label select example" formControlName="cod_pret">
+                                  <option>aucun</option>
+                                  <option *ngFor="let op of array"  [ngValue]='op'>
+                                        {{ op}}
+                                    </option>
+                              </select>
+                              <label for="floatingSelectGrid">Type de bulletin</label>
+                          </div>
+                      </div>
+                        <div class="col-md-3">
+                            <div class="form-floating mb-3">
+                                <input type="email" class="form-control" id="floatingemailInput" formControlName="cod_soc"
+                                    required />
+                                <label for="floatingemailInput">Code sociéte</label>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="floatingemailInput" formControlName="mat_pers"
+                                    required />
+                                <label for="floatingemailInput">Matricule</label>
+                            </div>
+                        </div>
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+                        <div>
+                            <br />
+                            <div>
+                                <button type="submit" class="btn btn-primary w-md" (click)="getCessionPerso()"
+                                    >
+                                    <i class="dripicons-search"></i> Chercher
+                                </button>
+                            </div>
+    
+                            <hr />
+                        </div>
+    
+    
+    
+                    </div>
+                </form>
+
+
+                <table
+                class="table table-borderless i_table"
+                style="width: 100%"
+                *ngIf="list"
+              >
+                <tbody>
+                  <tr>
+                    <td scope="row">{{'Groupe' | translate}}</td>
+                    <td *ngIf="list">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="inputPassword3"
+                        disabled
+                        placeholder=""
+                        style="font-size: 12px"
+                        value="{{ list.cod_grp_pret }}"
+                      />
+                    </td>
+                    <td scope="row">{{'Type Prêt' | translate}}</td>
+                    <td *ngIf="list">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="inputPassword3"
+                        placeholder=""
+                        disabled
+                        style="font-size: 12px"
+                        value="{{ list.typ_pret }}"
+                      />
+                    </td>
+                    <td scope="row">{{'Libellé' | translate}}</td>
+                    <td *ngIf="list">
+                      <input
+                        type="text"
+                        class="form-control"
+                        disabled
+                        id="inputPassword3"
+                        placeholder=""
+                        style="font-size: 12px"
+                        value="{{ list.cod_typ_bul }}"
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td scope="row">{{'Date demande' | translate}}</td>
+                    <td *ngIf="list">
+                      <input
+                        type="text"
+                        disabled
+                        class="form-control"
+                        id="inputPassword3"
+                        placeholder=""
+                        style="font-size: 12px"
+                        value="{{ list.prt_dat_dem }}"
+                      />
+                    </td>
+                    <td scope="row">{{'Montant demandé' | translate }}</td>
+                    <td *ngIf="list">
+                      <input
+                        type="text"
+                        class="form-control"
+                        disabled
+                        id="inputPassword3"
+                        placeholder=""
+                        style="font-size: 12px"
+                        value="{{ list.prt_mnt_dem }}"
+                      />
+                    </td>
+                    <td scope="row">{{'Montant accordé' | translate }}</td>
+                    <td *ngIf="list">
+                      <input
+                        type="text"
+                        class="form-control"
+                        disabled
+                        id="inputPassword3"
+                        placeholder=""
+                        style="font-size: 12px"
+                        value="{{ list.prt_mnt_glb }}"
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td scope="row">{{'Mois début' | translate }}</td>
+                    <td *ngIf="list">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="inputPassword3"
+                        placeholder=""
+                        disabled
+                        style="font-size: 12px"
+                        value="{{ list.prt_dat_fin }}"
+                      />
+                    </td>
+                    <td scope="row">{{'Membre mentualités payées' | translate }}</td>
+                    <td>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="inputPassword3"
+                        placeholder=""
+                        disabled
+                        style="font-size: 12px"
+                      />
+                    </td>
+                    <td scope="row">{{'Mois fin' | translate }}</td>
+                    <td *ngIf="list">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="inputPassword3"
+                        disabled
+                        placeholder=""
+                        style="font-size: 12px"
+                        value="{{ list.prt_dat_fin }}"
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td scope="row">{{'Date saisie' | translate}}</td>
+                    <td *ngIf="list">
+                      <input
+                        type="text"
+                        disabled
+                        class="form-control"
+                        id="inputPassword3"
+                        placeholder=""
+                        style="font-size: 12px"
+                        value="{{ list.dat_saisie }}"
+                      />
+                    </td>
+                    <td scope="row">{{'Rembouressement mensuel' | translate}}</td>
+                    <td *ngIf="list">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="inputPassword3"
+                        disabled
+                        placeholder=""
+                        style="font-size: 12px"
+                        value="{{ list.rem_men }}"
+                      />
+                    </td>
+                    <td scope="row">{{'Code Prêt' | translate }}</td>
+                    <td *ngIf="list">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="inputPassword3"
+                        placeholder=""
+                        disabled
+                        style="font-size: 12px"
+                        value="{{ list.cod_pret }}"
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td scope="row">{{'Dérniere retenue' | translate }}</td>
+                    <td *ngIf="list">
+                      <input
+                        type="text"
+                        disabled
+                        class="form-control"
+                        id="inputPassword3"
+                        placeholder=""
+                        style="font-size: 12px"
+                        value="{{ list.nbr_retenue }}"
+                      />
+                    </td>
+                    <td scope="row">{{'Etat Prêt' | translate }}</td>
+                    <td *ngIf="list">
+                      <input
+                        type="text"
+                        disabled
+                        class="form-control"
+                        id="inputPassword3"
+                        placeholder=""
+                        style="font-size: 12px"
+                        value="{{ list.cod_etat_pret }}"
+                      />
+                    </td>
+                    <td scope="row">{{'Ref session' | translate}}</td>
+                    <td *ngIf="list">
+                      <input
+                        type="text"
+                        disabled
+                        class="form-control"
+                        id="inputPassword3"
+                        placeholder=""
+                        style="font-size: 12px"
+                        value="{{ list.ref_pret }}"
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td scope="row">{{'Montant remboursé' | translate}}</td>
+                    <td *ngIf="list">
+                      <input
+                        type="text"
+                        class="form-control"
+                        disabled
+                        id="inputPassword3"
+                        placeholder=""
+                        style="font-size: 12px"
+                        value="{{ list.rem_men }}"
+                      />
+                    </td>
+    
+                    <td *ngIf="listL"></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+    
+              <div class="cadre-table-scroll">
+                <br />
+              </div>
+              <ag-grid-angular
+                style="width: 100%; height: 500px"
+                class="ag-theme-alpine"
+                [rowData]="listlig"
+                [columnDefs]="columnDefs"
+                [defaultColDef]="defaultColDef"
+                [pagination]="true"
+                [modules]="modules"
+              >
+              </ag-grid-angular>
+              </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,746 @@
+<div class="container-fluid">
+  <app-page-title
+    title="Mise à jour fiche signalétique"
+    [breadcrumbItems]="breadCrumbItems"
+  ></app-page-title>
+  <form [formGroup]="formPers">
+  <div class="form-group row">
+    <div class="col-md-4">
+      <div class="form-floating mb-3">
+        <input
+          type="email"
+          class="form-control"
+          id="floatingemailInput"
+          formControlName="mat_pers"
+          required
+        />
+        <label for="floatingSelectGrid">{{"Matricule" | translate}}</label>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="form-floating mb-3">
+        <input
+          type="email"
+          class="form-control"
+          id="floatingemailInput"
+          formControlName="cod_soc"
+          required
+        />
+        <label for="floatingemailInput">{{"Code société" | translate}}</label>
+      </div>
+
+      
+    </div>
+    <div class="col-md-4">
+    <button type="submit" class="btn btn-primary" (click)="GetPers()">
+      <i class="dripicons-search"> </i> Chercher
+    </button>
+  </div>
+ 
+    
+  </div>
+</form>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-body">
+          <ul
+            ngbNav
+            #justifiednav="ngbNav"
+            [activeId]="1"
+            class="nav-pills nav-justified"
+          >
+            <li [ngbNavItem]="1" (click)="getformatDate()">
+              <a ngbNavLink>
+                <span class="d-block d-sm-none"
+                  ><i class="fas fa-home"></i
+                ></span>
+                <span class="d-none d-sm-block">{{"Personnel" | translate}}</span>
+              </a>
+              <ng-template ngbNavContent>
+                <ng-template [ngTemplateOutlet]="TabContent"></ng-template>
+              </ng-template>
+            </li>
+            <li [ngbNavItem]="2" (click)="getformatDateEmbauche()">
+              <a ngbNavLink>
+                <span class="d-block d-sm-none"
+                  ><i class="far fa-user"></i
+                ></span>
+                <span class="d-none d-sm-block">{{"Profile" | translate}}</span>
+              </a>
+              <ng-template ngbNavContent>
+                <ng-template [ngTemplateOutlet]="TabContent1"></ng-template>
+              </ng-template>
+            </li>
+            <li [ngbNavItem]="3">
+              <a ngbNavLink>
+                <span class="d-block d-sm-none"
+                  ><i class="far fa-envelope"></i
+                ></span>
+                <span class="d-none d-sm-block">{{"Affectation" | translate}}</span>
+              </a>
+              <ng-template ngbNavContent>
+                <ng-template [ngTemplateOutlet]="TabContent2"></ng-template>
+              </ng-template>
+            </li>
+            <li [ngbNavItem]="4">
+              <a ngbNavLink>
+                <span class="d-block d-sm-none"
+                  ><i class="fas fa-cog"></i
+                ></span>
+                <span class="d-none d-sm-block">{{"Famille" | translate}}</span>
+              </a>
+              <ng-template ngbNavContent>
+                <ng-template [ngTemplateOutlet]="TabContent4"></ng-template>
+              </ng-template>
+            </li>
+            <li [ngbNavItem]="5">
+              <a ngbNavLink>
+                <span class="d-block d-sm-none"
+                  ><i class="fas fa-cog"></i
+                ></span>
+                <span class="d-none d-sm-block">{{"Curriculum Vitae" | translate}}</span>
+              </a>
+              <ng-template ngbNavContent>
+                <ng-template [ngTemplateOutlet]="TabContent5"></ng-template>
+              </ng-template>
+            </li>
+          </ul>
+          <div [ngbNavOutlet]="justifiednav"></div>
+        </div>
+      </div>
+    </div>
+    <!-- End Justified Tabs -->
+  </div>
+
+
+
+  
+  <!-- Tab Content -->
+  <ng-template #TabContent>
+    <form [formGroup]="formPersonnel" *ngIf="personnel">
+      <hr>
+      <div class="card">
+        <div class="card-body">
+         
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="row mb-4">
+                <label
+                  for="horizontal-firstname-input"
+                  class="col-sm-3 col-form-label"
+                  >{{"Matricule" | translate}}</label
+                >
+                <div class="col-sm-9">
+                  <input
+                    formControlName="mat_pers"
+                    
+                    id="productname"
+                    name="productname"
+                    type="text"
+                    class="form-control"
+                    (change)="onSelectMat($event)"
+                    pattern="[0-9a-zA-Z]{5,10}"
+                    title="Veuillez entrer 5 chiffres"
+                  />
+
+                  <div
+                    class="alert alert-danger"
+                    *ngIf="etatmat"
+                    style="height: 2px"
+                  >
+                    <p style="margin-top: -8px">
+                      <strong>{{"Attention" | translate}}! </strong> {{"Matricule déjà existe" | translate}}
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="row mb-4">
+                <label
+                  for="horizontal-firstname-input"
+                  class="col-sm-3 col-form-label"
+                  >{{"Prénom" | translate}}
+                </label>
+                <div class="col-sm-9">
+                  <input
+                    formControlName="pren_pers"
+                    id="productname"
+                    name="productname"
+                    type="text"
+                    class="form-control"
+                    pattern="[^0-9@&²'()_=*!:;,/+.]{3,20}"
+                    title="Veuillez entrer un prénom entre 3 et 20 caractéres"
+                  />
+                </div>
+              </div>
+
+              <div class="row mb-4">
+                <label
+                  for="horizontal-firstname-input"
+                  class="col-sm-3 col-form-label"
+                  >{{"Genre" | translate}}</label
+                >
+                <div class="col-sm-9">
+                  <select
+                    class="form-select"
+                    aria-label="Default select example"
+                    formControlName="sexe"
+                  >
+                    <option value="M">{{"Masculin" | translate}}</option>
+                    <option value="F">{{"Féminin" | translate}}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-sm-6">
+              <div class="row mb-4">
+                <label
+                  for="horizontal-firstname-input"
+                  class="col-sm-3 col-form-label"
+                  >{{"Nom" | translate}}</label
+                >
+                <div class="col-sm-9">
+                  <input
+                    id="manufacturerbrand"
+                    formControlName="nom_pers"
+                    name="manufacturerbrand"
+                    type="text"
+                    class="form-control"
+                    pattern="[^0-9&²'()_=*!:;,/+.]{3,20}"
+                    title="Veuillez entrer un nom entre 3 et 20 caractéres"
+                  />
+                </div>
+              </div>
+
+              <div class="row mb-4">
+                <label
+                  for="horizontal-firstname-input"
+                  class="col-sm-3 col-form-label"
+                  >{{"Date naissance" | translate}}</label
+                >
+                <div class="col-sm-9">
+                  <input
+                  #myInputDateNaissance
+                    
+                    formControlName="dat_nais"
+                    placeholder="jj/MM/yyyy"
+                    id="manufacturerbrand"
+                    name="manufacturerbrand"
+                    type="text"
+                    class="form-control"
+                    title="La date de naissance doit être supérieur à 01/01/2010"
+                    
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="row mb-4">
+                <label
+                  for="horizontal-firstname-input"
+                  class="col-sm-3 col-form-label"
+                  >{{"Lieu de naissance" | translate}}</label
+                >
+                <div class="col-sm-9">
+                  <input
+                    formControlName="lieu_nais"
+                    id="manufacturerbrand"
+                    name="manufacturerbrand"
+                    type="text"
+                    class="form-control"
+                  />
+                </div>
+              </div>
+
+              <div class="row mb-4">
+                <label
+                  for="horizontal-firstname-input"
+                  class="col-sm-3 col-form-label"
+                  >{{"Gouvernorat" | translate}}</label
+                >
+                <div class="col-sm-9">
+                  <select
+                    class="form-select"
+                    aria-label="Default select example"
+                    formControlName="cod_gouv"
+                  >
+                    <option *ngFor="let i of listGouv" value="{{ i.cod_gouv }}">
+                      {{ i.lib_gouv }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="row mb-4">
+                <label
+                  for="horizontal-firstname-input"
+                  class="col-sm-3 col-form-label"
+                  >{{"Région" | translate}}</label
+                >
+                <div class="col-sm-9">
+                  <select
+                    class="form-select"
+                    aria-label="Default select example"
+                    formControlName="cod_lieu_geog"
+                  >
+                    <option
+                      *ngFor="let i of listLieuGeo"
+                      value="{{ i.cod_lieu_geog }}"
+                    >
+                      {{ i.lib_lieu }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="card">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="row mb-4">
+                    <label
+                      for="horizontal-firstname-input"
+                      class="col-sm-3 col-form-label"
+                      >{{"Service Militaire" | translate}}</label
+                    >
+                    <div class="col-sm-9">
+                      <select
+                        class="form-select"
+                        aria-label="Default select example"
+                        formControlName="serv_mil"
+                      >
+                        <option
+                          *ngFor="let i of listMilitaire"
+                          value="{{ i.cod_mil }}"
+                        >
+                          {{ i.lib_mil }}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-sm-6"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+ 
+    </form>
+  </ng-template>
+
+  <!-- Tab Content -->
+  <ng-template #TabContent1>
+    <form [formGroup]="formPersonnel" *ngIf="personnel">
+      <hr>
+      <div class="card">
+        <div class="card-body">
+          
+        
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="row mb-4">
+                <label
+                  for="horizontal-firstname-input"
+                  class="col-sm-3 col-form-label"
+                  >{{"Code filiére" | translate}}</label
+                >
+                <div class="col-sm-9">
+                  <select
+                    class="form-select"
+                    aria-label="Default select example"
+                    formControlName="cod_fill"
+                  >
+                    <option
+                      *ngFor="let i of listFiliere"
+                      value="{{ i.cod_fil }}"
+                    >
+                      {{ i.lib_fil }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="row mb-4">
+                <label
+                  for="horizontal-firstname-input"
+                  class="col-sm-3 col-form-label"
+                  >Adm Tech</label
+                >
+                <div class="col-sm-9">
+                  <select
+                    class="form-select"
+                    aria-label="Default select example"
+                    formControlName="adm_tech"
+                  >
+                    <option
+                      *ngFor="let i of listAdmTech"
+                      value="{{ i.adm_tech }}"
+                    >
+                      {{ i.lib_adm_tech }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="row mb-4">
+                <label
+                  for="horizontal-firstname-input"
+                  class="col-sm-3 col-form-label"
+                  >{{"Niveau salaire" | translate}}</label
+                >
+                <div class="col-sm-9">
+                  <input
+                    id="manufacturerbrand"
+                    name="manufacturerbrand"
+                    type="text"
+                    class="form-control"
+                  />
+                </div>
+              </div>
+
+              <div class="row mb-4">
+                <label
+                  for="horizontal-firstname-input"
+                  class="col-sm-3 col-form-label"
+                >
+                  Echelon</label
+                >
+                <div class="col-sm-9">
+                  <select
+                    class="form-select"
+                    aria-label="Default select example"
+                    formControlName="cod_ech"
+                  >
+                    <option
+                      *ngFor="let i of listEchlonh"
+                      value="{{ i.cod_ech }}"
+                    >
+                      {{ i.cod_ech }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-sm-6">
+              <div class="row mb-4">
+                <label
+                  for="horizontal-firstname-input"
+                  class="col-sm-3 col-form-label"
+                  >{{"Code Categ" | translate}}</label
+                >
+                <div class="col-sm-9">
+                  <select
+                    class="form-select"
+                    aria-label="Default select example"
+                    formControlName="cod_categ"
+                    (change)="onSelectCategorie($event)"
+                  >
+                    <option
+                      *ngFor="let i of listCategg"
+                      value="{{ i.cod_categ }}"
+                    >
+                      {{ i.lib_categ }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="row mb-4">
+                <label
+                  for="horizontal-firstname-input"
+                  class="col-sm-3 col-form-label"
+                  >{{"Code catégorie" | translate}}</label
+                >
+                <div class="col-sm-9">
+                  <select
+                    class="form-select"
+                    aria-label="Default select example"
+                    formControlName="cod_cat"
+                    (change)="onSelect2($event)"
+                  >
+                    <option *ngFor="let i of listCateg" value="{{ i.cod_cat }}">
+                      {{ i.lib_cat }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="row mb-4">
+                <label
+                  for="horizontal-firstname-input"
+                  class="col-sm-3 col-form-label"
+                  >{{"Code grade" | translate}}</label
+                >
+                <div class="col-sm-9">
+                  <select
+                    class="form-select"
+                    aria-label="Default select example"
+                    formControlName="cod_grad"
+                  >
+                    <option *ngFor="let i of listGrad" value="{{ i.cod_grad }}">
+                      {{ i.lib_grad }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="row mb-4">
+                <label
+                  for="horizontal-firstname-input"
+                  class="col-sm-3 col-form-label"
+                  >{{"Emploie fonctionnel" | translate}}</label
+                >
+                <div class="col-sm-9">
+                  <select
+                    class="form-select"
+                    aria-label="Default select example"
+                    formControlName="cod_fonct"
+                  >
+                    <option
+                      *ngFor="let i of listFonction"
+                      value="{{ i.cod_fonct }}"
+                    >
+                      {{ i.lib_fonct }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="card">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="row mb-4">
+                    <label
+                      for="horizontal-firstname-input"
+                      class="col-sm-3 col-form-label"
+                      >{{"Date d'embauche" | translate}}</label
+                    >
+                    <div class="col-sm-9">
+                      <input
+                        
+                        formControlName="dat_emb"
+                        id="manufacturerbrand"
+                        name="manufacturerbrand"
+                        type="text"
+                        class="form-control"
+                        title="La date d`embauche doit être supérieur à 01/01/2010"
+                        #myInputDateEmbauche
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-sm-6">
+                  <div class="row mb-4">
+                    <label
+                      for="horizontal-firstname-input"
+                      class="col-sm-3 col-form-label"
+                      >{{"Code motif" | translate}}</label
+                    >
+                    <div class="col-sm-9">
+                      <select
+                        class="form-select"
+                        aria-label="Default select example"
+                        formControlName="cod_motif"
+                      >
+                        <option
+                          *ngFor="let i of listMotif"
+                          value="{{ i.cod_motif }}"
+                        >
+                          {{ i.lib_motif }}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </ng-template>
+  <ng-template #TabContent2>
+    <form [formGroup]="formPersonnel"  *ngIf="personnel">
+      <hr>
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">{{"Affectation" | translate}}</div>
+          
+          <div class="col-sm-8">
+            <div class="row mb-4">
+              <label
+                for="horizontal-firstname-input"
+                class="col-sm-3 col-form-label"
+                >Service</label
+              >
+              <div class="col-sm-9">
+                <select
+                  class="form-select"
+                  aria-label="Default select example"
+                  (change)="onSelect($event)"
+                  formControlName="cod_serv"
+                >
+                  <option
+                    *ngFor="let i of listService"
+                    value="{{ i.cod_serv }}"
+                  >
+                    {{ i.lib_serv }}
+                  </option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row mb-4">
+              <label
+                for="horizontal-firstname-input"
+                class="col-sm-3 col-form-label"
+                >{{"Ordonnanceur" | translate}}</label
+              >
+              <div *ngIf="listServ" class="col-sm-9">
+                <textarea
+                  name=""
+                  [value]="listServ[0].libelleaffect"
+                  id=""
+                  cols="120"
+                  class="form-group"
+                  rows="10"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button
+        style="width: fit-content;margin-left: 90%;"
+        class="btn btn-success"
+        (click)="
+          UpdatePersonnel()
+        "
+      >
+        <i class="bx bx-save font-size-16" ></i>
+        {{"Enregistrer" | translate}}
+      </button>
+      </div>
+    </form>
+  </ng-template>
+  <ng-template #TabContent3>
+    <form [formGroup]="formPersonnel">
+      <hr>
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">{{"Affectation" | translate}}</div>
+          
+          <div class="col-sm-8">
+            <div class="row mb-4">
+              <label
+                for="horizontal-firstname-input"
+                class="col-sm-3 col-form-label"
+                >Service</label
+              >
+              <div class="col-sm-9">
+                <select
+                  class="form-select"
+                  aria-label="Default select example"
+                  (change)="onSelect($event)"
+                  formControlName="cod_serv"
+                >
+                  <option
+                    *ngFor="let i of listService"
+                    value="{{ i.cod_serv }}"
+                  >
+                    {{ i.lib_serv }}
+                  </option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row mb-4">
+              <label
+                for="horizontal-firstname-input"
+                class="col-sm-3 col-form-label"
+                >{{"Ordonnanceur" | translate}}</label
+              >
+              <div *ngIf="listServ" class="col-sm-9">
+                <textarea
+                  name=""
+                  [value]="listServ[0].libelleaffect"
+                  id=""
+                  cols="120"
+                  class="form-group"
+                  rows="10"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </form>
+  </ng-template>
+  <ng-template #TabContent4>
+    <hr>
+    <div class="card">
+      <div class="card-body" *ngIf="conj">
+        <h4 class="card-title">{{"Mise à jour Conjoint" | translate}}</h4>
+      
+          <ng2-smart-table [settings]="Conj" [source]="conj" (createConfirm)="AddNewLineConjoint($event);closeRow($event)" (custom)="onCustom($event)" (editConfirm)="UpdateConjoint($event);closeRow($event)" (deleteConfirm)="onDeleteConfirm($event)"></ng2-smart-table>
+      </div>
+  </div>
+
+    
+    <br />
+    <div class="card">
+      <div class="card-body" *ngIf="enf">
+        <h4 class="card-title">{{"Mise à jour Enfant" | translate}}</h4>
+       
+          <ng2-smart-table #smartTable [settings]="settings" (createConfirm)="AddNewLineEnfant($event);closeRow($event)" [source]="enf" (custom)="onCustom($event)" (editConfirm)="updateEnfant($event);closeRow($event)" (deleteConfirm)="onDeleteConfirm($event)"></ng2-smart-table>
+      </div>
+  </div>
+  </ng-template>
+  <ng-template #TabContent5>
+    <hr>
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">{{"Mise à jour CV" | translate}}</h4>
+      
+          <ng2-smart-table [settings]="CV" [source]="cv" (custom)="onCustom($event)" (createConfirm)="AddNewLineCV($event);closeRow($event)"(editConfirm)="UpdateCv($event);closeRow($event)" (deleteConfirm)="onDeleteConfirmCv($event)"></ng2-smart-table>
+      </div>
+  </div>
+  </ng-template>
+</div>

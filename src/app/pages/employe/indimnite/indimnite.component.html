@@ -1,0 +1,63 @@
+<div class="button-items">
+  <button type="button" class="btn btn-success" (click)="exportAsXLSX()">
+    <i class="bx bx-bx-file-blank font-size-16 align-middle me-2"></i>
+    {{"Télécharger en EXCEL" |translate}}
+  </button>
+  <button type="button" class="btn btn-danger" (click)="openPDF()">
+    <i class="bx bxs-file-pdf  font-size-16 align-middle me-2"></i>
+    {{"Télécharger en PDF" |translate}}
+  </button>
+</div>
+<br />
+
+<div class="row">
+  <ng-template #content role="document" let-modal class="modal-dialog modal-lg">
+    <button
+      type="button"
+      class="btn-close"
+      aria-hidden="true"
+      (click)="modal.dismiss('Cross click')"
+      style="margin-left: 99%"
+    ></button>
+
+    <ag-grid-angular
+      style="width: 100%; height: 450px"
+      class="ag-theme-alpine"
+      [rowData]="rowData"
+      [columnDefs]="columnDefs"
+      [defaultColDef]="defaultColDef"
+      [pagination]="true"
+      [modules]="modules"
+      [animateRows]="true"
+    >
+    </ag-grid-angular>
+  </ng-template>
+
+  <div class="card text-center">
+    <div class="card-footer bg-transparent border-top">
+      <div class="contact-links d-flex font-size-20">
+        <div class="flex-fill">
+          <a
+            style="float: left"
+            href="javascript: void(0);"
+            ngbTooltip="Visualiser demande"
+            (click)="openModal(content)"
+            ><i class="bx bx-zoom-in"></i>{{"Détacher" |translate}}</a
+          >
+        </div>
+      </div>
+      <ag-grid-angular
+        style="width: 100%; height: 450px"
+        class="ag-theme-alpine"
+        [rowData]="rowData"
+        [columnDefs]="columnDefs"
+        [defaultColDef]="defaultColDef"
+        [pagination]="true"
+        [modules]="modules"
+        [animateRows]="true"
+      >
+      </ag-grid-angular>
+      
+    </div>
+  </div>
+</div>

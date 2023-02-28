@@ -1,0 +1,314 @@
+<div class="container-fluid">
+  <!-- start page title -->
+  <app-page-title title="Bulletin De Paie : ">
+    <h6 style="color: #001b85"></h6>
+  </app-page-title>
+  <!-- end page title -->
+
+  <div class="card">
+    <div class="card-body">
+      <h2 class="card-title-desc">
+        <i class="bx bx-user-pin"></i> Bulletin de paie
+      </h2>
+     
+      <hr />
+      <h5 class="card-title">Chercher un bulletin</h5>
+      <p class="card-title-desc">
+        Veuillez entrez les informations nécessaire .
+      </p>
+      <form [formGroup]="formDocument" #Bullform="ngForm">
+        <div class="form-group row">
+          <div class="col-md-3">
+            <div class="form-floating mb-3">
+              <select
+                class="form-select"
+                id="floatingSelectGrid"
+                aria-label="Floating label select example"
+                formControlName="cod_typ_bul"
+              >
+                <option selected>Afficher la liste</option>
+                <option value="BT">Bulletin Théorique</option>
+                <option value="ST">Solde de tout compte</option>
+                <option value="BN">Bulletin du mois</option>
+                <option value="BR">Bulletin Rappel</option>
+                <option value="BC">Bulletin Divers</option>
+                <option value="PV">Bulletin à l'envers</option>
+                <option value="BA">Bulletin anterieur</option>
+                <option value="BG">PRIME DE GRATIFICATION</option>
+                <option value="PT">THEORIQUE</option>
+                <option value="AT">Bulletin Attetstation Théorique</option>
+                <option value="RP">Bulletin Theorique</option>
+                <option value="PF">Prime fin de Carriére</option>
+                <option value="PE">Prime d'effort</option>
+                <option value="CA">Capacité</option>
+                <option value="SU">Simulaton</option>
+              </select>
+              <label for="floatingSelectGrid">Type de bulletin</label>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="form-floating mb-3">
+              <input
+                type="email"
+                class="form-control"
+                id="floatingemailInput"
+                formControlName="dateBul"
+                mask="00/0000"
+                required
+              />
+              <label for="floatingemailInput">Date ( Format : dd/YYYY )</label>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                class="form-control"
+                id="floatingemailInput"
+                formControlName="mat_pers"
+                
+                required
+              />
+              <label for="floatingemailInput">Matricule</label>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                class="form-control"
+                id="floatingemailInput"
+                formControlName="nom_pers"
+                required
+              />
+              <label for="floatingemailInput">Nom et prenom</label>
+            </div>
+          </div>
+
+          <div>
+            <br />
+            <div>
+              <button
+                type="submit"
+                class="btn btn-primary w-md"
+                (click)="getBulletinRh()"
+              >
+                <i class="dripicons-search"> </i> Chercher
+              </button>
+            </div>
+
+            <hr />
+          </div>
+        </div>
+      </form>
+      <br />
+      <div *ngIf="ereur">
+        <div class="">
+          <div class="alert alert-danger" role="alert">
+            <h4 class="alert-heading">Alert!</h4>
+            <p>Pas d'information à afficher</p>
+            <hr />
+            <p class="mb-0">Veuillez vérifier votre recherche.</p>
+          </div>
+        </div>
+      </div>
+      <form *ngIf="listInfo">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="card">
+              <div class="card-body">
+                <h4 class="card-title mb-4">Informations personnels</h4>
+                <form>
+                  <div class="row">
+                    <div class="col-lg-3">
+                      <div class="mb-3">
+                        <label for="formrow-inputCity">Matricule</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="formrow-inputCity"
+                          [value]="listInfo.mat_pers"
+                          disabled
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-3">
+                      <div class="mb-3">
+                        <label for="formrow-inputCity">Nom & Prénom</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="formrow-inputCity"
+                          disabled
+                          [value]="listInfo.nom_pers"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                      <div class="mb-3">
+                        <label for="formrow-inputCity"
+                          >Enfant All. familale</label
+                        >
+                        <input
+                          type="text"
+                          class="form-control"
+                          disabled
+                          id="formrow-inputCity"
+                          [value]="listInfo.charg_all"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-3">
+                      <div class="mb-3">
+                        <label for="formrow-inputCity">Nombre enfant</label>
+                        <input
+                          type="text"
+                          disabled
+                          class="form-control"
+                          id="formrow-inputCity"
+                          [value]="listInfo.nbr_enf"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-3">
+                      <div class="mb-3">
+                        <label for="formrow-inputCity">Code Service</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          disabled
+                          id="formrow-inputCity"
+                          [value]="listInfo.cod_serv"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-3">
+                      <div class="mb-3">
+                        <label for="formrow-inputCity">Service</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="formrow-inputCity"
+                          disabled
+                          [value]="listInfo.lib_serv"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                      <div class="mb-3">
+                        <label for="formrow-inputCity">Enfants à charge</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          disabled
+                          id="formrow-inputCity"
+                          [value]="listInfo.charg_enf"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-3">
+                      <div class="mb-3">
+                        <label for="formrow-inputCity">Code Poste</label>
+                        <input
+                          type="text"
+                          disabled
+                          class="form-control"
+                          id="formrow-inputCity"
+                          [value]="listInfo.adm_tech"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-3">
+                      <div class="mb-3">
+                        <label for="formrow-inputCity">Poste</label>
+                        <input
+                          type="text"
+                          disabled
+                          class="form-control"
+                          id="formrow-inputCity"
+                          [value]="listInfo.lib_adm_tech"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-3">
+                      <div class="mb-3">
+                        <label for="formrow-inputCity">Echelon</label>
+                        <input
+                          type="text"
+                          disabled
+                          class="form-control"
+                          id="formrow-inputCity"
+                          [value]="listInfo.cod_ech"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                      <div class="mb-3">
+                        <label for="formrow-inputCity">Classe</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          disabled
+                          id="formrow-inputCity"
+                          [value]="listInfo.cod_cat"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-3">
+                      <div class="mb-3">
+                        <label for="formrow-inputCity">Section</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="formrow-inputCity"
+                          disabled
+                          [value]="listInfo.cod_grad"
+                        />
+                      </div>
+                    </div>
+                  
+
+                  <div class="col-lg-3">
+                    <div class="mb-3">
+                      <label for="formrow-inputCity"
+                        >Code situation familale</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="formrow-inputCity"
+                        disabled
+                        [value]="listInfo.cod_sit"
+                      />
+                    </div>
+                  </div>
+                </div>      
+                <hr>            
+                      <ag-grid-angular
+                        style="width: 100%; height: 500px"
+                        class="ag-theme-alpine"
+                        [rowData]="rowData"
+                        [columnDefs]="columnDefs"
+                        [defaultColDef]="defaultColDef"
+                        [pagination]="true"
+                        [modules]="modules"
+                        [animateRows]="true"
+                      >
+                      </ag-grid-angular>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,47 @@
+
+
+
+
+   
+ 
+    <div class="d-flex justify-content-start"  ngbDropdown>
+      <button
+        type="button"
+        class="btn header-item"
+        id="page-header-user-dropdown"
+        ngbDropdownToggle
+        style="margin-top: -7%;"
+      >
+        <img
+          *ngIf="flagvalue !== undefined"
+          src="{{ flagvalue }}"
+          alt="Header Language"
+          height="16"
+        />
+        <span class="ms-1">{{ countryName }}</span>
+        <img
+          *ngIf="flagvalue === undefined"
+          src="{{ valueset }}"
+          alt="Header Language"
+          height="16"
+        />
+        <span *ngIf="flagvalue === undefined" class="ms-1">Français</span>
+      </button>
+      <div class="dropdown-menu dropdown-menu-start" ngbDropdownMenu>
+        <a
+          href="javascript:void(0);"
+          class="dropdown-item notify-item"
+          *ngFor="let item of listLang"
+          (click)="setLanguage(item.text, item.lang, item.flag)"
+          [ngClass]="{ active: cookieValue === item.lang }"
+        >
+          <img
+            src="{{ item.flag }}"
+            alt="user-image"
+            class="me-1"
+            height="12"
+          />
+          <span class="align-middle">{{ item.text }}</span>
+        </a>
+      </div>
+    </div>

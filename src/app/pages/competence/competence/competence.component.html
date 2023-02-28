@@ -1,0 +1,628 @@
+<div class="container-fluid">
+  <div class="checkout-tabs">
+    <div class="row">
+      <div class="col-xl-2 col-sm-3">
+        <ul ngbNav #nav="ngbNav" [activeId]="1" class="nav-pills flex-column">
+          <li [ngbNavItem]="1">
+            <a ngbNavLink>
+              <i class="bx bxs-user d-block check-nav-icon mt-4 mb-2"></i>
+              <p class="fw-bold mb-4">{{"Employé" | translate}}</p>
+            </a>
+
+            <ng-template ngbNavContent>
+              <div class="container-fluid">
+                <!-- start page title -->
+
+                <!-- end page title -->
+
+            
+                
+                <b>{{"Matricule séléctionné" | translate}} :</b>  <b><span id="selectedRows"></span></b>
+                <br><br>
+
+                  <br>
+               
+                <ag-grid-angular
+                  style="width: 100%; height: 400px" 
+                  class="ag-theme-alpine"
+                  [rowData]="listObject"
+                  [columnDefs]="columnDefs"
+                  [defaultColDef]="defaultColDef"
+                  [pagination]="true"
+                  [modules]="modules"
+                  (cellClicked)="onCellClicked($event)"
+                  (gridReady)="onGridReady($event)"
+                  [rowSelection]="rowSelection"
+                  [animateRows]="true"
+              
+                  [masterDetail]="true"
+                >
+                </ag-grid-angular>
+                <br>
+                <div class="row" *ngIf="listOptionComp">
+                  <div class="col-12">
+                    <div class="card">
+                      <div class="card-body">
+                        <h1 class="card-title">{{"Information Employé" | translate}}</h1>
+                        <h4 style="color: #2a3042"></h4>
+
+                        <form *ngIf="visibleDiv">
+                          <div class="row">
+                            <div class="col-sm-6 test">
+                              <div class="mb-3">
+                                <label class="header">{{"Matricule" | translate}}</label>
+
+                                <input
+                                  *ngIf="listOptionComp"
+                                  id="productname"
+                                  name="productname"
+                                  disabled
+                                  value="{{ listOptionComp.cod_candidat }}"
+                                  type="text"
+                                  class="form-control"
+                                />
+                              </div>
+                            </div>
+                            <div class="col-sm-6 test">
+                              <div class="mb-3">
+                                <label class="header">{{"Nom & Prénom" | translate}}</label>
+
+                                <input
+                                  *ngIf="listOptionComp"
+                                  id="productname"
+                                  name="productname"
+                                  disabled
+                                  value="{{ listOptionComp.nom_pers }}"
+                                  type="text"
+                                  class="form-control"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-sm-6 test">
+                              <div class="mb-3">
+                                <label class="header">{{"Affectation" | translate}}</label>
+
+                                <input
+                                  *ngIf="listOptionComp"
+                                  id="lib"
+                                  name="productname"
+                                  disabled
+                                  value="{{ listOptionComp.lib_serv }}"
+                                  type="text"
+                                  class="form-control"
+                                />
+                              </div>
+                            </div>
+                            <div class="col-sm-6 test">
+                              <div class="mb-3">
+                                <label class="header">{{"Emploi" | translate}}</label>
+
+                                <input
+                                  *ngIf="listOptionComp"
+                                  id="pr"
+                                  name="productname"
+                                  disabled
+                                  value="{{ listOptionComp.lib_post }}"
+                                  type="text"
+                                  class="form-control"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-sm-6 test">
+                              <div class="mb-3">
+                                <label class="header">{{"Position" | translate}}</label>
+
+                                <input
+                                  *ngIf="listOptionComp"
+                                  id="prod"
+                                  name="productname"
+                                  disabled
+                                  value="{{ listOptionComp.cod_soc }}"
+                                  type="text"
+                                  class="form-control"
+                                />
+                              </div>
+                            </div>
+                            <div class="col-sm-6 test">
+                              <div class="mb-3">
+                                <label class="header">{{"Famille" | translate}}</label>
+
+                                <input
+                                  *ngIf="listOptionComp"
+                                  id="produc"
+                                  name="productname"
+                                  disabled
+                                  value="{{ listOptionComp.cod_metier }}"
+                                  type="text"
+                                  class="form-control"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                          <div class="d-flex flex-wrap gap-2 mt-2"></div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- end row -->
+              </div>
+              <!-- container-fluid -->
+            </ng-template>
+          </li>
+          
+          <li [ngbNavItem]="2">
+            <a ngbNavLink>
+              <i class="bx bx-notepad d-block check-nav-icon mt-4 mb-2"></i>
+              <p class="fw-bold mb-4">{{"Compétence" | translate}}</p>
+            </a>
+            <ng-template ngbNavContent>
+              <div class="container-fluid">
+                <!-- start page title -->
+
+                <!-- end page title -->
+
+             
+                
+
+                <i class="bi bi-filetype-xls"></i>
+
+               
+
+                      <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+
+          <h3 class="card-title-desc">{{"Liste des competences" | translate}}</h3>
+
+               
+               
+         
+                     
+                      <form id="datiRichiesta" [hidden]="datiRichiestaClicked" >
+                        <ul class="list-inline m-0">
+                          <li class="list-inline-item">
+                              <button class="btn btn-primary" (click)="onAddRow()"  ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-square" viewBox="0 0 16 16">
+                                <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                              </svg></button>
+                          </li>
+                         
+                          
+                      </ul>
+                      <hr>
+                      <div class="row"> 
+                        <div class="col-sm-2">
+                          <label class="header" style="text-align: center;">{{"Libellé Nat Competance" | translate}}</label></div>
+                          <div class="col-sm-2">
+                            <label class="header" style="text-align: center;">{{"Code Nat Competance" | translate}}</label></div>
+                            <div class="col-sm-2">
+                              <label class="header" style="text-align: center;">{{"Libellé" | translate}}</label></div>
+                              <div class="col-sm-2">
+                                <label class="header" style="text-align: center;">{{"Appreciation" | translate}}</label></div>
+                                <div class="col-sm-2">
+                                  <label class="header" style="text-align: center;">{{"Date validation" | translate}}</label></div>
+                                  <div class="col-sm-2">
+                                    <label class="header" style="text-align: center;">{{"Niveau competances" | translate}}</label></div>
+                          </div>
+
+                            
+                            <div *ngFor="let a of arrayOfObj">    
+                             
+                                
+                                  <div class="row"> 
+                                    <div class="col-sm-2">
+                    
+                                      <div class="mb-3">
+                                       
+                                        <select
+                                    (change)="choseNatComp()"
+                                    [(ngModel)]="valNatComp"
+                                    name="option"
+                                    class="form-control"
+                                    id="selectAction"
+                                    *ngIf="listNatComp"
+                                  >
+                                  <option *ngFor="let op of listNatComp "  [ngValue]='op.cod_nat_comp' (ngModelChange)="checkFormReq()">
+                                    {{ op.cod_nat_comp}} - {{ op.lib_nat_comp}}
+                                    </option>
+                                  </select>
+                                      </div>
+                                     
+                    
+                    
+                                     
+                                    </div>
+                          
+                                    <div class="col-sm-2">
+                    
+                                      <div class="mb-3">
+                                        <input  id="conat" disabled  [(ngModel)]="codNatCompet" name="conat" type="text" value={{valNatComp}} class="form-control"
+                                        >
+                                      </div>
+                    
+                                    
+                                   </div>
+                                   <div class="col-sm-2">
+                    
+                                    <div class="mb-3">
+                                      <input  id="lib" [(ngModel)]="lieblle" name="lib"   value="" type="text"  class="form-control" 
+                                       >
+                                      
+                                    </div>
+                                   
+                    
+                    
+                                   
+                                  </div>
+                                  <div class="col-sm-2">
+                    
+                                    <div class="mb-3">
+                                      <select (change)="optionAppreciationVal()"  [(ngModel)]="valid" name="option" class="form-control" id="selectAction" >
+          
+                                        <option  >
+                                         En instance
+                                          </option>
+                                          <option  >
+                                         validé
+                                          </option>
+                                          <option  >
+                                         Annulé
+                                          </option>
+                                      </select>
+                                      
+                                    </div>
+                                   
+                    
+                    
+                                   
+                                  </div>
+                                  <div class="col-sm-2">
+                    
+                                    <div class="mb-3">
+                                      <input  id="datv" [(ngModel)]="datValid" name="datv"   placeholder="yyyy-MM-dd" type="date"  class="form-control" 
+                                       >
+                                      
+                                    </div>
+                                   
+                    
+                    
+                                   
+                                  </div>
+                                  <div class="col-sm-2">
+                    
+                                    <div class="mb-3">
+                                      <input  id="niv" [(ngModel)]="nivCompet" name="niv"   type="text"  class="form-control" 
+                                       >
+                                      
+                                    </div>
+                                   
+                    
+                    
+                                   
+                                  </div>
+                                  
+                                  </div> 
+                                  <div class="mb-3">
+                                    <button type="button" (click)="submit()" class="btn btn-success">{{"Enregistrer" | translate}}</button>
+
+                                  </div>   
+                                
+                            </div>
+
+                                  
+                            <div
+                            class="form-group"
+                            *ngFor="
+                              let item of list2;
+                              let i = index;
+                              trackBy: trackByIdx
+                            "
+                            
+                          >
+                            <div class="row">
+                              <div class="col-sm-2">
+                                <div class="mb-3">
+                                  <!--  <select (change)="test()"  [(ngModel)]="i.lib_comp" name="option" class="form-control" id="selectAction" *ngIf="listObject">
+                    
+                      <option *ngFor="let op of list " [ngValue]='op'  >
+                            {{ op.lib_comp}}
+                        </option>
+                    </select> -->
+                                  <input
+                                    *ngIf="list2"
+                                    id="product"
+                                    disabled
+                                    name="product"
+                                    type="text"
+                                    value="{{ item.lib_nat_comp }}"
+                                    class="form-control"
+                                  />
+                                </div>
+                              </div>
+
+                              <div class="col-sm-2">
+                                <div class="mb-3">
+                                  <input
+                                    *ngIf="list2"
+                                    id="product"
+                                    disabled
+                                    name="product"
+                                    type="text"
+                                    value="{{ item.cod_nat_comp }}"
+                                    class="form-control"
+                                  />
+                                </div>
+                              </div>
+                              <div class="col-sm-2">
+                                <div class="mb-3">
+                                  <input
+                                    *ngIf="list2"
+                                    id="productname"
+                                    name="productname"
+                                    disabled
+                                    value="{{ item.lib_comp }}"
+                                    type="text"
+                                    class="form-control"
+                                  />
+                                </div>
+                              </div>
+                              <div class="col-sm-2">
+                                <div class="mb-3">
+                                  <input
+                                    *ngIf="list2"
+                                    id="productname"
+                                    name="productname"
+                                    disabled
+                                    value="{{ item.appreciation }}"
+                                    type="text"
+                                    class="form-control"
+                                  />
+                                </div>
+                              </div>
+                              <div class="col-sm-2">
+                                <div class="mb-3">
+                                  <input
+                                    *ngIf="list2"
+                                    id="productname"
+                                    name="productname"
+                                    disabled
+                                    value="{{ item.dat_valid }}"
+                                    type="text"
+                                    class="form-control"
+                                  />
+                                </div>
+                              </div>
+                              <div class="col-md-1">
+                                <div class="mb-2">
+                                  <input
+                                    *ngIf="list2"
+                                    id="productname"
+                                    name="productname"
+                                    disabled
+                                    value="{{ item.cod_niv_comp }}"
+                                    type="text"
+                                    class="form-control"
+                                  />
+                                </div>
+                            
+                              </div>
+                              <div class="col-md-1">
+                                <ul class="list-inline m-0">
+                                  <li class="list-inline-item">
+                            <button (click)="onDeletteRow(item)" class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>
+                         </li></ul>
+                          </div>
+                          
+
+
+                            </div>
+                          </div>
+        
+        </form>
+            
+       
+            
+           
+     
+        </div>
+      </div>
+
+    </div>
+  </div>
+                  <!-- end row -->
+                </div>
+                <!-- container-fluid -->
+              </ng-template>
+            </li>
+
+
+          <li [ngbNavItem]="3">
+            <a ngbNavLink>
+              <i class="bx bx-notepad d-block check-nav-icon mt-4 mb-2"></i>
+              <p class="fw-bold mb-4">{{"Compétence Requise" | translate}}</p>
+            </a>
+            <ng-template ngbNavContent>
+              <div class="container-fluid">
+                <!-- start page title -->
+
+                <!-- end page title -->
+
+               
+               
+
+                <div class="row">
+                  <div class="col-12">
+                    <div class="card">
+                      <div class="card-body">
+                        <h3 class="card-title-desc">{{"Liste des competences requises" | translate}}</h3>
+                        <form
+                          id="datiRichiesta"
+                          [hidden]="datiRichiestaClicked"
+                        >
+                       
+                          <br>
+                          <div class="row">
+                            <div class="col-sm-2">
+                              <label class="header" style="text-align: center"
+                                >{{"Niveaux" | translate}}</label
+                              >
+                            </div>
+                            <div class="col-sm-2">
+                              <label class="header" style="text-align: center"
+                                >{{"Code competances" | translate}}</label
+                              >
+                            </div>
+                            <div class="col-sm-2">
+                              <label class="header" style="text-align: center"
+                                >{{"Code Nat Competance" | translate}}</label
+                              >
+                            </div>
+                           
+                            <div class="col-sm-2">
+                              <label class="header" style="text-align: center"
+                                >{{"Libellé compétence" | translate}} </label
+                              >
+                            </div>
+                            <div class="col-sm-2">
+                              <label class="header" style="text-align: center"
+                                >{{"Coefficient" | translate}}</label
+                              >
+                            </div>
+                            <div class="col-sm-2">
+                              <label class="header" style="text-align: center"
+                                >{{"Pourcentage" | translate}}</label
+                              >
+                            </div>
+                          
+                          </div>
+
+                      
+
+                          <div
+                            class="form-group"
+                            *ngFor="
+                              let item of listCompReq;
+                              let i = index;
+                              trackBy: trackByIdx
+                            "
+                            
+                          >
+                            <div class="row">
+                              <div class="col-sm-2">
+                                <div class="mb-3">
+                                  <!--  <select (change)="test()"  [(ngModel)]="i.lib_comp" name="option" class="form-control" id="selectAction" *ngIf="listObject">
+                    
+                      <option *ngFor="let op of list " [ngValue]='op'  >
+                            {{ op.lib_comp}}
+                        </option>
+                    </select> -->
+                                  <input
+                                    *ngIf="listCompReq"
+                                    id="product"
+                                    disabled
+                                    name="product"
+                                    type="text"
+                                    value="{{ item.lib_niv_comp }}"
+                                    class="form-control"
+                                  />
+                                </div>
+                              </div>
+
+                             
+                              <div class="col-sm-2">
+                                <div class="mb-3">
+                                  <input
+                                    *ngIf="listCompReq"
+                                    id="productname"
+                                    name="productname"
+                                    disabled
+                                    value="{{ item.cod_nat_comp }}"
+                                    type="text"
+                                    class="form-control"
+                                  />
+                                </div>
+                              </div>
+                              <div class="col-sm-2">
+                                <div class="mb-3">
+                                  <input
+                                    *ngIf="listCompReq"
+                                    id="productname"
+                                    name="productname"
+                                    disabled
+                                    value="{{ item.cod_comp }}"
+                                    type="text"
+                                    class="form-control"
+                                  />
+                                </div>
+                              </div>
+                           
+                              <div class="col-sm-2">
+                                <div class="mb-2">
+                                  <input
+                                    *ngIf="listCompReq"
+                                    id="productname"
+                                    name="productname"
+                                    disabled
+                                    value="{{ item.lib_comp }}"
+                                    type="text"
+                                    class="form-control"
+                                  />
+                                </div></div>
+                                <div class="col-sm-2">
+                                  <div class="mb-3">
+                                    <input
+                                      *ngIf="listCompReq"
+                                      id="product"
+                                      disabled
+                                      name="product"
+                                      type="text"
+                                      value="{{ item.coef_pond }}"
+                                      class="form-control"
+                                    />
+                                  </div>
+                                </div>
+                                <div class="col-sm-2">
+                                  <div class="mb-3">
+                                    <input
+                                      *ngIf="listCompReq"
+                                      id="productname"
+                                      name="productname"
+                                      disabled
+                                      value="{{ item.pourcentage }}"
+                                      type="text"
+                                      class="form-control"
+                                    />
+                                  </div>
+                                </div>
+                            
+                              
+                          
+
+
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- end row -->
+              </div>
+              <!-- container-fluid -->
+            </ng-template>
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-lg-10">
+        <div [ngbNavOutlet]="nav"></div>
+      </div>
+    </div>
+  </div>
+</div>

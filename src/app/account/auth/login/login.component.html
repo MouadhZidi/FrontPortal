@@ -1,0 +1,139 @@
+
+<div class="account-pages my-5 pt-sm-5">
+   <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6 col-xl-5">
+          
+          <div class="card overflow-hidden">
+            <div class="bg-soft bg-primary">
+              <div class="row">
+                <div class="col-7">
+                  <div class="text-primary p-4">
+                    <h5 class="text-primary">{{"Bienvenu !" | translate }}</h5>
+                    <p>{{"Connectez-vous pour continuer au portail." | translate}}</p>
+                  </div>
+                </div>
+                <div class="col-5 align-self-end">
+                  <img
+                    src="assets/images/profile-img.png"
+                    alt=""
+                    class="img-fluid"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="card-body pt-0">
+              <div>
+                <a routerLink="/">
+                  <div class="avatar-md profile-user-wid mb-4">
+                    <span class="avatar-title rounded-circle bg-light">
+                      <img
+                        src="assets/images/round.png"
+                        alt=""
+                        class="rounded-circle"
+                        height="68"
+                      />
+                    </span>
+                  </div>
+                </a>
+              </div>
+              <app-language></app-language>
+              <div class="p-2">
+                <form
+                  class="form-horizontal"
+                  *ngIf="!isLoggedIn"
+                  name="form"
+                  (ngSubmit)="f.form.valid && onSubmit()"
+                  #f="ngForm"
+                  novalidate
+                >
+                  <div class="mb-3">
+                    <label for="email">{{"Matricule" | translate }}</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="matpers"
+                      [(ngModel)]="form.matpers"
+                      required
+                      
+                      #matpers="ngModel"
+                      placeholder="Entrer votre matricule"
+                    />
+                  </div>
+  
+                  <div class="mb-3">
+                    <label for="password">{{"Mot de passe" | translate}}</label>
+                    <div class="input-group auth-pass-inputgroup">
+                      <input
+                        input
+                        type="password"
+                        class="form-control"
+                        name="usepswd"
+                        [(ngModel)]="form.usepswd"
+                        required
+                        minlength="6"
+                        #usepswd="ngModel"
+                        placeholder="Entrer votre mot de passe"
+                      />
+  
+                      <button
+                        class="btn btn-light ms-0"
+                        type="button"
+                        id="password-addon"
+                        
+                      >
+                        <i class="mdi mdi-eye-outline"></i>
+                      </button>
+                      <div class="invalid-feedback"></div>
+                    </div>
+                  </div>
+  
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      id="remember-check"
+                    />
+                    <label class="form-check-label" for="remember-check">
+                      {{"Souviens-toi de moi" | translate}}
+                    </label>
+                  </div>
+  
+                  <div class="mt-3 d-grid">
+                    <button
+                      [disabled]="f.invalid"
+                      class="btn btn-primary"
+                      type="submit"
+                      [disabled]="bloquedbn"
+                    >
+                      {{"Connexion" | translate }}
+                    </button>
+                  </div>
+                  <br />
+                  <div *ngIf="errr" class="alert alert-danger">{{"Mot de passe ou login incorrecte" | translate}}</div>
+                  <div *ngIf="ereur2 && message " class="alert alert-danger"> {{message}}</div> 
+                </form>
+              </div>
+            </div>
+          </div>
+  
+        
+  
+          
+      
+          <div class="mt-5 text-center">
+            <p>
+              {{"Vous n'avez pas de compte ?" | translate}}
+              <a routerLink="/account/signup" class="fw-medium text-primary">
+                {{"Inscription" | translate}}
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end container -->
+  </div>
+  <!-- end page -->
+  
+  

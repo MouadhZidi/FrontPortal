@@ -1,0 +1,314 @@
+<div class="container-fluid">
+  <div class="checkout-tabs">
+    <div class="row">
+      <div class="col-xl-2 col-sm-3">
+        <ul ngbNav #nav="ngbNav" [activeId]="1" class="nav-pills flex-column">
+          <li [ngbNavItem]="1">
+            <a ngbNavLink>
+              <i class="bx bxs-user d-block check-nav-icon mt-4 mb-2"></i>
+              <p class="fw-bold mb-4">Consultation bulletin de soin</p>
+            </a>
+            <ng-template ngbNavContent>
+              <div class="container-fluid">
+                <b>{{"S'il vous veuillez choisir un numéro de soin" | translate}} :</b> <br />
+                <hr />
+                <div class="row">
+                  <ng-template
+                    #content
+                    role="autorisation"
+                    let-modal
+                    class="modal-dialog modal-lg"
+                  >
+                    <button
+                      type="button"
+                      class="btn-close"
+                      aria-hidden="true"
+                      (click)="modal.dismiss('Cross click')"
+                      style="margin-left: 99%"
+                    ></button>
+                    <ag-grid-angular
+                      style="
+                        display: flex;
+                        flex-direction: column;
+                        height: 300px;
+                      "
+                      class="ag-theme-alpine"
+                      [rowData]="listBultSoin"
+                      [columnDefs]="columnAutorisation"
+                      [pagination]="true"
+                      [rowSelection]="rowSelection"
+                      [modules]="modules"
+                      (selectionChanged)="onSelectionChanged($event)"
+                    >
+                    </ag-grid-angular>
+                  </ng-template>
+
+                  <div class="card text-center">
+                    <div class="card-footer bg-transparent border-top">
+                      <div class="contact-links d-flex font-size-20">
+                        <div class="flex-fill">
+                          <a
+                            style="float: left"
+                            href="javascript: void(0);"
+                            ngbTooltip="Visualiser demande"
+                            (click)="openModal(content)"
+                            ><i class="bx bx-zoom-in"></i>{{"Détacher" |translate}}</a
+                          >
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-12">
+                          <div class="card">
+                            <div class="card-body">
+                              <ag-grid-angular
+                                style="
+                                  display: flex;
+                                  flex-direction: column;
+                                  height: 300px;
+                                "
+                                class="ag-theme-alpine"
+                                [rowData]="listBultSoin"
+                                [columnDefs]="columnAutorisation"
+                                [pagination]="true"
+                                [rowSelection]="rowSelection"
+                                [modules]="modules"
+                                (selectionChanged)="onSelectionChanged($event)"
+                              >
+                              </ag-grid-angular>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <hr />
+
+                <div class="row" *ngIf="bultList">
+                  <ng-template
+                    #content1
+                    role="autorisation"
+                    let-modal
+                    class="modal-dialog modal-lg"
+                  >
+                    <button
+                      type="button"
+                      class="btn-close"
+                      aria-hidden="true"
+                      (click)="modal.dismiss('Cross click')"
+                      style="margin-left: 99%"
+                    ></button>
+                    <ag-grid-angular
+                      style="
+                        display: flex;
+                        flex-direction: column;
+                        height: 300px;
+                      "
+                      class="ag-theme-alpine"
+                      [rowData]="bultList"
+                      [columnDefs]="columnligbult"
+                      [pagination]="true"
+                      [modules]="modules"
+                    >
+                    </ag-grid-angular>
+                  </ng-template>
+
+                  <div class="card text-center">
+                    <div class="card-footer bg-transparent border-top">
+                      <div class="contact-links d-flex font-size-20">
+                        <div class="flex-fill">
+                          <a
+                            style="float: left"
+                            href="javascript: void(0);"
+                            ngbTooltip="Visualiser demande"
+                            (click)="openModal(content1)"
+                            ><i class="bx bx-zoom-in"></i>{{"Détacher" |translate}}</a
+                          >
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-12">
+                          <div class="card">
+                            <div class="card-body">
+                              <ag-grid-angular
+                                style="
+                                  display: flex;
+                                  flex-direction: column;
+                                  height: 300px;
+                                "
+                                class="ag-theme-alpine"
+                                [rowData]="bultList"
+                                [columnDefs]="columnligbult"
+                                [pagination]="true"
+                                [modules]="modules"
+                              >
+                              </ag-grid-angular>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </li>
+          <li [ngbNavItem]="2">
+            <a ngbNavLink>
+              <i class="bx bx-notepad d-block check-nav-icon mt-4 mb-2"></i>
+              <p class="fw-bold mb-4">Bulletin Assurance</p>
+            </a>
+            <ng-template ngbNavContent>
+              <div class="container-fluid">
+                <b>{{"S'il vous veuillez choisir un numéro bordereau" | translate}} :</b> <br />
+                <hr />
+
+                <div class="row">
+                  <ng-template
+                    #content2
+                    role="autorisation"
+                    let-modal
+                    class="modal-dialog modal-lg"
+                  >
+                    <button
+                      type="button"
+                      class="btn-close"
+                      aria-hidden="true"
+                      (click)="modal.dismiss('Cross click')"
+                      style="margin-left: 99%"
+                    ></button>
+                    <ag-grid-angular
+                      style="
+                        display: flex;
+                        flex-direction: column;
+                        height: 300px;
+                      "
+                      class="ag-theme-alpine"
+                      [rowData]="BultStart"
+                      [columnDefs]="columnBultStar"
+                      [pagination]="true"
+                      [modules]="modules"
+                      (cellClicked)="onCellClickedLigStar($event)"
+                    >
+                    </ag-grid-angular>
+                  </ng-template>
+
+                  <div class="card text-center">
+                    <div class="card-footer bg-transparent border-top">
+                      <div class="contact-links d-flex font-size-20">
+                        <div class="flex-fill">
+                          <a
+                            style="float: left"
+                            href="javascript: void(0);"
+                            ngbTooltip="Visualiser demande"
+                            (click)="openModal(content2)"
+                            ><i class="bx bx-zoom-in"></i>{{"Détacher" |translate}}</a
+                          >
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-12">
+                          <div class="card">
+                            <div class="card-body">
+                              <ag-grid-angular
+                                style="
+                                  display: flex;
+                                  flex-direction: column;
+                                  height: 300px;
+                                "
+                                class="ag-theme-alpine"
+                                [rowData]="BultStart"
+                                [columnDefs]="columnBultStar"
+                                [pagination]="true"
+                                [modules]="modules"
+                                (cellClicked)="onCellClickedLigStar($event)"
+                              >
+                              </ag-grid-angular>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <hr />
+
+                <div class="row" *ngIf="listLigBultStart">
+                  <ng-template
+                    #content3
+                    role="autorisation"
+                    let-modal
+                    class="modal-dialog modal-lg"
+                  >
+                    <button
+                      type="button"
+                      class="btn-close"
+                      aria-hidden="true"
+                      (click)="modal.dismiss('Cross click')"
+                      style="margin-left: 99%"
+                    ></button>
+                    <ag-grid-angular
+                      style="
+                        display: flex;
+                        flex-direction: column;
+                        height: 500px;
+                      "
+                      class="ag-theme-alpine"
+                      [rowData]="listLigBultStart"
+                      [columnDefs]="columnLigBultStar"
+                      [pagination]="true"
+                      [modules]="modules"
+                    >
+                    </ag-grid-angular>
+                  </ng-template>
+
+                  <div class="card text-center">
+                    <div class="card-footer bg-transparent border-top">
+                      <div class="contact-links d-flex font-size-20">
+                        <div class="flex-fill">
+                          <a
+                            style="float: left"
+                            href="javascript: void(0);"
+                            ngbTooltip="Visualiser demande"
+                            (click)="openModal(content3)"
+                            ><i class="bx bx-zoom-in"></i>{{"Détacher" |translate}}</a
+                          >
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-12">
+                          <div class="card">
+                            <div class="card-body">
+                              <ag-grid-angular
+                                style="
+                                  display: flex;
+                                  flex-direction: column;
+                                  height: 500px;
+                                "
+                                class="ag-theme-alpine"
+                                [rowData]="listLigBultStart"
+                                [columnDefs]="columnLigBultStar"
+                                [pagination]="true"
+                                [modules]="modules"
+                              >
+                              </ag-grid-angular>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </li>
+        </ul>
+      </div>
+      <div class="col-lg-10">
+        <div [ngbNavOutlet]="nav"></div>
+      </div>
+    </div>
+  </div>
+</div>

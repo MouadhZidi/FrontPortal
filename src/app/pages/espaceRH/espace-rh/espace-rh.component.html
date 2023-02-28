@@ -1,0 +1,745 @@
+<div class="container-fluid">
+  <div class="row">
+    <ng-template #content role="document" let-modal>
+      <div class="modal-header">
+        <h5 class="modal-title mt-0">Mise à jour demande</h5>
+        <div class="col-sm-3">
+          <div>
+            <button
+              type="button"
+              style="float: right;"
+              class="btn btn-primary w-sm"
+              (click)="printerReportt()"
+            >
+              <i
+                class="mdi mdi-download d-block font-size-9"
+              ></i>
+              
+            </button>
+          </div>
+        </div>
+        <button
+          type="button"
+          class="btn-close"
+          aria-hidden="true"
+          (click)="modal.dismiss('Cross click')"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="userForm">
+          <div class="row">
+            <div class="col-12">
+              <div class="mb-3">
+                <label class="control-label">Date demande</label>
+                <input
+                  class="form-control"
+                  placeholder="Date demande"
+                  type="text"
+                  name="name"
+                  formControlName="dateDemande"
+                  readonly
+                />
+              </div>
+
+              <div class="mb-3" *ngIf="lib == 'Autorisations'">
+                <label class="control-label">Heure sortie</label>
+                <input
+                  class="form-control"
+                  placeholder="Heure sortie"
+                  type="text"
+                  name="designation"
+                  formControlName="heurS"
+                  readonly
+                />
+              </div>
+              <div class="mb-3" *ngIf="lib == 'Autorisations'">
+                <label class="control-label">Heure retour</label>
+                <input
+                  class="form-control"
+                  placeholder="Heure retour"
+                  type="text"
+                  name="email"
+                  formControlName="heurR"
+                  readonly
+                />
+              </div>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="mb-3" *ngIf="lib == 'Formation' || lib == 'Congés'">
+                    <label class="control-label">Date début </label>
+                    <input
+                      class="form-control"
+                      placeholder="Date début"
+                      type="text"
+                      name="email"
+                      formControlName="datDebut"
+                      readonly
+                    />
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="mb-3" *ngIf="lib == 'Formation' || lib == 'Congés'">
+                    <label class="control-label">Date fin</label>
+                    <input
+                      class="form-control"
+                      placeholder="Date fin"
+                      type="text"
+                      name="email"
+                      formControlName="datFin"
+                      readonly
+                    />
+                  </div>
+                </div>
+              </div>
+             
+
+              
+
+              <div class="mb-3" *ngIf="lib == 'Situation Administrtive'">
+                <label class="control-label">Numéro attestation</label>
+                <input
+                  class="form-control"
+                  placeholder="Numéro attestation"
+                  type="text"
+                  name="email"
+                  formControlName="numAttest"
+                  readonly
+                />
+              </div>
+              <div class="mb-3" *ngIf="lib == 'Formation'">
+                <label class="control-label">Année</label>
+                <input
+                  class="form-control"
+                  placeholder="Année"
+                  type="text"
+                  name="email"
+                  formControlName="annee"
+                  readonly
+                />
+              </div>
+              <div class="mb-3" *ngIf="lib == 'Formation'">
+                <label class="control-label">Titre</label>
+                <input
+                  class="form-control"
+                  placeholder="Titre"
+                  type="text"
+                  name="email"
+                  formControlName="titre"
+                  readonly
+                />
+              </div>
+              <div class="mb-3" *ngIf="lib == 'Formation'">
+                <label class="control-label">Type formation</label>
+                <input
+                  class="form-control"
+                  placeholder="Type formation"
+                  type="text"
+                  name="email"
+                  formControlName="type_formation"
+                  readonly
+                />
+              </div>
+              <div class="mb-3" *ngIf="lib == 'Formation'">
+                <label class="control-label">Théme</label>
+                <input
+                  class="form-control"
+                  placeholder="Théme"
+                  type="text"
+                  name="email"
+                  formControlName="theme"
+                  readonly
+                />
+              </div>
+
+              <div class="mb-3" *ngIf="lib == 'Prets et avances'">
+                <label class="control-label">Libélle prêt</label>
+                <input
+                  class="form-control"
+                  placeholder="Libélle prêt"
+                  type="text"
+                  name="email"
+                  formControlName="lib_pret"
+                  readonly
+                />
+              </div>
+              <div class="mb-3" *ngIf="lib == 'Prets et avances'">
+                <label class="control-label">Montant demandé</label>
+                <input
+                  class="form-control"
+                  placeholder="Montant demandé"
+                  type="text"
+                  name="email"
+                  formControlName="mntDem"
+                  readonly
+                />
+              </div>
+              <div class="mb-3" *ngIf="lib == 'Autorisations'">
+                <label class="control-label">Libélle autorisation</label>
+                <input
+                  class="form-control"
+                  placeholder="Libélle autorisation"
+                  type="text"
+                  name="email"
+                  formControlName="lib_autorisation"
+                  readonly
+                />
+              </div>
+              <div class="mb-3" *ngIf="lib == 'Congés'">
+                <label class="control-label">Motif</label>
+                <input
+                  class="form-control"
+                  placeholder="Motif"
+                  type="text"
+                  name="email"
+                  formControlName="motif"
+                  readonly
+                />
+              </div>
+              <div class="mb-3" *ngIf="lib == 'Autorisations'">
+                <label class="control-label">Minute retour</label>
+                <input
+                  class="form-control"
+                  placeholder="Minute retour"
+                  type="text"
+                  name="email"
+                  formControlName="minR"
+                  readonly
+                />
+              </div>
+              <div class="mb-3" *ngIf="lib == 'Autorisations'">
+                <label class="control-label">Minute sortie</label>
+                <input
+                  class="form-control"
+                  placeholder="Minute sortie"
+                  type="text"
+                  name="email"
+                  formControlName="minS"
+                  readonly
+                />
+              </div>
+
+              <!-- <div class="mb-3" *ngIf="lib=='Congés'">
+                  <label class="control-label">cngTemps</label>
+                  <input class="form-control" placeholder="Enter email" type="text" name="email" formControlName="cngTemps"readonly/>
+                </div>     
+                <div class="mb-3" *ngIf="lib=='Congés'">
+                  <label class="control-label">cngTempsDebut</label>
+                  <input class="form-control" placeholder="Enter email" type="text" name="email" formControlName="cngTempsDebut"readonly/>
+                </div>     
+                <div class="mb-3" *ngIf="lib=='Congés'">
+                  <label class="control-label">cngTempsFin</label>
+                  <input class="form-control" placeholder="Enter email" type="text" name="email" formControlName="cngTempsFin"readonly/>
+                </div>      -->
+
+              <div class="mb-3">
+                <label class="control-label">Texte demande</label>
+                <input
+                  class="form-control"
+                  placeholder="Texte demande"
+                  type="text"
+                  name="email"
+                  formControlName="txtDem"
+                  readonly
+                />
+              </div>
+
+              <div class="mb-3" *ngIf="lib == 'Prets et avances'">
+                <label class="control-label">Type prêt</label>
+                <input
+                  class="form-control"
+                  placeholder="Type prêt"
+                  type="text"
+                  name="email"
+                  formControlName="typPret"
+                  readonly
+                />
+              </div>
+
+              <div class="mb-3">
+                <label class="control-label">Réponse Rh</label>
+
+                <select
+                  class="form-select"
+                  aria-label="Default select example"
+                  formControlName="reponse"
+                >
+                  <option value="O">Oui</option>
+                  <option value="N">Non</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label class="control-label">Observation Rh</label>
+                <textarea
+                  class="form-control"
+                  placeholder="Entrer votre obsérvation"
+                  type="text"
+                  name="email"
+                  formControlName="txtReponse"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+          <button
+            type="submit"
+            class="btn btn-success"
+            id="btn-save-event"
+            (click)="updateDemande()"
+          >
+            Enregistrer
+          </button>
+        </form>
+      </div>
+    </ng-template>
+
+    <div class="card-body p-4">
+      <div class="search-box">
+        <p class="text-muted">Rechercher</p>
+        <div class="position-relative">
+          <input
+            type="text"
+            class="form-control rounded bg-light border-light"
+            placeholder="Rechercher .."
+            [(ngModel)]="term"
+          />
+          <i class="mdi mdi-magnify search-icon"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-body">
+         
+          <ul
+            ngbNav
+            #customNav="ngbNav"
+            [activeId]="1"
+            class="nav-tabs nav-tabs-custom nav-justified"
+          >
+
+     
+            <li [ngbNavItem]="1">
+              <a ngbNavLink>
+                <span class="d-block d-sm-none"
+                  ><i class="fas fa-home"></i
+                ></span>
+                <b><span class="d-none d-sm-block"
+                  >Liste des demandes d'autorisations</span></b>
+                
+              </a>
+              <br>
+              <ng-template ngbNavContent>
+                <br>
+                <div class="card-item">
+                  <div
+                    
+                    *ngFor="
+                      let data of listDemandeauto
+                        | filter : term
+                        | paginate : { itemsPerPage: 8, currentPage: pauto };
+                      let i = index
+                    "
+                  >
+                    <div style="margin-left: 10%;"
+                      class="card text-center"
+                      
+
+                      
+                    >
+                      <div class="card-body">
+                        <h5 class="font-size-15 mb-0">
+                          <a href="javascript: void(0);" class="text-dark">{{
+                            data.npren_pers
+                          }}</a>
+                        </h5>
+                        <p class="text-muted">{{ data.lib_demande }}</p>
+                      </div>
+                      <div class="card-footer bg-transparent border-top" >
+                        <div class="contact-links d-flex font-size-20">
+                          <div class="flex-fill ">
+                            <a
+                              href="javascript: void(0);"
+                              ngbTooltip="Visualiser demande"
+                              (click)="openModal(content, data)"
+                              ><i class="bx bx-user-circle " style="color: #556ee6;" ></i
+                            ></a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
+                </div>
+                 <div class="row">
+                  <div class="col-12">
+                    <div class="text-center my-3">
+                      <pagination-controls
+                        (pageChange)="pauto = $event"
+                      ></pagination-controls>
+                    </div>
+                  </div>
+                </div> 
+
+
+
+              
+              </ng-template>
+            </li>
+            <li [ngbNavItem]="2">
+              <a ngbNavLink>
+                <span class="d-block d-sm-none"
+                  ><i class="fas fa-home"></i
+                ></span>
+               <b> <span class="d-none d-sm-block"
+                  >Liste des demandes des Congés</span
+                ></b>
+              </a>
+              
+              <br>
+              <ng-template ngbNavContent>
+                <br>
+                <div class="card-item">
+                  <div
+                    
+                    *ngFor="
+                      let data of listDemandeconge
+                        | filter : term
+                        | paginate : { itemsPerPage: 8, currentPage: pcongee };
+                      let i = index
+                    "
+                  >
+                    <div style="margin-left: 10%;"
+                      class="card text-center"
+                     
+
+                      
+                    >
+                      <div class="card-body">
+                        <h5 class="font-size-15 mb-0">
+                          <a href="javascript: void(0);" class="text-dark">{{
+                            data.npren_pers
+                          }}</a>
+                        </h5>
+                        <p class="text-muted">{{ data.lib_demande }}</p>
+                      </div>
+                      <div class="card-footer bg-transparent border-top">
+                        <div class="contact-links d-flex font-size-20">
+                          <div class="flex-fill" >
+                            <a
+                              href="javascript: void(0);"
+                              ngbTooltip="Visualiser demande"
+                              (click)="openModal(content, data)"
+                              ><i class="bx bx-user-circle" style="color: #556ee6;"></i
+                            ></a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
+                </div>
+                 <div class="row">
+                  <div class="col-12">
+                    <div class="text-center my-3">
+                      <pagination-controls
+                        (pageChange)="pcongee = $event"
+                      ></pagination-controls>
+                    </div>
+                  </div>
+                </div> 
+
+
+
+              
+              </ng-template>
+            </li>
+            <li [ngbNavItem]="3">
+              <a ngbNavLink>
+                <span class="d-block d-sm-none"
+                  ><i class="fas fa-home"></i
+                ></span>
+               <b><span class="d-none d-sm-block"
+                  >Liste des demandes des Situation</span
+                ></b> 
+              </a>
+          
+              <br>
+              <ng-template ngbNavContent>
+                <br>
+                <div class="card-item">
+                  <div
+                    
+                    *ngFor="
+                      let data of listDemandesit
+                        | filter : term
+                        | paginate : { itemsPerPage: 8, currentPage: psit };
+                      let i = index
+                    "
+                  >
+                    <div style="margin-left: 10%;"
+                      class="card text-center"
+                     
+
+                      
+                    >
+                      <div class="card-body">
+                        <h5 class="font-size-15 mb-0">
+                          <a href="javascript: void(0);" class="text-dark">{{
+                            data.npren_pers
+                          }}</a>
+                        </h5>
+                        <p class="text-muted">{{ data.lib_demande }}</p>
+                      </div>
+                      <div class="card-footer bg-transparent border-top">
+                        <div class="contact-links d-flex font-size-20">
+                          <div class="flex-fill">
+                            <a
+                              href="javascript: void(0);"
+                              ngbTooltip="Visualiser demande"
+                              (click)="openModal(content, data)"
+                              ><i class="bx bx-user-circle " style="color: #556ee6;"></i
+                            ></a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
+                </div>
+                 <div class="row">
+                  <div class="col-12">
+                    <div class="text-center my-3">
+                      <pagination-controls
+                        (pageChange)="psit = $event"
+                      ></pagination-controls>
+                    </div>
+                  </div>
+                </div> 
+
+
+
+              
+              </ng-template>
+            </li>
+            <li [ngbNavItem]="4">
+              <a ngbNavLink>
+                <span class="d-block d-sm-none"
+                  ><i class="fas fa-home"></i
+                ></span>
+                <b><span class="d-none d-sm-block"
+                  >Liste des demandes des Attestation</span
+                ></b>
+              </a>
+              
+              <br>
+              <ng-template ngbNavContent>
+                <br>
+                <div class="card-item">
+                  <div
+                    
+                    *ngFor="
+                      let data of listDemandeatt
+                        | filter : term
+                        | paginate : { itemsPerPage: 8, currentPage: patt };
+                      let i = index
+                    "
+                  >
+                    <div style="margin-left: 10%;"
+                      class="card text-center"
+                     
+
+                      
+                    >
+                      <div class="card-body">
+                        <h5 class="font-size-15 mb-0">
+                          <a href="javascript: void(0);" class="text-dark">{{
+                            data.npren_pers
+                          }}</a>
+                        </h5>
+                        <p class="text-muted">{{ data.lib_demande }}</p>
+                      </div>
+                      <div class="card-footer bg-transparent border-top">
+                        <div class="contact-links d-flex font-size-20">
+                          <div class="flex-fill">
+                            <a
+                              href="javascript: void(0);"
+                              ngbTooltip="Visualiser demande"
+                              (click)="openModal(content, data)"
+                              ><i class="bx bx-user-circle" style="color: #556ee6;"></i
+                            ></a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
+                </div>
+                 <div class="row">
+                  <div class="col-12">
+                    <div class="text-center my-3">
+                      <pagination-controls
+                        (pageChange)="patt = $event"
+                      ></pagination-controls>
+                    </div>
+                  </div>
+                </div> 
+
+
+
+              
+              </ng-template>
+            </li>
+            <li [ngbNavItem]="5">
+              <a ngbNavLink>
+                <span class="d-block d-sm-none"
+                  ><i class="fas fa-home"></i
+                ></span>
+                <b><span class="d-none d-sm-block"
+                  >Liste des demandes des Pret et avances</span
+                ></b>
+              </a>
+              
+              <br>
+              <ng-template ngbNavContent>
+                <br>
+                <div class="card-item">
+                  <div
+                    
+                    *ngFor="
+                      let data of listDemandepret
+                        | filter : term
+                        | paginate : { itemsPerPage: 8, currentPage: ppret };
+                      let i = index
+                    "
+                  >
+                    <div style="margin-left: 10%;"
+                      class="card text-center"
+                     
+
+                      
+                    >
+                      <div class="card-body">
+                        <h5 class="font-size-15 mb-0">
+                          <a href="javascript: void(0);" class="text-dark">{{
+                            data.npren_pers
+                          }}</a>
+                        </h5>
+                        <p class="text-muted">{{ data.lib_demande }}</p>
+                      </div>
+                      <div class="card-footer bg-transparent border-top">
+                        <div class="contact-links d-flex font-size-20">
+                          <div class="flex-fill">
+                            <a
+                              href="javascript: void(0);"
+                              ngbTooltip="Visualiser demande"
+                              (click)="openModal(content, data)"
+                              ><i class="bx bx-user-circle" style="color: #556ee6;"></i
+                            ></a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
+                </div>
+                 <div class="row">
+                  <div class="col-12">
+                    <div class="text-center my-3">
+                      <pagination-controls
+                        (pageChange)="ppret = $event"
+                      ></pagination-controls>
+                    </div>
+                  </div>
+                </div> 
+
+
+
+              
+              </ng-template>
+            </li>
+            <li [ngbNavItem]="6">
+              <a ngbNavLink>
+                <span class="d-block d-sm-none"
+                  ><i class="fas fa-home"></i
+                ></span>
+                <b><span class="d-none d-sm-block"
+                  >Liste des demandes des Formations</span
+                ></b>
+              </a>
+              
+              <br>
+              <ng-template ngbNavContent>
+                <br>
+                <div class="card-item">
+                  <div
+                    
+                    *ngFor="
+                      let data of listformation
+                        | filter : term
+                        | paginate : { itemsPerPage: 8, currentPage: pformation };
+                      let i = index
+                    "
+                  >
+                    <div style="margin-left: 10%;"
+                      class="card text-center"
+                     
+
+                      
+                    >
+                      <div class="card-body">
+                        <h5 class="font-size-15 mb-0">
+                          <a href="javascript: void(0);" class="text-dark">{{
+                            data.npren_pers
+                          }}</a>
+                        </h5>
+                        <p class="text-muted">{{ data.lib_demande }}</p>
+                      </div>
+                      <div class="card-footer bg-transparent border-top">
+                        <div class="contact-links d-flex font-size-20">
+                          <div class="flex-fill">
+                            <a
+                              href="javascript: void(0);"
+                              ngbTooltip="Visualiser demande"
+                              (click)="openModal(content, data)"
+                              ><i class="bx bx-user-circle" style="color: #556ee6;"></i
+                            ></a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
+                </div>
+                 <div class="row">
+                  <div class="col-12">
+                    <div class="text-center my-3">
+                      <pagination-controls
+                        (pageChange)="pformation = $event"
+                      ></pagination-controls>
+                    </div>
+                  </div>
+                </div> 
+
+
+
+              
+              </ng-template>
+            </li>
+           
+          </ul>
+          <div [ngbNavOutlet]="customNav"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+

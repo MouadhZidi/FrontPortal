@@ -1,0 +1,782 @@
+{
+  "HEADER": {
+    "SEARCH": "Rechercher...",
+    "MEGA_MENU": "Méga Menu",
+    "NOTIFICATIONS": {
+      "TITLE": "Avis",
+      "VIEW_ALL": "Voir tout",
+      "LOAD_MORE": "Voir plus..",
+      "FIRST": {
+        "TITLE": "Votre commande est passée",
+        "TEXT": "Si plusieurs langues fusionnent la grammaire",
+        "TIME": "il y a 3 minutes"
+      },
+      "SECOND": {
+        "TITLE": "Jacques Lemire",
+        "TEXT": "Cela ressemblera à de l'anglais simplifié.",
+        "TIME": "Il ya 1 heure"
+      },
+      "THIRD": {
+        "TITLE": "Votre article est expédié",
+        "TEXT": "Si plusieurs langues fusionnent la grammaire",
+        "TIME": "il y a 3 minutes"
+      },
+      "FOUR": {
+        "TITLE": "Salena Layfield",
+        "TEXT": "En tant qu'ami sceptique de Cambridge western.",
+        "TIME": "Il ya 1 heure"
+      }
+    },
+    "SETTINGS": "Paramètres",
+    "UI": {
+      "TITLE": "Composants de l'interface utilisateur",
+      "LIGHTBOX": "Boite à lumière",
+      "RANGE_SLIDER": "Curseur de plage",
+      "SWEET_ALERT": "Alerte sucrée",
+      "RATING": "Notation",
+      "FORMS": "Formes",
+      "TABLES": "les tables",
+      "CHARTS": "Graphiques"
+    },
+    "APPLICATIONS": {
+      "TITLE": "applications",
+      "ECOMMERCE": "commerce électronique",
+      "CALENDAR": "Calendrier",
+      "EMAIL": "E-mail",
+      "PROJECTS": "Projets",
+      "TASKS": "Tâches",
+      "CONTACTS": "Contacts"
+    },
+    "EXTRA_PAGES": {
+      "TITLE": "Pages supplémentaires",
+      "LIGHT_SIDEBAR": "Barre latérale lumineuse",
+      "COMPACT_SIDEBAR": "Barre latérale compacte",
+      "HORIZONTAL_LAYOUT": "Disposition horizontale",
+      "MAINTENANCE": "Entretien",
+      "COMING SOON": "À venir Soon",
+      "TIMELINE": "chronologie",
+      "FAQ": "FAQ"
+    },
+    "LOGIN": {
+      "PROFILE": "Profil",
+      "MY_WALLET": "Mon portefeuille",
+      "SETTINGS": "Paramètres",
+      "LOCK_SCREEN": "Écran verrouillé",
+      "LOGOUT": "Se déconnecter"
+    }
+  },
+  
+  "MENUITEMS": {
+    "MENU": {
+      "TEXT": "Menu"
+    },
+    "DASHBOARDS": {
+      "TEXT": "Tableaux de bord",
+      "BADGE": "04",
+      "LIST": {
+        "DEFAULT": "Défaut",
+        "SAAS": "Saas",
+        "CRYPTO": "Crypto",
+        "BLOG": "Blog"
+      }
+    },
+    "CALENDRIERCONGES": {
+      "TEXT": "Calendrier des congés"
+
+    },
+    "FICHEEVAL": {
+      "TEXT": "Feuille d'évaluation"
+    },
+    "CALENDAR": {
+      "TEXT": "Calendrier"
+    },
+    "CHAT": {
+      "TEXT": "Chat",
+      "BADGE": "Nouveau"
+    },
+    "FILEMANAGER": {
+      "TEXT": "Gestionnaire de fichiers",
+      "BADGE": "Nouveau"
+    },
+    "EMPLOYE": {
+      "TEXT": "Employé",
+      "LIST": {
+        "INFOPROF": "Information professionnelle",
+        "INFOPERS": "Informations personnelles",
+        "INFOSOC": "informations sociales"
+
+      }
+    },
+    "DEMANDE": {
+      "TEXT": "Demande",
+      "LIST": {
+        "PRETAVANCE": "Prêt et avance",
+        "AUTORISATION": "Autorisation",
+        "CONGE": "Congé",
+        "SITUATION": "Situation",
+        "FORMATION": "Formation",
+        "DOCUMENT": "Document"
+      
+      }
+    },
+    
+    "PAIE": {
+      "TEXT": "Paiement",
+      "LIST": {
+        "ETAT": "Etat après paye",
+        "TEMPLATE": {
+          "EDITION": "édition fiche de paie"
+   
+
+        }
+      }
+    },
+    "CONSULTCONGE": {
+      "TEXT": "Congé de consultation",
+      "LIST": {
+        "SOLDE": "Solde de congé"
+            }
+    },
+    "EVENEMENT": {
+      "TEXT": "Événement",
+      "LIST": {
+        "LISTEVENT": "Liste des événements",
+        "HISTORIQUE": "Historique des événements",
+        "CALENDRIER": "calendrier des événements"
+            }
+    },
+    "BULTSOIN": {
+      "TEXT": "Rapport de soins",
+      "LIST": {
+        "CONSBULTSOIN": "Bulletins de soins"
+     
+      }
+    },
+    "CHART": {
+      "TEXT": "Graphiques",
+      "LIST": {
+        "CHART": "Consultation des graphiques"
+     
+      }
+    },
+    "AVPR": {
+      "TEXT": "Avances de prêts",
+      "LIST": {
+        "CONAVPR": "Consultation préalable de prêt",
+        "CONSOPP": "Consultation de l'opposition"
+      }
+    },
+    "BLOG": {
+      "TEXT": "Blog",
+      "BADGE": "Nouveau",
+      "LIST": {
+        "BLOGLIST": "Liste des blogs",
+        "BLOGGRID": "Blogue de la grille",
+        "DETAIL": "BlogDétails"
+      }
+    },
+    "PAGES": {
+      "TEXT": "pages"
+    },
+    "EMAIL": {
+      "TEXT": "E-mail",
+      "LIST": {
+        "INBOX": "Boîte de réception",
+        "READEMAIL": "Lire l'e-mail",
+        "TEMPLATE": {
+          "BADGE": "Nouveau",
+          "TEXT": "Modèle",
+          "LIST": {
+            "BASIC": "Action de base",
+            "ALERT": "E-mail d'alerte",
+            "BILLING": "E-mail de facturation"
+          }
+        }
+      }
+    },
+    "ESPACECHEF": {
+      "TEXT": "Espace CHEF",
+      "LIST": {
+        "CONSESPCHEF": "Demandes",
+        "HISTCHEF": "Historiques des demandes",
+        "POINTAGE":{
+          "TEXT":"Poinatge",
+          "POINTAGEE":{
+            "CONSPOINTAGE":"Pointage",
+            "CONSRETARD":"Retard",
+            "CONSAUTORISATION":"Autorisation",
+            "CONSCONGE":"Congé"
+
+
+          }
+
+      } ,
+
+
+        "COLLAB": {
+          "TEXT":"Employés",
+          "COLABB":{
+            "INFOPROF": "Information professionnelle",
+            "INFOPERS": "Informations personnelles",
+            "INFOSOC": "Informations sociales"       
+             }
+        },
+        "CONSCONT": "Contrats",
+        "OBJ": "Objectif",
+        "COMPE": "Compétence",
+        "Eval": "Évaluation"
+       
+      }
+    },
+    "ESPACERH": {
+      "TEXT": "Espace RH",
+      "LIST": {
+        "CONSRH": "Espace de consultation RH",
+        "CONSHISRH": "Consultation historique RH",
+        "CONSOPP": "Consultation de l'opposition",
+        "CONSCONGE": "Solde des congés",
+        "CONSPAIE": "Consultation sur la paie",
+        "AJOUTEV": "Ajouter un événement",
+        "COMPET": "Compétences",
+        "FICH": "Ajouter personnel",
+        "EDITFICH":"Modifier personnel"
+      }
+    },
+    "COMPONENTS": {
+      "TEXT": "Composants"
+    },
+    "UIELEMENTS": {
+      "TEXT": "Éléments de l'interface utilisateur",
+      "LIST": {
+        "ALERTS": "Alertes",
+        "BUTTONS": "Boutons",
+        "CARDS": "Cartes",
+        "CAROUSEL": "Carrousel",
+        "DROPDOWNS": "Listes déroulantes",
+        "GRID": "Grille",
+        "IMAGES": "Images",
+        "LIGHTBOX": "Boite à lumière",
+        "MODALS": "Modaux",
+        "RANGESLIDER": "Curseur de plage",
+        "PROGRESSBAR": "Barres de progression",
+        "PLACEHOLDER": "Espace réservé",
+        "SWEETALERT": "Alerte sucrée",
+        "TABS": "Tablatures et accordéons",
+        "TYPOGRAPHY": "Typographie",
+        "VIDEO": "Vidéo",
+        "GENERAL": "Général",
+        "COLORS": "Couleurs",
+        "CROPPER": "Recadrage d'image"
+      }
+    },
+    "FORMS": {
+      "TEXT": "Formes",
+      "BADGE": "09",
+      "LIST": {
+        "ELEMENTS": "Éléments de formulaire",
+        "VALIDATION": "Validation du formulaire",
+        "ADVANCED": "Formulaire avancé",
+        "EDITOR": "Éditeur de formulaire",
+        "FILEUPLOAD": "Téléchargement de fichier de formulaire",
+        "REPEATER": "Répéteur de formulaire",
+        "WIZARD": "Assistant Formulaire",
+        "MASK": "Masque de formulaire",
+        "LAYOUTS": "Dispositions de formulaire"
+      }
+    },
+    "TABLES": {
+      "TEXT": "les tables",
+      "LIST": {
+        "BASIC": "Tableaux de base",
+        "ADVANCED": "Tableau avancé"
+      }
+    },
+    "CHARTS": {
+      "TEXT": "Graphiques",
+      "LIST": {
+        "APEX": "Tableau des sommets",
+        "CHARTJS": "Chartjs Chart",
+        "CHARTIST": "Carte chartiste",
+        "ECHART": "Carte E"
+      }
+    },
+    "ICONS": {
+      "TEXT": "Icônes",
+      "LIST": {
+        "BOXICONS": "Boxicons",
+        "MATERIALDESIGN": "Conception matérielle",
+        "DRIPICONS": "Dripicons",
+        "FONTAWESOME": "Police géniale"
+      }
+    },
+    "MAPS": {
+      "TEXT": "Plans",
+      "LIST": {
+        "GOOGLEMAP": "Google Maps"
+      }
+    },
+    "MULTILEVEL": {
+      "TEXT": "Multi-niveaux",
+      "LIST": {
+        "LEVEL1": {
+          "1": "Niveau 1.1",
+          "2": "Niveau 1.2",
+          "LEVEL2": {
+            "1": "Niveau 2.1",
+            "2": "Niveau 2.2"
+          }
+        }
+      }
+    }
+  },
+ 
+  "abdou2":"abdou",
+
+  "Identify":"Identite",
+  "Bonjour": "HELLO",
+
+  "2nd street language":"Rue 2éme langue",
+  "Governorate":"Gouvernorat",
+
+  "Institution":"Etablissement",
+  "Observation":"Observation",
+
+  "personal bank account":"Compte bancaire perso",
+  "bank wording":"libellé banque",
+  "Month":"Mois",
+  "Wording":"Libelle",
+ 
+  "Heading type":"Type rubrique",
+  "Fixed abbreviation":"Abriviation fixe",
+  "Indemnity end date":"Date fin indeminité",
+  "Skill code":"Code compétence",
+  "Number of points":"Nbr des points",
+  "Acquired":"Acquis",
+  "Criterion label":"Libellé critére",
+  "Skill":"Compétence",
+  "Evaluation wording":"Libélle evaluation",
+  "A. Social Bank":"C. Banque sociale",
+  "Objective number":"Numero objectif",
+  "Objective wording":"Libellé objectif",
+  "Appreciation":"Appreciation",
+  "How. Recom":"Comment. Recom",
+  "Description Competence":"Libellé Compétence",
+  "Level":"Niveau",
+  "Validation date":"Date validation",
+  "Percentage":"Pourcentage",
+ "Actual rate.Obj": "Taux reel.Obj",
+"Rate App. comp":"Taux App. Comp",
+"Rate Eval. Def":"Taux Eval. Def",
+"Lib. Val":"Lib. Val",
+"Social bank code":"Code banque sociale",
+"Social agency code":"Code agence sociale",
+"abdou":"abdou",
+"Advance loan group code":"Code groupe prêt",
+"amount requested":"Montant demandé",
+"Answer":"Réponse",
+"Leader response":"Réponse chef",
+"advance loan":"Type prêt",
+"Exit time":"Heure sortie",
+"RH response":"Réponse RH",
+"Request date":"Date demande",
+"Object":"Objet",
+"Rh Observation":"Observation Rh",
+"Title code":"Code titre",
+"Type of training":"Type formation",
+"Theme code":"Code théme",
+"Leader answer":"Reponse chef",
+"Certificate number":"Numéro attestation",
+"Pay slip":"Type Bulletin",
+"Actual date range":"Date tranche réel",
+"Deduction":"Retenue",
+"Loan outstanding balance":"Rest cap prêt",
+"Validated":"Validé",
+"Settle":"Régler",
+"hech":"hechhech",
+ 
+"Year off":"Année congé",
+"Together leave":"Cumule congé",    
+"Leave Taken":"Conge pris",
+"leave balance":"Solde congé",
+"leave wording":"Libélle congé",
+"Date Leave":"Date Congé",
+"Nbr Days":"Nbr Jours",
+"Planned return date":"Date retour prévu",
+"Return Date":"Date Retour",
+"Treatment number":"Numéro soins",
+"Onboard number":"Numéro bord",
+"Treatment Date":"Date Soin",
+"parent type":"Type parent ",
+"Newsletter status":"Etat bulletin",
+"nature_bs":"nature_bs",
+"tot_honor":"tot_honor",
+"Date entered":"Date saisie",
+"num_ass":"num_ass",
+"Line number":"Numéro Lig",
+"Wording Act":"Libellé Acte",
+"Act Type":"Type Act",
+"abrv_act":"abrv_act",
+"Net total":"Totale net",
+"Total honor":"Totale honor",
+"Date Act":"Date Acte",
+"org label":"Libellé org",
+
+"Bulletin Number":"Numéro Bulletin",
+"Year Edge":"Année Bord",
+"Date Treatment sta":"Date Soin star",
+"Date BCT treatment":"Date Soin BCT",
+"Total honor Star":"Totale honor Star",
+"Total honor BCT":"Totale honor BCT",
+"Total refunded Star":"Totale remboursé Star",
+"Total A reimbursed Bct":"Totale A remboursé Bct",
+"Amount refunded before":"Montant remboursé avant",
+"Activity":"Activité",
+"disability": "handicap",
+"Fellow": "Boursier",
+"Sex": "Sexe",
+"Disability record end date": "Date fin fiche handicap",
+"Death date": "Date décé",
+"Sheet number": "Numéro fiche",
+"Date of birth":"Date de naissance",
+"Membership": "Affiliation",
+
+"Affiliate type":"Type affiliation",
+"Membership code":"Code Affiliation",
+"Num. Membership":"Num. Affilliation",
+"Membership date":"Date Affilation",
+"Last name First Name":"Nom&Prénom",
+"school year":"annee_scolaire",
+"result_level":"resultat_niveau",
+"scholarship":"boursier",
+
+
+
+
+"Download PDF":"Télécharger en PDF",
+"family number":"Numéro famille",
+"date five":"Date cin",
+"wedding date":"Date de mariage",
+"Cin":"Cin",
+"Place of issue":"Lieu emission",
+"Name 2nd language":"Nom 2eme langue",
+"Num. spouse insurance":"Num. assurance conjoint",
+"Lastname":"Nom",
+"First name 2nd language":"Prenom 2éme langue",
+"Firstname 2nd language":"Prenom 2éme langue",
+"Section Label":"Libélle rubrique",
+"Premium":"Prime",
+
+
+"Blood type":"Groupe sanguin",
+"Active status":"Etat actif",
+
+
+"Lastname & First Name":"Nom & Prénom",
+
+"GOODBYE": "Au revoir",
+"HOME": "Accueil",
+"ABOUT": "À propos",
+"Select ID":"Sélectionner une matricle",
+"Update Request": "Mise à jour demande",
+"Application date":"Date demande",
+"Time out":"Heure sortie",
+"Return time":"Heure retour",
+"start date":"Date début",
+"Attestation number":"Numéro attestation",
+"Year":"Année",
+"Title":"Titre",
+"Training type":"Type formation",
+"Theme":"Théme",
+"Pattern":"Motif",
+"Authorization label":"Libélle autorisation",
+"Return minute":"Minute retour",
+"Minutes out":"Minute sortie",
+"Request text":"Texte demande",
+"Ready type":"Type prêt",
+"Leader Response":"Réponse Chef",
+"Yes":"Oui",
+"No":"Non",
+"Enter your comment":"Entrer votre obsérvation",
+"Observation Leader":"Observation Chef",
+"Save":"Enregistrer",
+"Research":"Rechercher",
+"List of authorization requests":"Liste des demandes d'autorisations",
+"List of leave requests":"Liste des demandes des congés",
+"List of training requests":"Liste des demandes des formations",
+"Search ..":"Rechercher ..",
+"Check-in number":"Numéro pointage",
+"Check-in date":"Date pointage",
+"ID":"Matricule",
+"Consultation of attendance record":"Consultation de pointage",
+"Download excel file":"Télécharger en EXCEL",
+"Download pdf file":"Télécharger en PDF",
+"Check-in hour":"Heure pointage",
+"Check-in Minute":"Minute pointage",
+"Card number":"Numéro carte",
+"H. regime":"H. régime",
+"M. regime":"M. régime",
+"Hourly duration":"Durée heure",
+"Total duration":"Durée totale",
+"Delayed consultation":"Consultation de retard",
+"Authorization review":"Consultation des autorisations",
+"Exit Min":"Min sortie",
+"Return Min":"Min retour",
+"Duration":"Durée",
+"Vacation review":"Consultation des congés",
+"Full name":"Nom et prenom",
+"Company code":"Code société",
+"Year vacation":"Année congé",
+"Reason code":"Code motif",
+"Vacation date":"Date congé",
+"Nbr days":"Nbr jour",
+"Search":"Chercher",
+"Identity":"Identité",
+"Name":"Nom",
+"First name":"Prénom",
+"Second language first name":"Prenom 2éme langue",
+"Second language last name":"Nom 2éme langue",
+"Blood group":"Groupe sanguin",
+"Etat actif":"Active status",
+"Issuing location of identity":"Lieu emission identité",
+"Payroll status":"Etat paie",
+"Date of bearth":"Date de Naissance",
+"identity":"identité",
+"Nationality":"Nationalité",
+"Place of birth":"Lieu de Naissance",
+"Address and contact":"Adresse et contact",
+"Street":"Rue",
+"Gouvernorate code":"Code Gouvernorat",
+"Postal code":"Code Poste",
+"Email":"Adresse Electronique",
+"Second language street":"Rue 2éme langue",
+"Governorate label":"Libellé Gouvernorat",
+"Postal label":"Libellé Poste",
+"Mobile":"Téléphone",
+"Level of education":"Niveau d'instruction",
+"Establishment":"Etablissement",
+"Diploma":"Diplome",
+"Speciality":"Specialité",
+"Date Level":"Date Niveau",
+
+"General Information": "Information Générale",
+"Date of Administration Entry": "Date d'entrée administration",
+"Loyalty End Date": "Date Fin Fidelité",
+"Titularization Date": "Date Titularisation",
+"Convention Code": "Code convention",
+"Category Code": "Code Categorie",
+"Grade Code": "Code Grade",
+"Assignment Code": "Code Affectation",
+"Class Code": "Code Classe",
+"Function Code": "Code Fonction",
+"Qualification Code": "Code Qualification",
+"Region Code": "Code Region",
+"Filliére Code": "Code Filliére",
+"Convention Label": "Libelle convention",
+"Category Label": "Libelle Categorie",
+"Grade Label": "Libelle Grade",
+"Assignment": "Affectation",
+"Class Label": "Libelle classe",
+"Function Label": "Libelle Fonction",
+"Qualification Label": "Libelle Qualification",
+"Region Label": "Libelle Region",
+"Filliére Label": "Libelle Filliére",
+"Convention Effect Date": "Date Effet convention",
+"Category Effect Date": "Date Effet categorie",
+"Grade Effect Date": "Date Effet grade",
+"Assignment Effect Date": "Date Effet affectation",
+"Class Effect Date": "Date Effet Classe",
+"Function Effect Date": "Date Effet Fonction",
+"Qualification Effect Date": "Date Effet Qualification",
+"Filliére Effect Date": "Date Effet Filliére",
+"Status": "Status",
+"2nd Language Status": "Status 2éme langue",
+"2nd Language Position": "Position 2éme langue",
+"Punching": "Pointage",
+"Work Regime": "Régime Travail",
+"Cycle Start": "Début Cycle",
+"Regime Code": "Code Regime",
+"Leave Regime Code": "Code Regime Congé",
+"Hour Regime": "Regime Heure",
+"Signature": "Signature",
+"Pilgrimage": "Pelérinage",
+"Cycle End": "Fin Cycle",
+"Regime": "Régime",
+"Punch": "Pointe",
+"Variables Pay Method and Grant Allowances": "Mode de payement Variables d'octroi et d'indemnité",
+"Milk Right": "Droit lait",
+"Housing": "Logement",
+"Domestic Service": "Service Domestique",
+"Uniform": "Uniform",
+"Milk Right Label": "Libellé Droit Lait",
+"Housing Label": "Libellé Logement",
+"Domestic Service Label": "Libellé Service Domestique",
+"Car": "Voiture",
+"Transportation Rate": "Baréme de Transport",
+"Car Label": "Libélle Voiture",
+"Month Bonus": "Nb Mois Bonification",
+"Heating": "Chaufage",
+"Water": "Eau",
+"Residence": "Residence",
+"Electricity": "Electricité",
+"Heating Label": "Libellé Chaufage",
+"Water Label": "Libellé Eau",
+"Date of Administrative Entry": "Date d'entrée adminitsration",
+"Date of hire": "Date d'embauche",
+"Code Branch": "Code Fillière",
+"Branch Label": "Libelle Fillière",
+"Branch Effective Date": "Date Effet Fillière",
+"Second Language Status": "Status 2ème langue",
+"Second Language Position": "Position 2ème langue",
+"Select a type of bulletin":"Sélectionner un type de bulletin",
+"Selection":"Selection",
+"Professional Information":"Informations Professionnel",
+
+"Date of Affiliation Effect":"Date Effet Filliére",
+
+"Leave Regime":"Régime Congé",
+"Working Hours Regime":"Regime Heure",
+"Vehicle Label":"Libélle Voiture",
+"Transportation Scale":"Baréme de Transport",
+"Residence Label":"Libellé Residence",
+"Electricity Label":"Libellé Electricité",
+"Indemnity":"Indemnité",
+"Detach":"Détacher",
+"Select a Bulletin Type":"Sélectionner un type de bulletin",
+"Bank code":"Code banque",
+"Personal bank account":"Compte banque personnel",
+"Bank label":"Libellé banque",
+"Agency code":"Code agence",
+"Establishment name":"Nom etablissement",
+"Equivalent function":"Fonction equivalant",
+"Function":"Fonction",
+"Day":"Jour",
+"Fixed Abbreviation":"Abréviation Fixe",
+
+"Indemnity date":"Date Indemnité",
+"Level number":"Numéro Niveau",
+"Level code":"Code Niveau",
+"Type of entry":"Type Rubrique",
+"End of indemnity":"Date fin indeminité",
+"Professional Experiences":"Experiences Professionnel",
+"Family Allowance":"Allocation familiale",
+"Active State":"Etat active",
+"Retirement Number":"N°Retraite",
+"Work Accident Number":"N°Accident de travail",
+"Insurance":"Assurance",
+"Family Information":"Information Familiale",
+"Family Situation":"Situation familiale",
+"Allowance Child":"Enfant allocataire",
+"Family Head":"Chef famille",
+"Unique Salary":"Salaire unique",
+"Identity Number":"N° d'identité",
+"Number of Children":"Nombre d'enfant",
+"IPP Rate":"Taux IPP",
+"Taxable Child":"Enfant imposable",
+"Handicap File Number":"N°Fiche handicap",
+"Health State":"Etat de sante",
+"Degree of Handicap":"Degré handicap",
+"File Effective Date":"Date effet fiche",
+"File End Effective Date":"Date effet fin fiche",
+"Spouse":"Conjoint",
+"Family Number":"Numéro famille",
+"First Name":"Prenom",
+"Birth Date":"Date de naissance",
+"ID Card Date":"Date cin",
+"Marriage Date":"Date de mariage",
+"Second Language First Name":"Prenom 2eme langue",
+"ID Card":"Cin",
+"Emission Place":"Lieu Emission",
+"Spouse Insurance Number":"Numero Assurance Conjoint",
+"Occupation":"Activité",
+"Gender":"Sexe",
+"Handicap":"Handicap",
+"State":"Etat",
+"Child Education":"Scolarité Enfant",
+"Full Name of Child":"Nom & Prenom",
+"Academic Year":"Année scolaire",
+"Level Result":"Resultat niveau",
+"Scholar":"Boursier",
+"Allowance End Date":"Date fin Indemnité",
+"Affiliation":"Affiliation",
+"Type":"Type",
+"Affiliation Code":"Code affiliation",
+"Affiliation Label":"Libellé affiliation",
+"Affiliation Date":"Date Affiliation",
+"Date of contract":"Date contrat",
+"Date of contract end":"Date fin contrat",
+"Contract number":"Num contrat",
+"Date search":"Recherche par date",
+"Contract schedule":"Agenda de contrat",
+"Child":"Enfant",
+"Contract type":"Type contrat",
+"Annual leave": "Année congé",
+"Leave date": "Date Congé",
+"Start date": "Date début",
+"End date": "Date fin",
+"Number of days": "Nbr Jours",
+"Expected return date": "Date retour prévu",
+"Return date": "Date Retour",
+"Leave reason": "Motif congé",
+"Leave editing": "Edition des congées",
+"Enter necessary information": "Entrez les informations nécessaires",
+"List of leaves": "Liste des congés",
+"Pay slip label":"Libellé bulletin",
+"Number":"Nombre",
+"Rate":"Taux",
+"Bonus":"Prime",
+"Withholding":"Retenue",
+"Amount":"Montant",
+"Pay Slip":"Bulletin de paie",
+"Search for a pay slip":"Chercher un bulletin",
+"Please enter the necessary information":"Veuillez entrer les informations nécessaires",
+"Display the list":"Afficher la liste",
+"Final Settlement":"Solde de tout compte",
+"Monthly Slip":"Bulletin du mois",
+"Reminder Slip":"Bulletin Rappel",
+"Various Slip":"Bulletin Divers",
+"Backward Slip":"Bulletin à l'envers",
+"Previous Slip":"Bulletin antérieur",
+"END-OF-YEAR BONUS":"PRIME DE GRATIFICATION",
+"THEORETICAL":"THEORIQUE",
+"Theoretical Slip Attestation":"Bulletin Attestation Théorique",
+"Theoretical Slip":"Bulletin Théorique",
+"Career End Bonus":"Prime fin de carrière",
+"Effort Bonus":"Prime d'effort",
+"Capacity":"Capacité",
+"Simulation":"Simulation",
+"Type of Slip":"Type de bulletin",
+"Personal Information":"Informations personnelles",
+"Child All. family":"Enfant All. familale",
+"Number of children":"Nombre d'enfant",
+"Service Code":"Code Service",
+"Service":"Service",
+"Children in charge":"Enfants à charge",
+"Post Code":"Code Poste",
+"Position":"Poste",
+"Rank":"Échelon",
+"Class":"Classe",
+"Section":"Section",
+"Family situation code":"Code situation familiale",
+"Event space":"Espace évenement",
+"Add event":"Ajouter évenement",
+"Event date":"Date évenement",
+"Expiration date":"Date expiration",
+"Label":"Libellé",
+"Right type":"Type droit",
+"Event type":"Type évenement",
+"File":"Fichier",
+"Training":"Formation",
+"Other":"Autre",
+"All":"Tous",
+
+"List of objectives":"Liste des objectifs",
+"Goal number":"Numéro objectif",
+"Goal label":"Libellé objectifs"
+
+
+
+
+
+  
+
+}

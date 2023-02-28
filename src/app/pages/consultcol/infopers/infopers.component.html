@@ -1,0 +1,489 @@
+<div class="container-fluid">
+  <div class="checkout-tabs">
+    <div class="row">
+      <div class="col-xl-2 col-sm-3">
+        <ul ngbNav #nav="ngbNav" [activeId]="1" class="nav-pills flex-column">
+          <li [ngbNavItem]="1">
+            <a ngbNavLink>
+              <br />
+              <img
+                [src]="imageUrl"
+                *ngIf="imageUrl"
+                alt=""
+                class="rounded avatar-md"
+              />
+
+              <br /><br />
+              <p class="card-title" *ngIf="fiche">
+                {{ fiche.pren_pers }} {{ fiche.nom_pers }}
+              </p>
+              <p class="card-title" *ngIf="fiche">{{ fiche.mat_pers }}</p>
+            </a>
+            <ng-template ngbNavContent>
+              <div class="container-fluid">
+                <!-- start page title -->
+
+                <!-- end page title -->
+
+                <div class="row">
+                  <div class="col-12">
+                    <div class="card">
+                      <div class="card-body">
+                        <h1 class="card-title">{{"Identité"|translate}}</h1>
+
+                        <p class="card-title-desc">Information</p>
+                        <div class="col-sm-12" id="htmlData" #htmlData>
+                          <div class="button-items">
+                            <button type="button" class="btn btn-success" (click)="exportAsXLSX()">
+                                <i class="bx bx-file-blank font-size-16 align-middle me-2"  ></i> {{"Télécharger en EXCEL"|translate}}
+                            </button>
+                            <button type="button" class="btn btn-danger" (click)="openPDF()">
+                                <i class="bx bxs-file-pdf  font-size-16 align-middle me-2"  ></i> {{"Télécharger en PDF"|translate}}
+                            </button>
+                            </div>
+                            <br>
+                          
+                          <ag-grid-angular
+                            style="width: 100%; height: 300px"
+                            class="ag-theme-alpine"
+                            [rowData]="rowData"
+                            [columnDefs]="columnDefs"
+                            [defaultColDef]="defaultColDef"
+                            [pagination]="true"
+                            [rowSelection]="rowSelection"
+                            [modules]="modules"
+                            (selectionChanged)="onSelectionChanged($event)"
+                            (gridReady)="getpers($event)"
+                          >
+                          </ag-grid-angular>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div *ngIf="fiche" class="card">
+                      <div class="card-body">
+                        <form>
+                          <div class="row">
+                            <div class="col-sm-6">
+                              <div class="mb-3">
+                                <label for="productname">{{"Nom"|translate}}</label>
+                                <input
+                                  [value]="fiche.nom_pers"
+                                  id="productname"
+                                  name="productname"
+                                  type="text"
+                                  class="form-control"
+                                />
+                              </div>
+                              <div class="mb-3">
+                                <label for="manufacturername">{{"Prenom"|translate}}</label>
+                                <input
+                                  [value]="fiche.pren_pers"
+                                  id="manufacturername"
+                                  name="manufacturername"
+                                  type="text"
+                                  class="form-control"
+                                />
+                              </div>
+                              <div class="mb-3">
+                                <label for="manufacturerbrand"
+                                  >{{"Lieu emission identité"|translate}}</label
+                                >
+                                <input
+                                  id="manufacturerbrand"
+                                  [value]="fiche.lie_emi_cin"
+                                  name="manufacturerbrand"
+                                  type="text"
+                                  class="form-control"
+                                />
+                              </div>
+
+                              <div class="mb-3">
+                                <label for="price">{{"Etat paie"|translate}}</label>
+                                <input
+                                  [value]="fiche.lib_etat_act"
+                                  type="text"
+                                  class="form-control"
+                                />
+                                <div class="invalid-feedback"></div>
+                              </div>
+                              <div class="mb-3">
+                                <label for="manufacturerbrand"
+                                  >{{"Date de Naissance"|translate}}</label
+                                >
+                                <input
+                                  id="manufacturerbrand"
+                                  [value]="fiche.dat_nais"
+                                  name="manufacturerbrand"
+                                  type="text"
+                                  class="form-control"
+                                />
+                              </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                              <div class="mb-3">
+                                <label class="control-label"
+                                  >{{"Nom 2emé langue"|translate}}</label
+                                >
+                                <input
+                                  id="manufacturerbrand"
+                                  [value]="fiche.nom_pers_a"
+                                  name="manufacturerbrand"
+                                  type="text"
+                                  class="form-control"
+                                />
+                              </div>
+                              <div class="mb-3">
+                                <label class="control-label"
+                                  >{{"Prenom 2éme langue"|translate}}</label
+                                >
+                                <input
+                                  id="manufacturerbrand"
+                                  [value]="fiche.pren_pers_a"
+                                  name="manufacturerbrand"
+                                  type="text"
+                                  class="form-control"
+                                />
+                              </div>
+                              <div class="mb-3">
+                                <label for="manufacturerbrand"
+                                  >{{"N identité"|translate}}
+                                </label>
+                                <input
+                                  id="manufacturerbrand"
+                                  [value]="fiche.cin"
+                                  name="manufacturerbrand"
+                                  type="text"
+                                  class="form-control"
+                                />
+                              </div>
+                              <div class="mb-3">
+                                <label for="manufacturerbrand"
+                                  >{{"Nationalité"|translate}}</label
+                                >
+                                <input
+                                  id="manufacturerbrand"
+                                  [value]="fiche.lib_gouv"
+                                  name="manufacturerbrand"
+                                  type="text"
+                                  class="form-control"
+                                />
+                              </div>
+                              <div class="mb-3">
+                                <label for="manufacturerbrand"
+                                  >{{"Lieu de Naissance"|translate}}</label
+                                >
+                                <input
+                                  id="manufacturerbrand"
+                                  [value]="fiche.lieu_nais"
+                                  name="manufacturerbrand"
+                                  type="text"
+                                  class="form-control"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                          <div class="d-flex flex-wrap gap-2 mt-2"></div>
+                        </form>
+
+                        <div class="col-sm-6 col-md-4 col-xl-3">
+                          <div class="my-4 text-center">
+                            <!-- Small modal -->
+                            <!--  <button type="button" class="btn btn-primary" (click)="smallModal(smallDataModal)">Small
+                              modal</button> -->
+                          </div>
+                        </div>
+
+                        <!-- <ng-template #smallDataModal let-modal>
+                          <div class="modal-header">
+                            <h5 class="modal-title mt-0">recherche</h5>
+                            <button type="button" class="btn-close" (click)="modal.dismiss('Cross click')" aria-hidden="true"></button>
+                          </div>
+                          <div class="modal-body">
+                            <input
+                            id="manufacturerbrand"
+                            [(ngModel)]="z"
+                            name="manufacturerbrand"
+                            type="text"
+                            class="form-control"
+                          />
+                          <button
+                          id="manufacturerbrand"
+                        (click)="getpers()"
+                          type="submit"
+                          class="btn btn-primary"
+                     >chercher</button>
+
+                          </div>
+                        </ng-template>
+ -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- end row -->
+              </div>
+              <!-- container-fluid -->
+            </ng-template>
+          </li>
+          <li [ngbNavItem]="2">
+            <a ngbNavLink>
+              <i class="bx bx-notepad d-block check-nav-icon mt-4 mb-2"></i>
+              <p class="fw-bold mb-4">{{'Adresse&contact'|translate}}</p>
+            </a>
+            <ng-template ngbNavContent>
+              <div class="container-fluid">
+                <!-- start page title -->
+
+                <!-- end page title -->
+
+                <div class="row">
+                  <div class="col-12">
+                    <div class="card">
+                      <div class="card-body">
+                        <h1 class="card-title">{{'Adresse et contact'|translate}}</h1>
+                        <p class="card-title-desc">{{'Information'|translate}}</p>
+                        <form *ngIf="fiche">
+                          <div class="row">
+                            <div class="col-sm-6">
+                              <div
+                                *ngFor="let item of fiche.adresses_personnel"
+                                class="mb-3"
+                              >
+                                <label for="productname"> {{'Rue'|translate}}</label>
+                                <input
+                                  *ngIf="fiche.adresses_personnel"
+                                  value="{{ item.rue }}"
+                                  id="productname"
+                                  name="productname"
+                                  type="text"
+                                  class="form-control"
+                                />
+                              </div>
+                              <div class="mb-3">
+                                <label for="manufacturername">
+                                  {{'Code Gouvernorat'|translate}}</label
+                                >
+                                <input
+                                  [value]="fiche.cod_gouv"
+                                  id="manufacturername"
+                                  name="manufacturername"
+                                  type="text"
+                                  class="form-control"
+                                />
+                              </div>
+                              <div
+                                *ngFor="let item of fiche.adresses_personnel"
+                                class="mb-3"
+                              >
+                                <label for="manufacturerbrand"
+                                  >{{'Code Poste'|translate}}</label
+                                >
+                                <input
+                                  id="manufacturerbrand"
+                                  value="{{ item.cod_post }}"
+                                  name="manufacturerbrand"
+                                  type="text"
+                                  class="form-control"
+                                />
+                              </div>
+
+                              <div
+                                *ngFor="let item of fiche.adresses_personnel"
+                                class="mb-3"
+                              >
+                                <label for="price">{{'Adresse Electronique'|translate}} </label>
+                                <input
+                                  value="{{ item.adr_electronique }}"
+                                  type="text"
+                                  class="form-control"
+                                />
+                                <div class="invalid-feedback"></div>
+                              </div>
+                              <div
+                                *ngFor="let item of fiche.adresses_personnel"
+                                class="mb-3"
+                              >
+                                <label for="manufacturerbrand">{{'Gsm'|translate}}</label>
+                                <input
+                                  id="manufacturerbrand"
+                                  value="{{ item.tel_pers }}"
+                                  name="manufacturerbrand"
+                                  type="text"
+                                  class="form-control"
+                                />
+                              </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                              <div
+                                *ngFor="let item of fiche.adresses_personnel"
+                                class="mb-3"
+                              >
+                                <label for="price"> {{'Rue 2éme langue'|translate}} </label>
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  value="{{ item.rue_a }}"
+                                />
+                                <div class="invalid-feedback"></div>
+                              </div>
+                              <div *ngIf="fiche" class="mb-3">
+                                <label class="control-label">
+                                  {{'Libellé Gouvernorat'|translate}}</label
+                                >
+                                <input
+                                  [value]="fiche.lib_gouv"
+                                  id="manufacturerbrand"
+                                  name="manufacturerbrand"
+                                  type="text"
+                                  class="form-control"
+                                />
+                              </div>
+                              <div
+                                *ngFor="let item of fiche.adresses_personnel"
+                                class="mb-3"
+                              >
+                                <label
+                                  aria-disabled="true"
+                                  for="manufacturerbrand"
+                                >
+                                  {{'Libellé Poste'|translate}}
+                                </label>
+                                <input
+                                  [value]="item.libpost"
+                                  id="manufacturerbrand"
+                                  name="manufacturerbrand"
+                                  type="text"
+                                  class="form-control"
+                                />
+                              </div>
+                              <div
+                                *ngFor="let item of fiche.adresses_personnel"
+                                class="mb-3"
+                              >
+                                <label for="manufacturerbrand"
+                                  >{{'Téléphone'|translate}}
+                                </label>
+
+                                <input
+                                  value="{{ item.tel_pers }}"
+                                  id="manufacturerbrand"
+                                  name="manufacturerbrand"
+                                  type="text"
+                                  class="form-control"
+                                />
+                              </div>
+                              <div
+                                class="mb-3"
+                                *ngFor="let item of fiche.adresses_personnel"
+                              >
+                                <label for="manufacturerbrand">{{'Fax'|translate}}</label>
+                                <input
+                                  value="{{ item.fax_pers }}"
+                                  id="manufacturerbrand"
+                                  name="manufacturerbrand"
+                                  type="text"
+                                  class="form-control"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                          <div class="d-flex flex-wrap gap-2 mt-2"></div>
+                        </form>
+                      </div>
+                    </div>
+
+                    <div class="card">
+                      <div class="card-body">
+                        <h4 class="card-title"></h4>
+                        <p class="card-title-desc">{{'Information'| translate}}</p>
+
+                        <table class="table">
+                          <thead>
+                            <tr>
+                              <th scope="col">{{'Adresse electronique'| translate}}</th>
+
+                              <th scope="col">{{'Rue'|translate}}</th>
+                              <th scope="col">{{'Rue 2éme langue'| translate}}</th>
+                              <th scope="col">{{'Gouvernorat'| translate}}</th>
+                            </tr>
+                          </thead>
+                          <tbody *ngIf="fiche">
+                            <tr *ngFor="let item of fiche.adresses_personnel">
+                              <td>{{ item.adrelectronique }}</td>
+
+                              <td>{{ item.rue }}</td>
+                              <td>{{ item.rue_a }}</td>
+                              <td>{{ item.lib_gouv }}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- end row -->
+              </div>
+            </ng-template>
+          </li>
+          <li [ngbNavItem]="3">
+            <a ngbNavLink>
+              <i class="bx bx-badge-check d-block check-nav-icon mt-4 mb-2"></i>
+              <p class="fw-bold mb-4">{{"Niveau d'instruction"|translate}}</p>
+            </a>
+
+            <ng-template ngbNavContent>
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-12">
+                    <div class="card">
+                      <div class="card-body">
+                        <h1 class="card-title">{{"Niveau d'instruction"|translate}}</h1>
+
+                        <div class="card shadow-none border mb-0">
+                          <div class="card-body">
+                            <table class="table">
+                              <thead>
+                                <tr>
+                                  <th scope="col">{{'Etablissement'|translate}}</th>
+                                  <th scope="col">{{'Diploma'|translate}}</th>
+
+                                  <th scope="col">{{'Specialité'|translate}}</th>
+                                  <th scope="col">{{'Observation'|translate}}</th>
+                                  <th scope="col">{{'Date Niveau'|translate}}</th>
+
+                                  <th scope="col">{{'Date debut'|translate}}</th>
+                                  <th scope="col">{{'Date Fin'|translate}}</th>
+                                </tr>
+                              </thead>
+                              <tbody *ngIf="niv">
+                                <tr *ngFor="let a of niv">
+                                  <td>{{ a.libetablissement }}</td>
+                                  <td>{{ a.diplome }}</td>
+                                  <td>{{ a.specialite }}</td>
+                                  <td>{{ a.observation }}</td>
+                                  <td>{{ a.date_niveau }}</td>
+                                  <td>{{ a.date_deb }}</td>
+                                  <td>{{ a.date_fin }}</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </li>
+        </ul>
+      </div>
+      <div class="col-lg-10">
+        <div [ngbNavOutlet]="nav"></div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,613 @@
+<div class="container-fluid">
+  <app-page-title title="Informations Sociale"></app-page-title>
+  <div class="checkout-tabs">
+    <div class="row">
+      <div class="col-xl-2 col-sm-3">
+        <ul ngbNav #nav="ngbNav" [activeId]="1" class="nav-pills flex-column">
+          <li [ngbNavItem]="1">
+            <a ngbNavLink>
+              <i class="bx bxs-user d-block check-nav-icon mt-4 mb-2"></i>
+              <p class="fw-bold mb-4">
+                {{ "Information Générale" | translate }}
+              </p>
+            </a>
+            <ng-template ngbNavContent>
+              <div class="container-fluid">
+                <!-- start page title -->
+
+                <!-- end page title -->
+
+                <div class="row">
+                  <div class="col-12">
+                    <div class="card">
+                      <div class="card-body">
+                        <p class="card-title">
+                          {{ "Information Générale" | translate }}
+                        </p>
+
+                        <p class="card-title-desc">Informations :</p>
+
+                        <form>
+                          <div class="row">
+                            <div class="col-sm-3">
+                              <div *ngIf="perso11.cod_sit == 'M'" class="mb-3">
+                                <label for="productname">{{
+                                  "Situation familiale" | translate
+                                }}</label>
+                                <input
+                                  *ngIf="perso11.cod_sit == 'M'"
+                                  value="Marié"
+                                  id="productname"
+                                  name="productname"
+                                  disabled
+                                  type="text"
+                                  class="form-control"
+                                />
+                                <input
+                                  *ngIf="perso11.cod_sit == 'C'"
+                                  value="Celebataire"
+                                  id="productname"
+                                  name="productname"
+                                  type="text"
+                                  disabled
+                                  class="form-control"
+                                />
+                                <input
+                                  *ngIf="perso11.cod_sit == 'D'"
+                                  value="Divorcé"
+                                  id="productname"
+                                  name="productname"
+                                  disabled
+                                  type="text"
+                                  class="form-control"
+                                />
+                                <input
+                                  *ngIf="perso11.cod_sit == 'V'"
+                                  value="Veufe"
+                                  id="productname"
+                                  disabled
+                                  name="productname"
+                                  type="text"
+                                  class="form-control"
+                                />
+                                <input
+                                  *ngIf="perso11.cod_sit == null"
+                                  value=""
+                                  disabled
+                                  id="productname"
+                                  name="productname"
+                                  type="text"
+                                  class="form-control"
+                                />
+                              </div>
+                              <div *ngIf="perso11.chef_fam == 'N'" class="mb-3">
+                                <label for="manufacturername"
+                                  >Chef famille</label
+                                >
+                                <input
+                                  value="Non"
+                                  id="manufacturername"
+                                  name="manufacturername"
+                                  type="text"
+                                  disabled
+                                  class="form-control"
+                                />
+                              </div>
+                              <div *ngIf="perso11.chef_fam == 'O'" class="mb-3">
+                                <label for="manufacturername">{{
+                                  "Chef famille" | translate
+                                }}</label>
+                                <input
+                                  value="Oui"
+                                  id="manufacturername"
+                                  disabled
+                                  name="manufacturername"
+                                  type="text"
+                                  class="form-control"
+                                />
+                              </div>
+                              <div
+                                *ngIf="perso11.chef_fam == null"
+                                class="mb-3"
+                              >
+                                <label for="manufacturername">{{
+                                  "Chef famille" | translate
+                                }}</label>
+                                <input
+                                  value=""
+                                  id="manufacturername"
+                                  disabled
+                                  name="manufacturername"
+                                  type="text"
+                                  class="form-control"
+                                />
+                              </div>
+                              <div *ngIf="perso11.fct_fam == 'N'" class="mb-3">
+                                <label for="manufacturerbrand"
+                                  >{{ "Salaire unique" | translate }}
+                                </label>
+                                <input
+                                  id="manufacturerbrand"
+                                  value="Non"
+                                  disabled
+                                  name="manufacturerbrand"
+                                  type="text"
+                                  class="form-control"
+                                />
+                              </div>
+                              <div *ngIf="perso11.fct_fam == 'O'" class="mb-3">
+                                <label for="manufacturerbrand"
+                                  >{{ "Salaire unique" | translate }}
+                                </label>
+                                <input
+                                  id="manufacturerbrand"
+                                  value="Oui"
+                                  disabled
+                                  name="manufacturerbrand"
+                                  type="text"
+                                  class="form-control"
+                                />
+                              </div>
+
+                              <div class="mb-3">
+                                <label for="price">{{
+                                  "Nombre d'enfant" | translate
+                                }}</label>
+                                <input
+                                  [value]="perso11.nbre_enf"
+                                  type="text"
+                                  class="form-control"
+                                  disabled
+                                />
+                                <div class="invalid-feedback"></div>
+                              </div>
+                            </div>
+
+                            <div class="col-sm-3">
+                              <div class="mb-3">
+                                <label class="control-label"
+                                  >{{ "Enfant allocataire" | translate }}
+                                </label>
+                                <input
+                                  id="manufacturerbrand"
+                                  [value]="perso11.charg_all"
+                                  name="manufacturerbrand"
+                                  type="text"
+                                  disabled
+                                  class="form-control"
+                                />
+                              </div>
+                              <div class="mb-3">
+                                <label class="control-label">{{
+                                  "Etat de sante" | translate
+                                }}</label>
+                                <input
+                                  *ngIf="perso11.typ_handicap == '0'"
+                                  id="manufacturerbrand"
+                                  value="Non Handicapé"
+                                  name="manufacturerbrand"
+                                  disabled
+                                  type="text"
+                                  class="form-control"
+                                />
+                                <input
+                                  *ngIf="perso11.typ_handicap == '1'"
+                                  id="manufacturerbrand"
+                                  value=" Handicapé"
+                                  name="manufacturerbrand"
+                                  disabled
+                                  type="text"
+                                  class="form-control"
+                                />
+                                <input
+                                  *ngIf="perso11.typ_handicap == '2'"
+                                  id="manufacturerbrand"
+                                  value=" Handicapé"
+                                  name="manufacturerbrand"
+                                  type="text"
+                                  disabled
+                                  class="form-control"
+                                />
+                                <input
+                                  *ngIf="perso11.typ_handicap == '3'"
+                                  id="manufacturerbrand"
+                                  value=" Handicapé"
+                                  name="manufacturerbrand"
+                                  type="text"
+                                  disabled
+                                  class="form-control"
+                                />
+                              </div>
+                              <div class="mb-3">
+                                <label for="manufacturerbrand"
+                                  >{{ "N° d'identité" | translate }}
+                                </label>
+                                <input
+                                  id="manufacturerbrand"
+                                  [value]="perso11.cin"
+                                  name="manufacturerbrand"
+                                  type="text"
+                                  class="form-control"
+                                  disabled
+                                />
+                              </div>
+                              <div class="mb-3">
+                                <label for="manufacturerbrand"
+                                  >{{ "Taux IPP" | translate }}
+                                </label>
+                                <input
+                                  id="manufacturerbrand"
+                                  [value]="perso11.pourcent_hand"
+                                  name="manufacturerbrand"
+                                  type="text"
+                                  disabled
+                                  class="form-control"
+                                />
+                              </div>
+                            </div>
+
+                            <div class="col-sm-3">
+                              <div class="mb-3">
+                                <label class="control-label">{{
+                                  "Etat de sante" | translate
+                                }}</label>
+                                <input
+                                  id="manufacturerbrand"
+                                  [value]="perso11.typ_handicap"
+                                  name="manufacturerbrand"
+                                  type="text"
+                                  disabled
+                                  class="form-control"
+                                />
+                              </div>
+                              <div class="mb-3">
+                                <label class="control-label">{{
+                                  "Date effet fiche" | translate
+                                }}</label>
+                                <input
+                                  id="manufacturerbrand"
+                                  [value]="perso11.dat_eff_fich_hand"
+                                  name="manufacturerbrand"
+                                  type="text"
+                                  disabled
+                                  class="form-control"
+                                />
+                              </div>
+                              <div class="mb-3">
+                                <label class="control-label">{{
+                                  "Degré handicap" | translate
+                                }}</label>
+                                <input
+                                  *ngIf="perso11.typ_handicap == '0'"
+                                  id="manufacturerbrand"
+                                  value="Non Handicapé"
+                                  name="manufacturerbrand"
+                                  type="text"
+                                  disabled
+                                  class="form-control"
+                                />
+                                <input
+                                  *ngIf="perso11.typ_handicap == '1'"
+                                  id="manufacturerbrand"
+                                  value="Handicap Normal"
+                                  disabled
+                                  name="manufacturerbrand"
+                                  type="text"
+                                  class="form-control"
+                                />
+                                <input
+                                  *ngIf="perso11.typ_handicap == '2'"
+                                  id="manufacturerbrand"
+                                  value="Handicap Proprietaire"
+                                  name="manufacturerbrand"
+                                  type="text"
+                                  disabled
+                                  class="form-control"
+                                />
+                                <input
+                                  *ngIf="perso11.typ_handicap == null"
+                                  id="manufacturerbrand"
+                                  value=""
+                                  name="manufacturerbrand"
+                                  type="text"
+                                  class="form-control"
+                                  disabled
+                                />
+                                <input
+                                  *ngIf="perso11.typ_handicap == '3'"
+                                  id="manufacturerbrand"
+                                  value="'Handicap Accompagné'"
+                                  name="manufacturerbrand"
+                                  type="text"
+                                  disabled
+                                  class="form-control"
+                                />
+                              </div>
+                            </div>
+
+                            <div class="col-sm-3">
+                              <div class="mb-3">
+                                <label for="manufacturerbrand">{{
+                                  "Enfant imposable" | translate
+                                }}</label>
+                                <input
+                                  id="manufacturerbrand"
+                                  [value]="perso11.charg_enf"
+                                  name="manufacturerbrand"
+                                  type="text"
+                                  disabled
+                                  class="form-control"
+                                />
+                              </div>
+                              <div class="mb-3">
+                                <label for="manufacturerbrand"
+                                  >{{ "N°Fiche handicap" | translate }}
+                                </label>
+                                <input
+                                  id="manufacturerbrand"
+                                  [value]="perso11.num_fich_hand"
+                                  name="manufacturerbrand"
+                                  type="text"
+                                  disabled
+                                  class="form-control"
+                                />
+                              </div>
+                              <div class="mb-3">
+                                <label for="manufacturerbrand">{{
+                                  "Date effet fin fiche" | translate
+                                }}</label>
+                                <input
+                                  id="manufacturerbrand"
+                                  [value]="perso11.dat_fin_fich_hand"
+                                  name="manufacturerbrand"
+                                  type="text"
+                                  disabled
+                                  class="form-control"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                          <div class="d-flex flex-wrap gap-2 mt-2"></div>
+                        </form>
+                      </div>
+                    </div>
+
+                    <div class="card">
+                      <div class="card-body">
+                        <form>
+                          <div class="row">
+                            <div class="col-sm-3">
+                              <div class="mb-3">
+                                <label for="metakeywords"
+                                  >{{ "Assurance" | translate }}
+                                </label>
+                                <input
+                                  id="metakeywords"
+                                  [value]="perso11.cod_assur"
+                                  name="manufacturername"
+                                  type="text"
+                                  disabled
+                                  class="form-control"
+                                /><input
+                                  id="metakeywords"
+                                  [value]="perso11.num_assur"
+                                  name="manufacturername"
+                                  disabled
+                                  type="text"
+                                  class="form-control"
+                                />
+                                <input
+                                  disabled
+                                  id="metakeywords"
+                                  disabled
+                                  name="manufacturername"
+                                  type="text"
+                                  class="form-control"
+                                />
+                              </div>
+                            </div>
+
+                            <div class="col-sm-3">
+                              <div class="mb-3">
+                                <label for="metatitle"
+                                  >{{ "N°Retraite" | translate }}
+                                </label>
+                                <input
+                                  [value]="perso11.num_retr"
+                                  id="metatitle"
+                                  name="productname"
+                                  type="text"
+                                  class="form-control"
+                                  disabled
+                                />
+                              </div>
+                            </div>
+                            
+                            <div class="col-sm-3">
+                              <div class="mb-3">
+                                <label for="metakeywords">{{
+                                  "Allocation familiale" | translate
+                                }}</label>
+                                <input
+                                  *ngIf="perso11.fct_fam == 'O'"
+                                  value="Oui"
+                                  id="metakeywords"
+                                  disabled
+                                  name="manufacturername"
+                                  type="text"
+                                  class="form-control"
+                                />
+
+                                <input
+                                  *ngIf="perso11.fct_fam == 'N'"
+                                  id="metakeywords"
+                                  value="Non"
+                                  name="manufacturername"
+                                  type="text"
+                                  disabled
+                                  class="form-control"
+                                />
+                                <input
+                                  *ngIf="perso11.fct_fam == null"
+                                  id="metakeywords"
+                                  value=""
+                                  disabled
+                                  name="manufacturername"
+                                  type="text"
+                                  class="form-control"
+                                />
+                              </div>
+                            </div>
+                            <div class="col-sm-3">
+                              <div class="mb-3">
+                                <label for="metadescription">
+                                  {{ "N°Accident de travail" | translate }}
+                                </label>
+                                <input
+                                  id="metakeywords"
+                                  [value]="perso11.num_acc"
+                                  name="manufacturername"
+                                  disabled
+                                  type="text"
+                                  class="form-control"
+                                />
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="d-flex flex-wrap gap-2"></div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- end row -->
+              </div>
+              <!-- container-fluid -->
+            </ng-template>
+          </li>
+          <li [ngbNavItem]="2">
+            <a ngbNavLink>
+              <i class="bx bx-money d-block check-nav-icon mt-4 mb-2"></i>
+              <p class="fw-bold mb-4">{{ "Conjoint" | translate }}</p>
+            </a>
+            <ng-template ngbNavContent>
+              <div class="container-fluid">
+                <!-- start page title -->
+
+                <!-- end page title -->
+
+                <div class="row">
+                  <div class="col-12">
+                    <div class="card">
+                      <div class="card-body">
+                        <p class="card-title">{{ "Conjoint" | translate }}</p>
+
+                        <p class="card-title-desc">Informations :</p>
+                        <app-conjoint></app-conjoint>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </li>
+          <li [ngbNavItem]="3">
+            <a ngbNavLink>
+              <i class="bx bx-user-check d-block check-nav-icon mt-4 mb-2"></i>
+              <p class="fw-bold mb-4">{{ "Enfant" | translate }}</p>
+            </a>
+            <ng-template ngbNavContent>
+              <div class="container-fluid">
+                <!-- start page title -->
+
+                <!-- end page title -->
+
+                <div class="row">
+                  <div class="col-12">
+                    <div class="card">
+                      <div class="card-body">
+                        <p class="card-title">{{ "Enfant" | translate }}</p>
+
+                        <p class="card-title-desc">Informations :</p>
+                        <app-enfant></app-enfant>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </li>
+          <li [ngbNavItem]="4">
+            <a ngbNavLink>
+              <i class="bx bx-task d-block check-nav-icon mt-4 mb-2"></i>
+              <p class="fw-bold mb-4">{{ "Scolarité Enfant" | translate }}</p>
+            </a>
+            <ng-template ngbNavContent>
+              <div class="container-fluid">
+                <!-- start page title -->
+
+                <!-- end page title -->
+
+                <div class="row">
+                  <div class="col-12">
+                    <div class="card">
+                      <div class="card-body">
+                        <p class="card-title">
+                          {{ "Scolarité Enfant" | translate }}
+                        </p>
+                        <p class="card-title-desc">Informations :</p>
+
+                        <app-scolenfant></app-scolenfant>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- end row -->
+              </div>
+              <!-- container-fluid -->
+            </ng-template>
+          </li>
+          <li [ngbNavItem]="5">
+            <a ngbNavLink>
+              <i
+                class="bx bx-dollar-circle d-block check-nav-icon mt-4 mb-2"
+              ></i>
+              <p class="fw-bold mb-4">{{ "Affiliation" | translate }}</p>
+            </a>
+            <ng-template ngbNavContent>
+              <div class="container-fluid">
+                <!-- start page title -->
+
+                <!-- end page title -->
+
+                <div class="row">
+                  <div class="col-12">
+                    <div class="card">
+                      <div class="card-body">
+                        <p class="card-title">
+                          {{ "Affiliation" | translate }}
+                        </p>
+
+                        <p class="card-title-desc">Informations :</p>
+
+                        <app-affil></app-affil>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- end row -->
+
+              <!-- container-fluid -->
+            </ng-template>
+          </li>
+        </ul>
+      </div>
+      <div class="col-lg-10">
+        <div [ngbNavOutlet]="nav"></div>
+      </div>
+    </div>
+  </div>
+</div>

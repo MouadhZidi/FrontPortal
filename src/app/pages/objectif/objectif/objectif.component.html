@@ -1,0 +1,127 @@
+<script>
+  document.write('<base href="' + document.location + '" />');
+</script>
+<div class="container-fluid">
+
+  <h3 class="card-title">{{'Liste des objectif' | translate}}</h3><br>
+
+  <ag-grid-angular
+  style="width: 100%; height: 500px"
+  class="ag-theme-alpine"
+  [rowData]="list"
+  [columnDefs]="columnDefs"
+  [defaultColDef]="defaultColDef"
+  [pagination]="true"
+  [modules]="modules"
+  
+  (cellClicked)="onCellClicked($event)"
+>
+</ag-grid-angular>
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+       
+          <form id="datiRichiesta" [hidden]="datiRichiestaClicked">
+            <ul class="list-inline m-0">
+              <li class="list-inline-item">
+                <button class="btn btn-primary" (click)="onAddRow()">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    class="bi bi-plus-square"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"
+                    />
+                    <path
+                      d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
+                    />
+                  </svg>
+                </button>
+              </li>
+            </ul>
+            <br>
+            <div class="row">
+              <div class="col-sm-6">
+                <label class="header">{{'Numéro objectif' | translate}}</label>
+              </div>
+              <div class="col-sm-6">
+                <label class="header">{{'Libellé objectifs' | translate}}</label>
+              </div>
+            </div>
+            <div *ngFor="let a of arrayOfObj">
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="mb-3">
+                    <input
+                      [(ngModel)]="objectif"
+                      id="productname"
+                      name="productname"
+                      value=""
+                      type="text"
+                      class="form-control"
+                    />
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="mb-3">
+                    <input
+                      [(ngModel)]="libele"
+                      id="product"
+                      name="product"
+                      type="text"
+                      value=""
+                      class="form-control"
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <button
+                      type="button"
+                      (click)="submit()"
+                      class="btn btn-success"
+                    >
+                      {{'Enregistrer' | translate}}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group" *ngFor="let item of listObject">
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="mb-3">
+                    <input
+                      id="productname"
+                      name="productname"
+                      disabled
+                      value="{{ item.num_objectif }}"
+                      type="text"
+                      class="form-control"
+                    />
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="mb-3">
+                    <input
+                      id="product"
+                      disabled
+                      name="product"
+                      type="text"
+                      value="{{ item.lib_objectif}}"
+                      class="form-control"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
