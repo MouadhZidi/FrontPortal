@@ -14,4 +14,7 @@ export class CalendarCongeService {
   GetChambreByCode = (codSoc:any,matPers:any): Observable<any[]> => {
     return this.http.get<any[]>(AUTH_API + "demande/getListConje/"+codSoc+"/"+matPers);
   };
+  GetcngById = (id:any): Observable<any[]> => {
+    return this.http.post<any[]>(AUTH_API + "demande/getcngbyid/",id);
+  };
 }

@@ -2,12 +2,8 @@ import { Component, OnInit, ViewChild, TemplateRef } from "@angular/core";
 import { FormBuilder, Validators, FormGroup } from "@angular/forms";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 
-import {
-  CalendarOptions,
-  EventClickArg,
-  EventApi,
-  startOfDay,
-} from "@fullcalendar/angular";
+import { CalendarOptions, EventClickArg, EventApi } from '@fullcalendar/angular';
+
 
 import Swal from "sweetalert2";
 
@@ -15,6 +11,7 @@ import { TokenStorage } from "src/app/core/services/token-storage.service";
 import { CalendarCongeService } from "../calendar-conge.service";
 import { TranslateService } from "@ngx-translate/core";
 import { PersonnelService } from "../../Employe/personnel.service";
+
 
 @Component({
   selector: "app-calendar-conge",
@@ -32,6 +29,7 @@ export class CalendarCongeComponent implements OnInit {
   // };
 
   breadCrumbItems: Array<{}>;
+  @ViewChild('modalShow') modalShow: TemplateRef<any>;
 
   @ViewChild("editmodalShow") editmodalShow: TemplateRef<any>;
 
@@ -43,6 +41,8 @@ export class CalendarCongeComponent implements OnInit {
   calendarEvents: any[];
   currentLang: any;
   lang:any
+   cng :any
+
 
   formData: FormGroup;
   rowData: any[] = [];
@@ -58,6 +58,8 @@ export class CalendarCongeComponent implements OnInit {
   currentEvents: EventApi[] = [];
 
   ngOnInit(): void {
+    
+    
   
     console.log("cccccccccccccccccccc"+this.translatee.currentLang)
     this.breadCrumbItems = [
@@ -71,8 +73,9 @@ export class CalendarCongeComponent implements OnInit {
     });
 
     this.formEditData = this.formBuilder.group({
-      editTitle: ["", [Validators.required]],
-      editCategory: [],
+      editTitle: [""],
+      dateC: [""],
+      fin:[""]
     });
     this._fetchData();
     this.getListSituation();
@@ -116,27 +119,74 @@ export class CalendarCongeComponent implements OnInit {
     //   });
     // });
 
-
 console.log("*************",this.currentLang);
 
 
   }
 
+  handleEventClick(clickInfo: EventClickArg) {
+    this.formEditData.reset()
+
+    this.editEvent = clickInfo.event;
+    console.log("edit event */*/---",this.editEvent);
+    
+   
+    var splittedString = this.editEvent.id.split("+")
+    console.log("splitted strignb cod sioc ",splittedString[0]);
+    
+    var Idobject:any={
+      cod_soc: splittedString[1],
+      mat_pers:splittedString[2],
+      years: splittedString[3],
+      months: splittedString[4],
+      days: splittedString[0]
+    }
+    console.log('*//*/*/*/* idididid',Idobject );
+    
+   this.serv.GetcngById(Idobject).subscribe((data)=>{
+       this.cng=data
+       this.formEditData.patchValue({
+        editTitle:this.cng.lib_mot,
+        dateC:this.cng.dateC,
+        fin:this.cng.fin
+       })
+    
+    })
+
+    this.modalService.open(this.editmodalShow);
+
+ this.cng=null
+  //  this.openModelWithData(this.events[this.editEvent])
+  }
   handleEvents(events: EventApi[]) {
     this.currentEvents = events;
   }
-
   constructor(
     public translatee: TranslateService,
     private servv: PersonnelService,
     private modalService: NgbModal,
     private formBuilder: FormBuilder,
     private serv: CalendarCongeService,
-    private tokenService: TokenStorage  ) {}
+    private tokenService: TokenStorage,
+  
+  ) {}
 
   get form() {
     return this.formData.controls;
   }
+  openModal(event?: any) {
+    this.newEventDate = event;
+    this.modalService.open(this.modalShow);
+  }
+  openModelWithData(id:any){
+      this.modalService.open(this.editmodalShow)
+       
+      
+      
+    
+
+  }
+
 
   /**
    * Delete-confirm
@@ -168,31 +218,8 @@ console.log("*************",this.currentLang);
     });
   }
 
-  editEventSave() {
-    const editTitle = this.formEditData.get("editTitle").value;
-    const editCategory = this.formEditData.get("editCategory").value;
+ 
 
-    const editId = this.calendarEvents.findIndex(
-      (x) => x.id + "" === this.editEvent.id + ""
-    );
-
-    this.editEvent.setProp("title", editTitle);
-    this.editEvent.setProp("classNames", editCategory);
-
-    this.calendarEvents[editId] = {
-      ...this.editEvent,
-      title: editTitle,
-      id: this.editEvent.id,
-      classNames: editCategory + " " + "text-white",
-    };
-
-    this.position();
-    this.formEditData = this.formBuilder.group({
-      editTitle: "",
-      editCategory: "",
-    });
-    this.modalService.dismissAll();
-  }
 
   deleteEventData() {
     this.editEvent.remove();
@@ -204,6 +231,9 @@ console.log("*************",this.currentLang);
       title: "",
       category: "",
     });
+ 
+   console.log(this.formEditData.value)
+    this.formEditData.reset()
     this.modalService.dismissAll();
   }
 
@@ -222,9 +252,12 @@ console.log("*************",this.currentLang);
         }
         this.rowData = data;
 
-        console.log("eee" + this.rowData);
+        console.log("eeessss" + this.rowData);
         (this.events = data.map((e: any) => ({
+          id:`${e.id.days}+${e.id.cod_soc}+${e.id.mat_pers}+${e.id.years}+${e.id.months} `,
           start: e.dateC,
+          
+          
           color:
             e.lib_mot === "REPOS HEBDOMADAIRE"
               ? "#556ee6"
@@ -238,6 +271,8 @@ console.log("*************",this.currentLang);
               ? "#f46a6a"
               : "#343a40",
         }))),
+       
+        
           (this.calendarOptions = {
             locale:this.lang,
 
@@ -273,8 +308,9 @@ console.log("*************",this.currentLang);
             firstDay: 1,
             dayMaxEvents: true,
 
-            //   eventClick: this.handleEventClick.bind(this),
-            eventsSet: this.handleEvents.bind(this),
+            dateClick: this.openModal.bind(this),
+            eventClick: this.handleEventClick.bind(this),
+            eventsSet: this.handleEvents.bind(this),        
             eventTimeFormat: {
               // like '14:30:00'
               hour: "2-digit",
@@ -310,6 +346,7 @@ console.log("*************",this.currentLang);
       };
     }
     this.calendarOptions.buttonText = this.buttonText;
+  
   }
 
   changeLanguage() {

@@ -30,7 +30,7 @@ export class BloggridComponent implements OnInit {
 
       for (let item of  this.events) {
           item.imageUrl= item.image_EVEN ? 'data:image/jpeg;base64,' + item.image_EVEN :
-          "../../../assets/images/product-placeholder.png";
+          "../../../assets/images/verification-img.png";
 
       }
       

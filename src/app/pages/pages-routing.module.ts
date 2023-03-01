@@ -47,6 +47,8 @@ const routes: Routes = [
   { path: 'competence', loadChildren: () => import('./competence/competence.module').then(m => m.CompetenceModule),canActivate:[GuardauthService] },
   { path: 'calendar-conge', loadChildren: () => import('./calendarConge/calendar-conge.module').then(m => m.CalendarCongeModule) },
   { path: 'Ajout', loadChildren: () => import('./FicheSignalitique/FicheSignalitique.module').then(m => m.FicheSignalitiqueModule) },
+  { path: 'list-notifications', loadChildren: () => import('./list-notifications/list-notifications.module').then(m => m.ListNotificationsModule) },
+
 
 
 ];

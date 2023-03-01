@@ -3,7 +3,7 @@
     title="Détails des évenements"
     [breadcrumbItems]="breadCrumbItems"
   ></app-page-title>
- 
+
   <div class="row">
     <div class="col-lg-12">
       <div class="card">
@@ -11,15 +11,20 @@
           <div class="pt-3">
             <div class="row justify-content-center">
               <div class="col-xl-8">
-                
                 <div>
                   <div class="text-center">
                     <div class="mb-4">
-                        <div class="nav-item" data-toggle="tooltip" data-placement="top" ngbTooltip="List">
-                            <a class="nav-link" routerLink="/blog/grid">
-                                <i class="bx bx-arrow-back fa-1x" ></i>Reviens à la liste
-                            </a>
-                        </div>
+                      <div
+                        class="nav-item"
+                        data-toggle="tooltip"
+                        data-placement="top"
+                        ngbTooltip="List"
+                      >
+                        <a class="nav-link" routerLink="/blog/grid">
+                          <i class="bx bx-arrow-back fa-1x"></i>Reviens à la
+                          liste
+                        </a>
+                      </div>
                       <a
                         href="javascript: void(0);"
                         class="badge bg-light font-size-12"
@@ -69,7 +74,7 @@
                           <button
                             type="button"
                             class="btn btn-primary w-sm"
-                            *ngIf="event"
+                            *ngIf="event_img"
                             (click)="printerReportt()"
                           >
                             <i
@@ -83,17 +88,21 @@
                   </div>
                   <hr />
 
-                  <div class="my-5">
+                  <div *ngIf="image_EVEN" class="my-5">
                     <img
-                    [src]="imageUrl"
-                    *ngIf="imageUrl"
-                    alt="xxxxxxx"
+                      [src]="imageUrl"
                       class="img-thumbnail mx-auto d-block"
-                      style="width: 25%;"
+                      style="width: 40%"
                     />
                   </div>
 
-                  
+                  <div *ngIf="image_EVEN == null" class="my-5">
+                    <img
+                      [src]="defaultImage"
+                      class="img-thumbnail mx-auto d-block"
+                      style="width: 40%"
+                    />
+                  </div>
 
                   <!--  <div class="mt-4">
                                         <div class="text-muted font-size-14">

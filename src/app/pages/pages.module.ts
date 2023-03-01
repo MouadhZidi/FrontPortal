@@ -42,6 +42,7 @@ import { PushNotificationsModule } from 'ng-push-ivy';
 
 
 
+
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
   interactionPlugin,

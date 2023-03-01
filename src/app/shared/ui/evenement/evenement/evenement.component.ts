@@ -45,7 +45,7 @@ export class EvenementComponent implements OnInit {
 
         for (let item of  this.events) {
             item.imageUrl= item.image_EVEN ? 'data:image/jpeg;base64,' + item.image_EVEN :
-            "../../../assets/images/product-placeholder.png";
+            "../../../assets/images/verification-img.png";
 
         }
         console.log("element come from api",this.events)

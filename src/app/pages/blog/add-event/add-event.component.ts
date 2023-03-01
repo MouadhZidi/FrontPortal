@@ -24,8 +24,7 @@ export class AddEventComponent implements OnInit {
       typ_even: ["", Validators.required],
       typ_droit: ["", Validators.required],
       libelle: ["", Validators.required],
-      fiche: ["", Validators.required],
-      image: ["", Validators.required],
+     
     });
   }
 

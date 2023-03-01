@@ -11,8 +11,12 @@ import { DomSanitizer } from "@angular/platform-browser";
 })
 export class DetailComponent implements OnInit {
   id: any;
+  image_EVEN:any
   event: any;
+  event_img:any
   imageUrl: any;
+  defaultImage="../../../assets/images/verification-img.png";
+
 
   // bread crumb items
   breadCrumbItems: Array<{}>;
@@ -35,7 +39,10 @@ export class DetailComponent implements OnInit {
   getbyid() {
     this.serv.getbyid(this.id).subscribe(
       (data) => {
+
         this.event = data;
+        this.image_EVEN=this.event.image_EVEN
+        this.event_img=this.event.file_name
       },
       (err) => {
         console.log(err);
@@ -48,7 +55,7 @@ export class DetailComponent implements OnInit {
       
       (data) => {
         let objectURL = URL.createObjectURL(data);
-        this.imageUrl = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+        this.imageUrl = this.sanitizer.bypassSecurityTrustUrl(objectURL) ;
         
       },
       (err) => {

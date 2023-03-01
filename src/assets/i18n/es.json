@@ -231,8 +231,8 @@
     "ESPACERH": {
       "TEXT": "Espace RH",
       "LIST": {
-        "CONSRH": "Espace de consultation RH",
-        "CONSHISRH": "Consultation historique RH",
+        "CONSRH": "Espace des demandes",
+        "CONSHISRH": "Historique des demandes",
         "CONSOPP": "Consultation de l'opposition",
         "CONSCONGE": "Solde des congés",
         "CONSPAIE": "Consultation sur la paie",
