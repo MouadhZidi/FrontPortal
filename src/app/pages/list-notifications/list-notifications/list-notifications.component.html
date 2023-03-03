@@ -10,7 +10,7 @@
         <div class="table-responsive">
           <div class="card-body p-4">
             <div class="search-box">
-              <p class="text-muted"> {{ 'Rechercher' | translate }}</p>
+              <p class="text-muted">{{ "Rechercher" | translate }}</p>
               <div class="position-relative">
                 <input
                   type="text"
@@ -22,103 +22,200 @@
               </div>
             </div>
           </div>
-          <table
-            class="table project-list-table table-nowrap align-middle table-borderless"
-          >
-            <thead>
-              <tr>
-                <th scope="col" style="text-align: center;"><span class="badge bg-info" style=" font-size: 100%;" >Void details</span></th>
-                <th scope="col">Matricule</th>
-                <th scope="col">Emitteur</th>
-                <th scope="col">Projects</th>
-                <th scope="col">Date notification</th>
-                <th scope="col">Statut</th>
-                <!-- <th scope="col">Team</th> -->
-              </tr>
-            </thead>
 
 
-         
-            <tbody>
-              <tr
-                *ngFor="
-                  let notification of ListHistorique
-                    | filter : term
-                    | paginate : { itemsPerPage: 8, currentPage: page };
-                  let i = index
-                "
-                (click)="action(notification)"
+          
+
+
+
+
+          <div>
+            <table
+              class="table project-list-table table-nowrap align-middle table-borderless"
             >
-                <td     *ngIf="
-                notification.libelle_notif == 'Demande' &&
-                this.token.getUser().role_portail == 'CHEF'"
-              routerLink="/EspaceChef/Chef" style="text-align: center;"><button type="button" class="btn btn-info btn-rounded">Info</button></td>
-              <td     *ngIf="
-              notification.libelle_notif == 'Demande' &&
-              this.token.getUser().role_portail == 'RH' "
-            routerLink="/EspaceRh/Rh" style="text-align: center;"><button type="button" class="btn btn-info btn-rounded">Info</button></td>
-            <td    *ngIf="
-            notification.libelle_notif == 'Demande' &&
-            this.token.getUser().role_portail == 'UTILISATEUR'&&notification.type_notif=='Prets et avances'" 
-          routerLink="/demande/PretAvance" style="text-align: center;"><button type="button" class="btn btn-info btn-rounded">Info</button></td>
-          <td    *ngIf="
-          notification.libelle_notif == 'Demande' &&
-          this.token.getUser().role_portail == 'UTILISATEUR'&&notification.type_notif=='Congés' " 
-        routerLink="/demande/Conge" style="text-align: center;"><button type="button" class="btn btn-info btn-rounded">Info</button></td>
-        <td       *ngIf="
-        notification.libelle_notif == 'Demande' &&
-        this.token.getUser().role_portail == 'UTILISATEUR'&&notification.type_notif=='Formation' " 
-      routerLink="/demande/Formation" style="text-align: center;"><button type="button" class="btn btn-info btn-rounded">Info</button></td>
-      <td      *ngIf="
-      notification.libelle_notif == 'Demande' &&
-      this.token.getUser().role_portail == 'UTILISATEUR'&&notification.type_notif=='Autorisations' " 
-    routerLink="/demande/Autorisation" style="text-align: center;"><button type="button" class="btn btn-info btn-rounded">Info</button></td>
-    <td      *ngIf="
-    notification.libelle_notif == 'Demande' &&
-    this.token.getUser().role_portail == 'UTILISATEUR'&&notification.type_notif=='Situation Administrtive' " 
-  routerLink="/demande/Situation" style="text-align: center;"><button type="button" class="btn btn-info btn-rounded">Info</button></td>
-  <td     *ngIf="
-  notification.libelle_notif == 'Demande' &&
-  this.token.getUser().role_portail == 'UTILISATEUR'&&notification.type_notif=='Document' " 
-routerLink="/demande/Document" style="text-align: center;"><button type="button" class="btn btn-info btn-rounded">Info</button></td>
-<td     *ngIf="
-notification.libelle_notif == 'Demande' &&
-this.token.getUser().role_portail == 'CHEF'"
-routerLink="/EspaceChef/Chef" style="text-align: center;"><button type="button" class="btn btn-info btn-rounded">Info</button></td>
-<td     *ngIf="
-notification.libelle_notif == 'Demande' &&
-this.token.getUser().role_portail == 'CHEF'"
-routerLink="/EspaceChef/Chef" style="text-align: center;"><button type="button" class="btn btn-info btn-rounded">Info</button></td>
+              <thead>
+                <tr>
+                  <th scope="col" style="text-align: center">
+                    <span class="badge bg-info" style="font-size: 100%"
+                      >Void details</span
+                    >
+                  </th>
+                  <th scope="col">Matricule</th>
+                  <th scope="col">Emitteur</th>
+                  <th scope="col">Projects</th>
+                  <th scope="col">Date notification</th>
+                  <th scope="col">Statut</th>
+                  <!-- <th scope="col">Team</th> -->
+                </tr>
+              </thead>
 
+              <tbody>
+                <tr
+                  *ngFor="
+                    let notification of AllNotif
+                      | filter : term
+                      | paginate : { itemsPerPage: 8, currentPage: page };
+                    let i = index
+                  "
+                  
+                >
+                  <td  style="text-align: center"
+                   
+                    [routerLink]="FilterRouterLink( this.token.getUser().role_portail, notification.libelle_notif,notification.type_notif)" (click)="action(notification)"
+                  
+                  >
+                    <button type="button" class="btn btn-info btn-rounded" >
+                      Info
+                    </button>
+                  </td>
+              
+                  <!-- <td
+                    *ngIf="
+                      notification.libelle_notif == 'Demande' &&
+                      this.token.getUser().role_portail == 'RH'
+                    "
+                    routerLink="/EspaceRh/Rh"
+                    style="text-align: center"
+                  >
+                    <button type="button" class="btn btn-info btn-rounded">
+                      Info
+                    </button>
+                  </td>
+                  <td
+                    *ngIf="
+                      notification.libelle_notif == 'Demande' &&
+                      this.token.getUser().role_portail == 'UTILISATEUR' &&
+                      notification.type_notif == 'Prets et avances'
+                    "
+                    routerLink="/demande/PretAvance"
+                    style="text-align: center"
+                  >
+                    <button type="button" class="btn btn-info btn-rounded">
+                      Info
+                    </button>
+                  </td>
+                  <td
+                    *ngIf="
+                      notification.libelle_notif == 'Demande' &&
+                      this.token.getUser().role_portail == 'UTILISATEUR' &&
+                      notification.type_notif == 'Congés'
+                    "
+                    routerLink="/demande/Conge"
+                    style="text-align: center"
+                  >
+                    <button type="button" class="btn btn-info btn-rounded">
+                      Info
+                    </button>
+                  </td>
+                  <td
+                    *ngIf="
+                      notification.libelle_notif == 'Demande' &&
+                      this.token.getUser().role_portail == 'UTILISATEUR' &&
+                      notification.type_notif == 'Formation'
+                    "
+                    routerLink="/demande/Formation"
+                    style="text-align: center"
+                  >
+                    <button type="button" class="btn btn-info btn-rounded">
+                      Info
+                    </button>
+                  </td>
+                  <td
+                    *ngIf="
+                      notification.libelle_notif == 'Demande' &&
+                      this.token.getUser().role_portail == 'UTILISATEUR' &&
+                      notification.type_notif == 'Autorisations'
+                    "
+                    routerLink="/demande/Autorisation"
+                    style="text-align: center"
+                  >
+                    <button type="button" class="btn btn-info btn-rounded">
+                      Info
+                    </button>
+                  </td>
+                  <td
+                    *ngIf="
+                      notification.libelle_notif == 'Demande' &&
+                      this.token.getUser().role_portail == 'UTILISATEUR' &&
+                      notification.type_notif == 'Situation Administrtive'
+                    "
+                    routerLink="/demande/Situation"
+                    style="text-align: center"
+                  >
+                    <button type="button" class="btn btn-info btn-rounded">
+                      Info
+                    </button>
+                  </td>
+                  <td
+                    *ngIf="
+                      notification.libelle_notif == 'Demande' &&
+                      this.token.getUser().role_portail == 'UTILISATEUR' &&
+                      notification.type_notif == 'Document'
+                    "
+                    routerLink="/demande/Document"
+                    style="text-align: center"
+                  >
+                    <button type="button" class="btn btn-info btn-rounded">
+                      Info
+                    </button>
+                  </td>
+                  <td
+                    *ngIf="
+                      notification.libelle_notif == 'Demande' &&
+                      this.token.getUser().role_portail == 'CHEF'
+                    "
+                    routerLink="/EspaceChef/Chef"
+                    style="text-align: center"
+                  >
+                    <button type="button" class="btn btn-info btn-rounded">
+                      Info
+                    </button>
+                  </td>
+                  <td
+                    *ngIf="
+                      notification.libelle_notif == 'Demande' &&
+                      this.token.getUser().role_portail == 'CHEF'
+                    "
+                    routerLink="/EspaceChef/Chef"
+                    style="text-align: center"
+                  >
+                    <button type="button" class="btn btn-info btn-rounded">
+                      Info
+                    </button>
+                  </td> -->
 
-<td>{{notification.id_sender}}</td>
-                <td>
-                  {{ notification.libnomprenom }}
-                </td>
+                  <td>{{ notification.id_sender }}</td>
+                  <td>
+                    {{ notification.libnomprenom }}
+                  </td>
 
-                <td>
-                  <h5 class="text-truncate font-size-14">
-                    <a href="javascript: void(0);" class="text-dark">{{
-                      notification.type_notif
-                    }}</a>
-                  </h5>
-                  <p class="text-muted mb-0">
-                    {{ notification.libelle_notif }}
-                  </p>
-                </td>
-                <td>{{ notification.date_notif }}</td>
-                <td *ngIf="notification.etat_notif == 'N'">
-                  <span class="badge bg-danger" style=" font-size: 100%;">Non lue</span>
-                </td>
-                <td *ngIf="notification.etat_notif == 'O'">
-                  <span class="badge bg-success" style=" font-size: 100%;">Lue</span>
-                </td>
-                <!-- <td>
+                  <td>
+                    <h5 class="text-truncate font-size-14">
+                      <a href="javascript: void(0);" class="text-dark">{{
+                        notification.type_notif
+                      }}</a>
+                    </h5>
+                    <p class="text-muted mb-0">
+                      {{ notification.libelle_notif }}
+                    </p>
+                  </td>
+                  <td>{{ notification.date_notif }}</td>
+                  <td *ngIf="notification.etat_notif == 'N'">
+                    <span class="badge bg-danger" style="font-size: 100%"
+                      >Non lue</span
+                    >
+                  </td>
+                  <td *ngIf="notification.etat_notif == 'O'">
+                    <span class="badge bg-success" style="font-size: 100%"
+                      >Lue</span
+                    >
+                  </td>
+                  <!-- <td>
                     <span class="badge" [ngClass]="{ 'bg-success': project.status === 'Completed',
                       'bg-warning': project.status === 'Pending',
                       'bg-danger': project.status === 'Delay' }">{{project.status}}</span>
                   </td> -->
-                <!-- <td>
+                  <!-- <td>
                     <div class="avatar-group">
                       <div class="avatar-group-item">
                         <a href="javascript: void(0);" class="d-inline-block">
@@ -132,20 +229,16 @@ routerLink="/EspaceChef/Chef" style="text-align: center;"><button type="button" 
                       </div>
                     </div>
                   </td> -->
-              </tr>
-            </tbody>
+                </tr>
+              </tbody>
+            </table>
+          </div>
 
-            
-          </table>
-          
-           
-              <div class="text-center my-3">
-                <pagination-controls
-                  (pageChange)="page = $event"
-                ></pagination-controls>
-              </div>
-            
-        
+          <div class="text-center my-3">
+            <pagination-controls
+              (pageChange)="page = $event"
+            ></pagination-controls>
+          </div>
         </div>
       </div>
     </div>

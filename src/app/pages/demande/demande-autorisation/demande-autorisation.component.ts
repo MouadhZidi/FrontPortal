@@ -299,7 +299,6 @@ etat_notif:""
  this.Notification.mat_pers=this.tokenService.getUser().matpers
  this.Notification.id_sender=this.tokenService.getUser().matpers
  this.Notification.etat_notif="N"
-
  this.Notification.cod_soc=this.tokenService.getUser().cod_soc
 
    console.log(this.formAutorisation.value)

@@ -230,8 +230,9 @@
                 href="javascript: void(0);"
                 class="text-reset notification-item"
               >
+              
                 <div class="media" *ngFor="let i of list22">
-                  <div
+                  <!-- <div
                     class="media-body"
                     *ngIf="
                       i.libelle_notif == 'Demande' &&
@@ -251,7 +252,7 @@
                   <div
                     class="media-body"
                     *ngIf="
-                      i.libelle_notif == 'Demande' &&
+                      i.libelle_notif == 'Demande' ||  i.libelle_notif == 'Evenement' &&
                       this.token.getUser().role_portail == 'RH'
                     "
                     routerLink="/EspaceRh/Rh"
@@ -352,16 +353,13 @@
                     <i class="mdi mdi-clock-outline"></i>{{ i.type_notif }}
                   </p>
                 </div>
-              </div>
+              </div> -->
 
 
               <div
                 class="media-body"
-                *ngIf="
-                  i.libelle_notif == 'Demande' &&
-                  this.token.getUser().role_portail == 'UTILISATEUR'&&i.type_notif=='Document' " 
-                routerLink="/demande/Document"
-                (click)="openModal(i)"
+                [routerLink]="FilterRouterLink( this.token.getUser().role_portail, i.libelle_notif,i.type_notif)" (click)="openModal(i)"
+                
               >
                 <h6 class="mt-0 mb-1">{{ i.libelle_notif }}</h6>
                 <div class="font-size-12 text-muted">

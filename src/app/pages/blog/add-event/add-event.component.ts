@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { TokenStorage } from "src/app/core/services/token-storage.service";
+import { WebsocketService } from "src/app/layouts/topbar/shared/services/websocket.service";
 import Swal from "sweetalert2";
 import { NoteEventService } from "../note-event.service";
 
@@ -12,8 +14,9 @@ export class AddEventComponent implements OnInit {
   file!: File; // Variable to store file
   image!: File;
   eventForm: FormGroup;
-  
-  constructor(private fb: FormBuilder, private ser: NoteEventService) {}
+  notificationForm: FormGroup;
+
+  constructor(private websocketService: WebsocketService,private fb: FormBuilder, private ser: NoteEventService,private token:TokenStorage) {}
 
   ngOnInit(): void {
     this.eventForm = this.fb.group({
@@ -27,6 +30,17 @@ export class AddEventComponent implements OnInit {
      
     });
   }
+  Notification: any = {
+    date_notif: "",
+    libelle_notif: "",
+    nom: "",
+    type_notif: "",
+    cod_soc:"",
+	 mat_pers:"",
+id_sender:"",
+id_reciver:"",
+etat_notif:""
+  };
 
   onChange(event: any) {
     this.file = event.target.files[0];
@@ -43,6 +57,18 @@ export class AddEventComponent implements OnInit {
     formData.append("image", this.image);
     formData.append("event", JSON.stringify(event));
 
+
+    this.Notification.date_notif=new Date().toLocaleDateString().substring(0,10)
+ this.Notification.libelle_notif="Evenement"
+ this.Notification.nom="Evenement" 
+ this.Notification.type_notif="Evenement"
+ this.Notification.mat_pers=this.token.getUser().matpers
+ this.Notification.id_sender=this.token.getUser().matpers
+ this.Notification.etat_notif="N"
+ this.Notification.cod_soc=this.token.getUser().cod_soc
+
+
+
     this.ser.upload(formData).subscribe((event: any) => {
       if (event) {
         Swal.fire({
@@ -52,6 +78,10 @@ export class AddEventComponent implements OnInit {
           showConfirmButton: false,
           timer: 2000,
         });
+        this.websocketService.AjouNotif(this.Notification).subscribe(
+          (event: any) => {
+          }
+      );
       } else {
         //  this.toastr.error('Echec ajout', 'Problème de suppression.');
       }

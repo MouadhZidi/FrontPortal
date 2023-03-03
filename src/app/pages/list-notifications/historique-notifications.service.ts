@@ -24,5 +24,12 @@ export class HistoriqueNotificationService {
     );
   };
 
+  getNotificationEvent = (): Observable<any[]> => {
+    return this.httpClient.get<any[]>(
+      "http://localhost:8082/notification/getNotificationEvent/"
+    );
+  };
+
+
 
 }
