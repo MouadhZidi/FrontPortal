@@ -22,69 +22,77 @@ soldactueele:any
 selectedElement: string = 'element1';
 elements = [
   {
-    libelle:'Code echelon',
+    libelle:'Affectation',
     avatar:'mdi mdi-account-alert',
     color:'bg-info',
-    code:'cod_ech'
+    code:'affectation'
   },
   {
-    libelle:'Date echelon',
+    libelle:'Fonction',
     avatar:'mdi mdi-alert-decagram',
     color:'bg-danger',
-    code:'dat_ech'
+    code:'fonction'
   },
   {
-    libelle:'Nombre enfant',
+    libelle:'Grade',
     avatar:'mdi mdi-update',
     color:'bg-dark',
-    code:'nbre_enf'
+    code:'grade'
   },
 
   {
-    libelle:'Niveau salariale',
+    libelle:'Statut',
     avatar:'mdi mdi-sleep',
     color:'bg-primary',
-    code:'niv_sal'
+    code:'statut'
   },
   {
-    libelle:'Solde actuelle',
+    libelle:'Catégorie',
     avatar:'mdi mdi-update',
     color:'bg-success',
-    code:'lastsoldecng'
+    code:'categorie'
   },
   {
-    libelle:'Numéro retraite',
+    libelle:'PBI',
     avatar:'mdi mdi-altimeter',
     color:'bg-primary',
-    code:'num_retr'
+    code:'pbi'
   },
   {
-    libelle:'Date ambauche',
+    libelle:'Poste',
     avatar:'mdi mdi-animation-outline',
     color:'bg-secondary',
-    code:'dat_emb'
+    code:'poste'
   },
   {
-    libelle:'Date grade',
+    libelle:'Solde congé',
     avatar:'mdi mdi-arch',
     color:'bg-warning',
-    code:'dat_grad'
+    code:'solde_cng'
+  },
+  {
+    libelle:'Echelon',
+    avatar:'mdi mdi-file',
+    color:'bg-dark',
+    code:'echelon'
   }
  
 ]
 selectedElements = {
-  'Code echelon':true,
-  'Date echelon':true,
- 'Nombre enfant':true,
-  'Niveau salariale':true,
-  'Solde actuelle':false,
-  'Numéro retraite':false,
-  'Date ambauche':false,
-  'Date grade':false
+  'Affectation':true,
+  'Fonction':false,
+ 'Grade':true,
+  'Statut':true,
+  'Catégorie':true,
+  'PBI':true,
+  'Poste':false,
+  'solde_cng':true,
+  'echelon':true,
 };
 
 
 soldeConge:any=[]
+DashboardInformation:any
   breadCrumbItems: Array<{}>;
 
   linewithDataChart: ChartType;
@@ -119,6 +127,7 @@ role=this.token.getUser().role_portail
     this.GetSanction();
     this.getpers();
     this.getSoldeConge();
+    this.getDashboardInformation()
 
     /**
      * horizontal-vertical layput set
@@ -204,6 +213,21 @@ role=this.token.getUser().role_portail
       }
     )
   }
+
+
+  getDashboardInformation(){
+    this.serv.getDashboardInformation(this.token.getUser().cod_soc,this.token.getUser().matpers).subscribe(
+      data => {
+        this.DashboardInformation=data;
+        console.log ('Dashboard Information :' + this.DashboardInformation.affectation)
+      },
+      err => {
+        console.log(err);
+      }
+    )
+  }
+
+
 
   GetSanction(){
     this.serv.getSanction(this.token.getUser().matpers,this.token.getUser().cod_soc).subscribe(

@@ -55,6 +55,14 @@ export class PersonnelService {
   getSoldeConge = (x: any, y: any): Observable<any[]> => {
     return this.http.get<any[]>(api + "/conge/getSoldeConge/" + y + "/" + x);
   };
+
+
+
+  getDashboardInformation = (codSoc: any, matPers: any): Observable<any[]> => {
+    return this.http.get<any[]>(api + "/DashboardInformation/Informations/" + codSoc + "/" + matPers);
+  };
+
+
   exportAsExcelFile(json: any[], excelFileName: string): void {
     
     const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(json);

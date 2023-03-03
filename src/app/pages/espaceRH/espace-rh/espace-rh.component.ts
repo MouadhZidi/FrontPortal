@@ -308,6 +308,7 @@ etat_notif:""
     this.Notification.id_sender=this.tokenService.getUser().matpers
     this.Notification.etat_notif="N"
     this.Notification.id_reciver=this.mat
+    this.Notification.cod_soc=this.tokenService.getUser().cod_soc
     this.serv.UpdateDemande(this.userForm.value)
  
      .subscribe({

@@ -2,9 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { TokenStorage } from "src/app/core/services/token-storage.service";
 import { WebsocketService } from "src/app/layouts/topbar/shared/services/websocket.service";
-import { PersonnelService } from "../../Employe/personnel.service";
+import { EspaceRhService } from "../../EspaceRh/espace-rh.service";
 import { Project } from "../../projects/project.model";
-import { projectData } from "../../projects/projectdata";
 import { HistoriqueNotificationService } from "../historique-notifications.service";
 
 @Component({
@@ -17,9 +16,11 @@ export class ListNotificationsComponent implements OnInit {
   breadCrumbItems: Array<{}>;
   ListHistorique: any[] = [];
   notifForm: FormGroup;
- 
-
+  notif:any
+  term:string
+  page:any
   constructor(
+    private servv:WebsocketService,
     private fb: FormBuilder,
     public token: TokenStorage,
     private serv: HistoriqueNotificationService
@@ -62,6 +63,21 @@ export class ListNotificationsComponent implements OnInit {
       }
       );
   } 
+  action(notif :any){
+    this.ListHistorique=notif
+    console.log("ffffffffff"+notif)
+
+    this.servv.UpdateEtatNotif(notif).subscribe(
+      
+      (data:any[])=>{
+        this.getNotification()
+       
+
+       
+
+      }
+    );
+   }
 
 }
 

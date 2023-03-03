@@ -8,24 +8,92 @@
     <div class="col-lg-12">
       <div class>
         <div class="table-responsive">
+          <div class="card-body p-4">
+            <div class="search-box">
+              <p class="text-muted"> {{ 'Rechercher' | translate }}</p>
+              <div class="position-relative">
+                <input
+                  type="text"
+                  class="form-control rounded bg-light border-light"
+                  [placeholder]="'Rechercher ..' | translate"
+                  [(ngModel)]="term"
+                />
+                <i class="mdi mdi-magnify search-icon"></i>
+              </div>
+            </div>
+          </div>
           <table
             class="table project-list-table table-nowrap align-middle table-borderless"
           >
             <thead>
               <tr>
-                <th scope="col" style="width: 100px">#</th>
-                <th scope="col">Demandeur</th>
+                <th scope="col" style="text-align: center;"><span class="badge bg-info" style=" font-size: 100%;" >Void details</span></th>
+                <th scope="col">Matricule</th>
+                <th scope="col">Emitteur</th>
                 <th scope="col">Projects</th>
-                <th scope="col">Due Date</th>
-                <th scope="col">Status</th>
-                <th scope="col">Team</th>
+                <th scope="col">Date notification</th>
+                <th scope="col">Statut</th>
+                <!-- <th scope="col">Team</th> -->
               </tr>
             </thead>
+
+
+         
             <tbody>
-              <tr *ngFor="let notification of ListHistorique">
-                <td>#</td>
+              <tr
+                *ngFor="
+                  let notification of ListHistorique
+                    | filter : term
+                    | paginate : { itemsPerPage: 8, currentPage: page };
+                  let i = index
+                "
+                (click)="action(notification)"
+            >
+                <td     *ngIf="
+                notification.libelle_notif == 'Demande' &&
+                this.token.getUser().role_portail == 'CHEF'"
+              routerLink="/EspaceChef/Chef" style="text-align: center;"><button type="button" class="btn btn-info btn-rounded">Info</button></td>
+              <td     *ngIf="
+              notification.libelle_notif == 'Demande' &&
+              this.token.getUser().role_portail == 'RH' "
+            routerLink="/EspaceRh/Rh" style="text-align: center;"><button type="button" class="btn btn-info btn-rounded">Info</button></td>
+            <td    *ngIf="
+            notification.libelle_notif == 'Demande' &&
+            this.token.getUser().role_portail == 'UTILISATEUR'&&notification.type_notif=='Prets et avances'" 
+          routerLink="/demande/PretAvance" style="text-align: center;"><button type="button" class="btn btn-info btn-rounded">Info</button></td>
+          <td    *ngIf="
+          notification.libelle_notif == 'Demande' &&
+          this.token.getUser().role_portail == 'UTILISATEUR'&&notification.type_notif=='Congés' " 
+        routerLink="/demande/Conge" style="text-align: center;"><button type="button" class="btn btn-info btn-rounded">Info</button></td>
+        <td       *ngIf="
+        notification.libelle_notif == 'Demande' &&
+        this.token.getUser().role_portail == 'UTILISATEUR'&&notification.type_notif=='Formation' " 
+      routerLink="/demande/Formation" style="text-align: center;"><button type="button" class="btn btn-info btn-rounded">Info</button></td>
+      <td      *ngIf="
+      notification.libelle_notif == 'Demande' &&
+      this.token.getUser().role_portail == 'UTILISATEUR'&&notification.type_notif=='Autorisations' " 
+    routerLink="/demande/Autorisation" style="text-align: center;"><button type="button" class="btn btn-info btn-rounded">Info</button></td>
+    <td      *ngIf="
+    notification.libelle_notif == 'Demande' &&
+    this.token.getUser().role_portail == 'UTILISATEUR'&&notification.type_notif=='Situation Administrtive' " 
+  routerLink="/demande/Situation" style="text-align: center;"><button type="button" class="btn btn-info btn-rounded">Info</button></td>
+  <td     *ngIf="
+  notification.libelle_notif == 'Demande' &&
+  this.token.getUser().role_portail == 'UTILISATEUR'&&notification.type_notif=='Document' " 
+routerLink="/demande/Document" style="text-align: center;"><button type="button" class="btn btn-info btn-rounded">Info</button></td>
+<td     *ngIf="
+notification.libelle_notif == 'Demande' &&
+this.token.getUser().role_portail == 'CHEF'"
+routerLink="/EspaceChef/Chef" style="text-align: center;"><button type="button" class="btn btn-info btn-rounded">Info</button></td>
+<td     *ngIf="
+notification.libelle_notif == 'Demande' &&
+this.token.getUser().role_portail == 'CHEF'"
+routerLink="/EspaceChef/Chef" style="text-align: center;"><button type="button" class="btn btn-info btn-rounded">Info</button></td>
+
+
+<td>{{notification.id_sender}}</td>
                 <td>
-                  <b>{{ notification.libnomprenom }}</b>
+                  {{ notification.libnomprenom }}
                 </td>
 
                 <td>
@@ -40,10 +108,10 @@
                 </td>
                 <td>{{ notification.date_notif }}</td>
                 <td *ngIf="notification.etat_notif == 'N'">
-                  <span class="badge bg-danger">Non lue</span>
+                  <span class="badge bg-danger" style=" font-size: 100%;">Non lue</span>
                 </td>
                 <td *ngIf="notification.etat_notif == 'O'">
-                  <span class="badge bg-success">Lue</span>
+                  <span class="badge bg-success" style=" font-size: 100%;">Lue</span>
                 </td>
                 <!-- <td>
                     <span class="badge" [ngClass]="{ 'bg-success': project.status === 'Completed',
@@ -66,7 +134,18 @@
                   </td> -->
               </tr>
             </tbody>
+
+            
           </table>
+          
+           
+              <div class="text-center my-3">
+                <pagination-controls
+                  (pageChange)="page = $event"
+                ></pagination-controls>
+              </div>
+            
+        
         </div>
       </div>
     </div>

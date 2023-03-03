@@ -12,6 +12,8 @@ import { TranslateModule } from '@ngx-translate/core';
 import { NgxMaskModule } from 'ngx-mask';
 import { ListNotificationRoutingModule } from './list-notifications-routing.module';
 import { ListNotificationsComponent } from './list-notifications/list-notifications.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -29,6 +31,9 @@ ListNotificationRoutingModule,
     ReactiveFormsModule,
     TranslateModule,
     NgxMaskModule.forRoot(),
+    Ng2SearchPipeModule,
+    NgxPaginationModule,
+
 
   ]
 })
