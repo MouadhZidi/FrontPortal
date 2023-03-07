@@ -60,7 +60,7 @@ etat_notif:""
 
     this.Notification.date_notif=new Date().toLocaleDateString().substring(0,10)
  this.Notification.libelle_notif="Evenement"
- this.Notification.nom="Evenement" 
+ this.Notification.nom=this.eventForm.get('libelle').value 
  this.Notification.type_notif="Evenement"
  this.Notification.mat_pers=this.token.getUser().matpers
  this.Notification.id_sender=this.token.getUser().matpers

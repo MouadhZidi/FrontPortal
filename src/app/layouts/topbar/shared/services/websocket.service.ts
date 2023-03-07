@@ -71,4 +71,7 @@ export class WebsocketService {
   UpdateEtatNotif(data:any):Observable<any>{
     return this.http.put<any>("http://localhost:8082/notification/updateEtatNotif",data);
   }
+  GetNotifByMatuser = (mat:any): Observable<any[]> => {
+    return this.http.get<any[]>("http://localhost:8082/notification/getNotifByMatUtilisateur/"+mat);
+  };  
 }

@@ -295,7 +295,7 @@ etat_notif:""
  this.Notification.date_notif=new Date().toLocaleDateString().substring(0,10)
  this.Notification.libelle_notif="Demande"
  this.Notification.nom=this.formAutorisation.get('txtDem').value 
- this.Notification.type_notif="Autorisation"
+ this.Notification.type_notif="Autorisations"
  this.Notification.mat_pers=this.tokenService.getUser().matpers
  this.Notification.id_sender=this.tokenService.getUser().matpers
  this.Notification.etat_notif="N"

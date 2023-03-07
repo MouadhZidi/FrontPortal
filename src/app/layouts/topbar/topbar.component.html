@@ -355,10 +355,11 @@
                 </div>
               </div> -->
 
-
+              <!-- (click)="openModal(i)" -->
               <div
                 class="media-body"
-                [routerLink]="FilterRouterLink( this.token.getUser().role_portail, i.libelle_notif,i.type_notif)" (click)="openModal(i)"
+                [routerLink]="FilterRouterLink( this.token.getUser().role_portail, i.libelle_notif,i.type_notif)" 
+               
                 
               >
                 <h6 class="mt-0 mb-1">{{ i.libelle_notif }}</h6>
@@ -374,7 +375,7 @@
                 </div>
               </a>
 
-              <a
+              <!-- <a
                 href="javascript: void(0);"
                 class="text-reset notification-item"
               >
@@ -411,7 +412,7 @@
                     </div>
                   </div>
                 </div>
-              </a>
+              </a> -->
             </ngx-simplebar>
           </form>
           <div class="p-2 border-top d-grid">

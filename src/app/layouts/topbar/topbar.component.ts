@@ -31,6 +31,7 @@ const icon = new Map([
 export class TopbarComponent implements OnInit {
   list: any = [];
   list22: any[] = [];
+  lis11:any=[]
   title = "Web push Notifications!";
   counter: number;
   nbr: any;
@@ -115,10 +116,47 @@ export class TopbarComponent implements OnInit {
       this.notify(data);
     });
   }
+
+
+
+
+  
+  // getNotification2() {
+  //   if (this.token.getUser().role_portail == "RH") {
+  //     this.websocketService.GetNotifRh().subscribe(
+  //       (data) => {
+  //         this.lis11 = data;
+  //       },
+  //       (err) => {
+  //         console.log(err);
+  //       }
+  //     );
+  //   }
+  // else{
+  //   this.websocketService
+  //   .GetNotifByMat(this.token.getUser().matpers)
+  //   .subscribe(
+  //     (data) => {
+  //       this.list22 = data;
+  //     },
+  //     (err) => {
+  //       console.log(err);
+  //     }
+  //   );
+
+
+
+  // }
+  
+  
+  
+  
+  
+  // }
   getAllnotification() {
     this.websocketService.GetAllNotif().subscribe((data) => {
       this.listAllNotif = data;
-      console.log(this.listAllNotif);
+      console.log("listall"+this.listAllNotif);
     });
   }
 
@@ -127,32 +165,60 @@ export class TopbarComponent implements OnInit {
       this.websocketService.GetNotifRh().subscribe(
         (data) => {
           this.list22 = data;
+          console.log("liste des evenement pour un utilisateur"+this.list22)
         },
         (err) => {
           console.log(err);
         }
-      );
-    } else {
-      this.serv.getpersonnel(this.pers).subscribe(
-        (data) => {
-          this.n = this.pers.cod_serv;
-          this.websocketService
-            .GetNotifByMat(this.token.getUser().matpers)
-            .subscribe(
-              (data) => {
-                this.list22 = data;
-              },
-              (err) => {
-                console.log(err);
-              }
-            );
-        },
-        (err) => {
-          console.log(err);
-        }
-      );
-    }
-    console.log("serv" + this.n);
+      );}
+     else if (this.token.getUser().role_portail == "UTILISATEUR") {
+        this.websocketService.GetNotifByMatuser(this.token.getUser().matpers).subscribe(
+          (data) => {
+            this.list22 = data;
+            console.log("liste des evenement pour un utilisateur"+this.list22)
+          },
+          (err) => {
+            console.log(err);
+          }
+        );}
+
+
+
+        else if (this.token.getUser().role_portail == "CHEF") {
+          this.websocketService.GetNotifByMat(this.token.getUser().matpers).subscribe(
+            (data) => {
+              this.list22 = data;
+              console.log("liste des evenement pour un chef"+this.list22)
+            },
+            (err) => {
+              console.log(err);
+            }
+          );}
+    // } else if(this.token.getUser().role_portail == "UTILISATEUR" ) {
+    //   this.serv.getpersonnel(this.pers).subscribe(
+    //     (data) => {
+    //       this.n = this.pers.cod_serv;
+    //       this.websocketService
+    //         .(this.token.getUser().matpers)
+    //         .subscribe(
+    //           (data) => {
+    //             this.list22 = data;
+    //             console.log("aaa",this.list22);
+                
+    //           },
+    //           (err) => {
+    //             console.log(err);
+    //           }
+    //         );
+    //     },
+    //     (err) => {
+    //       console.log(err);
+    //     }
+    //   );
+    // }
+
+    
+    // console.log("serv" + this.n);
   }
 
   notify(message: AppNotification): void {

@@ -1,8 +1,24 @@
-#flexbox{
-  display:flex;
-  justify-content:center;
-  align-items:center;
+// #flexbox{
+//   display:flex;
+//   justify-content:center;
+//   align-items:center;
+// }
+// .enfant{
+//   width:auto;
+// }
+
+
+.rows-element {
+  flex-wrap: wrap;
+  flex-direction: column;
+  width: 100px; // Or whatever
+  height: 220px; // Or whatever
+  display: flex;
 }
-.enfant{
-  width:auto;
-}
+
+
+
+
+
+
+

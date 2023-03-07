@@ -323,7 +323,7 @@ DemandeConge() {
   this.Notification.date_notif=new Date().toLocaleDateString().substring(0,10)
   this.Notification.libelle_notif="Demande"
   this.Notification.nom=this.formConge.get('txtDem').value 
-  this.Notification.type_notif="Conge"
+  this.Notification.type_notif="Congés"
   this.Notification.mat_pers=this.tokenService.getUser().matpers
   this.Notification.id_sender=this.tokenService.getUser().matpers
   this.Notification.etat_notif="N"

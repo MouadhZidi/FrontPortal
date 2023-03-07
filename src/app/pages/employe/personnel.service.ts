@@ -93,4 +93,10 @@ export class PersonnelService {
   setLanguage(language: string) {
     this.languageSubject.next(language);
   }
+
+ 
+  GetMatriculeRH = (): Observable<any[]> => {
+    return this.http.get<any[]>("http://localhost:8080/api/auth/matRh");
+  };
+
 }

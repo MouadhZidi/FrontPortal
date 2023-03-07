@@ -84,7 +84,7 @@
       <div class="card">
         <div class="card-body">
           
-          <div class="row mt-4">
+          <div class="row mt-4" *ngIf="DashboardInformation"> 
          
             <div class="dropdown d-inline-block" ngbDropdown style="margin-top: -5%;">
               <button
@@ -107,7 +107,7 @@
                 </label>
               </div>
             </div>
-            <div id="flexbox">
+            <div id="flexbox"  class="rows-element">
               <div class="enfant"
                 *ngFor="let element of elements"
                 

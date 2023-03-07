@@ -80,21 +80,20 @@ elements = [
 ]
 selectedElements = {
   'Affectation':true,
-  'Fonction':false,
- 'Grade':true,
+  'Fonction':true,
+  'Grade':true,
   'Statut':true,
   'Catégorie':true,
   'PBI':true,
-  'Poste':false,
-  'solde_cng':true,
-  'echelon':true,
+  'Poste':true,
+  'Solde congé':true,
+  'Echelon':true,
 };
 
 
 soldeConge:any=[]
 DashboardInformation:any
   breadCrumbItems: Array<{}>;
-
   linewithDataChart: ChartType;
   basicColumChart: ChartType;
   columnlabelChart: ChartType;
@@ -123,10 +122,10 @@ role=this.token.getUser().role_portail
   }
 
   ngOnInit() {
-    this.getsoldeactuelle()
-    this.GetSanction();
+   // this.getsoldeactuelle()
+   // this.GetSanction();
     this.getpers();
-    this.getSoldeConge();
+  //  this.getSoldeConge();
     this.getDashboardInformation()
 
     /**
@@ -153,18 +152,18 @@ role=this.token.getUser().role_portail
     this.fetchData();
   }
 
-  getsoldeactuelle(){ this.serv.getlassolde(this.token.getUser().cod_soc,this.token.getUser().matpers).subscribe(
-    (data:any) => {
-      this.soldactueele=data[0];
+//   getsoldeactuelle(){ this.serv.getlassolde(this.token.getUser().cod_soc,this.token.getUser().matpers).subscribe(
+//     (data:any) => {
+//       this.soldactueele=data[0];
   
 
 
-    },
-    err => {
-      console.log(err);
-    }
-  )
-}
+//     },
+//     err => {
+//       console.log(err);
+//     }
+//   )
+// }
   
 
   // ngAfterViewInit() {
@@ -202,24 +201,24 @@ role=this.token.getUser().role_portail
       }
       );}
 
-      getSoldeConge(){
-    this.serv.getSoldeConge(this.token.getUser().matpers,this.token.getUser().cod_soc).subscribe(
-      data => {
-        this.soldeConge=data;
-        console.log (this.soldeConge)
-      },
-      err => {
-        console.log(err);
-      }
-    )
-  }
+  //     getSoldeConge(){
+  //   this.serv.getSoldeConge(this.token.getUser().matpers,this.token.getUser().cod_soc).subscribe(
+  //     data => {
+  //       this.soldeConge=data;
+  //       console.log (this.soldeConge)
+  //     },
+  //     err => {
+  //       console.log(err);
+  //     }
+  //   )
+  // }
 
 
   getDashboardInformation(){
     this.serv.getDashboardInformation(this.token.getUser().cod_soc,this.token.getUser().matpers).subscribe(
       data => {
         this.DashboardInformation=data;
-        console.log ('Dashboard Information :' + this.DashboardInformation.affectation)
+       
       },
       err => {
         console.log(err);
@@ -229,17 +228,17 @@ role=this.token.getUser().role_portail
 
 
 
-  GetSanction(){
-    this.serv.getSanction(this.token.getUser().matpers,this.token.getUser().cod_soc).subscribe(
-      data => {
-        this.listsanc=data;
-        console.log (this.listsanc)
-      },
-      err => {
-        console.log(err);
-      }
-    )
-  }
+  // GetSanction(){
+  //   this.serv.getSanction(this.token.getUser().matpers,this.token.getUser().cod_soc).subscribe(
+  //     data => {
+  //       this.listsanc=data;
+  //       console.log (this.listsanc)
+  //     },
+  //     err => {
+  //       console.log(err);
+  //     }
+  //   )
+  // }
 
   weeklyreport() {
     this.isActive = 'week';

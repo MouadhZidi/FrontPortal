@@ -18,6 +18,7 @@ export class EspaceChefComponent implements OnInit {
  // bread crumb items
  mat_pers:any
  id:any
+ dataRH:any
  libelleDoc:any
    breadCrumbItems: Array<{}>;
    listDemande:any[]
@@ -96,6 +97,7 @@ rep_chef:""
       * fetches data
       */
      this.getpers()
+     this.GetMatriculeRH()
    }
  
    get form() {
@@ -211,6 +213,24 @@ rep_chef:""
        console.log(error)
      }
    }
+
+
+   GetMatriculeRH(){
+ 
+    this.service.GetMatriculeRH().subscribe(
+      data => {
+        this.dataRH = data;
+        console.log("data rh ",this.dataRH)
+      },
+      err => {
+        console.log(err);
+      }
+      
+      );}
+
+
+
+
    updateDemande(){
     this.Notification.date_notif=new Date().toLocaleDateString().substring(0,10)
     this.Notification.libelle_notif="Demande"
@@ -219,7 +239,7 @@ rep_chef:""
     this.Notification.mat_pers=this.tokenService.getUser().matpers
     this.Notification.id_sender=this.tokenService.getUser().matpers
     this.Notification.etat_notif="N"
-    this.Notification.id_reciver="12417"
+    this.Notification.id_reciver=this.dataRH.mat_pers
     this.Notification.rep_chef="O"
 
     this.Notification.cod_soc=this.tokenService.getUser().cod_soc
@@ -238,10 +258,11 @@ rep_chef:""
                showConfirmButton: false,
                timer: 2000
              });
- this.getpers()  
+ 
  this.websocketService.AjouNotif(this.Notification).subscribe(
   (event: any) => {
     console.log(this.Notification)
+    this.getpers()
   }
 );
  // this.toastr.success(' agence updated!', 'update effectuée avec succés.');

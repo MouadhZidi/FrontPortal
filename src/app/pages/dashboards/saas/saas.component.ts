@@ -9,7 +9,7 @@ import { TokenStorage } from "src/app/core/services/token-storage.service";
   templateUrl: "./saas.component.html",
   styleUrls: ["./saas.component.scss"],
 })
-export class SaasComponent implements OnInit, AfterViewInit {
+export class SaasComponent implements OnInit {
   public barChartLabels: Label[] = [];
   public barChartType: ChartType = "bar";
 
@@ -27,9 +27,9 @@ export class SaasComponent implements OnInit, AfterViewInit {
   polarChart: ChartType;
 
   constructor(private serv: ChartService, private token: TokenStorage) {}
-  ngAfterViewInit(): void {
-    throw new Error("Method not implemented.");
-  }
+  // ngAfterViewInit(): void {
+  //   throw new Error("Method not implemented.");
+  // }
 
   ngOnInit() {
     this.breadCrumbItems = [

@@ -84,10 +84,14 @@ export class ListNotificationsComponent implements OnInit {
           this.AllNotif.push(element);
         }
       },
+      
       (err) => {
         console.log(err);
       }
     );
+
+    console.log(this.AllNotif)
+    
   }
 
   getNotificationEvent() {
