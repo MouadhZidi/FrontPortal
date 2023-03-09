@@ -2,6 +2,10 @@
   <!-- start page title -->
   <!-- end page title -->
 
+  <app-page-title title="Demande de formation" [breadcrumbItems]="breadCrumbItems">
+  </app-page-title>
+
+
   <div class="row">
     <div class="col-12">
       <div class="card">
@@ -29,6 +33,7 @@
                     #myInputDateDebut
                     placeholder="jj/MM/yyyy"
                     formControlName="datDebut"
+                    title="Veuillez entrer la date de début"
                   />
                 </div>
                 <div class="mb-3">
@@ -39,6 +44,7 @@
                     #myInputDateFin
                     placeholder="jj/MM/yyyy"
                     formControlName="datFin"
+                    title="Veuillez entrer la date de fin"
                   />
                 </div>
 
@@ -52,6 +58,7 @@
                     aria-label="Default select example"
                     (change)="onSelect($event)"
                     formControlName="codTit"
+                    title="Veuillez entrer le titre de formation"
                   >
                     <option
                       *ngFor="let i of titreFormation"
@@ -68,6 +75,7 @@
                     aria-label="Default select example"
                     (change)="onSelect2($event)"
                     formControlName="codTyp"
+                    title="Veuillez choisir le domaine de formation"
                   >
                     <option
                       *ngFor="let i of typeFormation"
@@ -82,6 +90,7 @@
                   <select
                     class="form-select"
                     aria-label="Default select example"
+                    title="Veuillez choisir le théme"
                     formControlName="codTheme"
                   >
                     <option
@@ -105,6 +114,7 @@
                     name="manufacturername"
                     type="text"
                     class="form-control"
+                    title="Veuillez entrer l'année"
                     formControlName="annee"
                     mask="0000"
                     [showMaskTyped]="true"
@@ -116,6 +126,7 @@
                     id="manufacturername"
                     name="manufacturername"
                     type="text"
+                    title="Veuillez entrer le text"
                     class="form-control"
                     formControlName="txtDem"
                   ></textarea>
@@ -135,7 +146,9 @@
            
 
             <div class="d-flex flex-wrap gap-2 mt-2">
-              <button type="submit" class="btn btn-primary">{{"Enregistrer" | translate}}</button>
+              <button type="submit" 
+              [disabled]="formFormation.invalid"
+              class="btn btn-primary">{{"Enregistrer" | translate}}</button>
             </div>
           </form>
         </div>

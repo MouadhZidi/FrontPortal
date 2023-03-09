@@ -22,6 +22,8 @@ export class ListCongeComponent implements OnInit {
   prenom: any;
   ListTypeBull: any[] = [];
   rowData: any[] = [];
+  breadCrumbItems: Array<{}>;
+
   api!: GridApi;
   public apii!: GridApi; 
   public columnApi!: ColumnApi; 
@@ -42,6 +44,9 @@ export class ListCongeComponent implements OnInit {
         return col;
       });
     });
+
+    this.breadCrumbItems = [{ label: 'Espace de congé' }, { label: 'Solde de congé', active: true }];
+
   }
   changeLanguage() {
     const currentLanguage = this.servv.languageSubject.value;

@@ -17,6 +17,8 @@ import { PersonnelService } from "../../Employe/personnel.service";
   styleUrls: ["./demande-document.component.scss"],
 })
 export class DemandeDocumentComponent implements OnInit {
+  breadCrumbItems: Array<{}>;
+
   formDocument: FormGroup;
   file!: File;
   email:any
@@ -83,6 +85,9 @@ etat_notif:""
        return col;
      });
    });
+
+   this.breadCrumbItems = [{ label: 'Espace demande' }, { label: 'Demande document', active: true }];
+
   }
 
   

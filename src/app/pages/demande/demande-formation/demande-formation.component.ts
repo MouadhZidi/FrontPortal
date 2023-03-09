@@ -27,6 +27,7 @@ export class DemandeFormationComponent implements OnInit {
   @ViewChild("myInputDateDebut") myInputElementDebut: ElementRef;
   @ViewChild("myInputDateFin") myInputElementFin: ElementRef;
 
+  breadCrumbItems: Array<{}>;
   formFormation!: FormGroup;
   file!: File;
   listFormation: any[] = [];
@@ -68,6 +69,9 @@ export class DemandeFormationComponent implements OnInit {
     private persServ: AjoutPersService
   ) {}
   ngOnInit(): void {
+
+    this.breadCrumbItems = [{ label: 'Espace demande' }, { label: 'Demande formation', active: true }];
+
     this.formFormation = this.formBuilder.group({
       dateDemande: [
         new Date().toLocaleDateString().substring(0, 10),

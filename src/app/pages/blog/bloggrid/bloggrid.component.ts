@@ -18,7 +18,7 @@ export class BloggridComponent implements OnInit {
   constructor(private serv:NoteEventService) { }
 
   ngOnInit(): void {
-    this.breadCrumbItems = [{ label: 'Blog' }, { label: 'Blog Grid', active: true }];
+    this.breadCrumbItems = [{ label: 'Espace d`évenement' }, { label: 'Historique d`évenement', active: true }];
     
 
 

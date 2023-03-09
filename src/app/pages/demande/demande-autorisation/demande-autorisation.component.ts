@@ -44,6 +44,7 @@ etat_notif:""
   matChef:any
   email:any
  r = 60;
+ breadCrumbItems: Array<{}>;
 
 
  @ViewChild("myInputDateEmbauche") myInputElementRefEmbauche: ElementRef;
@@ -61,10 +62,12 @@ etat_notif:""
      ,private tokenService:TokenStorage,private websocketService: WebsocketService,private persServ: AjoutPersService, private modalService: NgbModal,
      private translatee:TranslateService ,private serv: PersonnelService) { }
    ngOnInit(): void {
+    this.breadCrumbItems = [{ label: 'Espace demande' }, { label: 'Demande autorisation', active: true }];
+
      this.formAutorisation = this.formBuilder.group({
        
        
- 
+
        dateDemande : [(new Date()).toLocaleDateString().substring(0,10),Validators.required],
        heurS : ['',Validators.required],
        heurR:['',Validators.required],

@@ -39,7 +39,7 @@ h:string="10908"
     mat_pers:this.token.getUser().matpers}
 
   // bread crumb items
-
+  breadCrumbItems: Array<{}>;
 
   constructor(private token:TokenStorage,private serv:PersonnelService,private serv2:FamilleService,private serv3:RenseignementpersService) { }
 
@@ -48,6 +48,9 @@ h:string="10908"
     this.getadrpers()
     this.getrenspers()
     this.getconjoint()
+    this.breadCrumbItems = [{ label: 'Espace employé' }, { label: 'Informations personnelles', active: true }];
+
+
 
 
     

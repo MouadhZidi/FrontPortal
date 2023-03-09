@@ -132,7 +132,7 @@
       }
     },
     "CONSULTCONGE": {
-      "TEXT": "Congé de consultation",
+      "TEXT": "Congés ",
       "LIST": {
         "SOLDE": "Solde de congé"
             }
@@ -373,7 +373,7 @@
 "abdou":"abdou",
 "Advance loan group code":"Code groupe prêt",
 "amount requested":"Montant demandé",
-"Answer":"Réponse",
+"Type de document":"Type de demande",
 "Leader response":"Réponse chef",
 "advance loan":"Type prêt",
 "Exit time":"Heure sortie",

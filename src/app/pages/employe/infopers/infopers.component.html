@@ -1,5 +1,8 @@
 <div class="container-fluid">
-  <app-page-title title="Informations Personnel"></app-page-title>
+  <app-page-title
+    title="Informations Personnel"
+    [breadcrumbItems]="breadCrumbItems"
+  ></app-page-title>
   <div class="checkout-tabs">
     <div class="row">
       <div class="col-xl-2 col-sm-3">
@@ -20,8 +23,7 @@
                     <div class="card">
                       <div class="card-body">
                         <h1 class="card-title">{{ "Identite" | translate }}</h1>
-
-                        <p class="card-title-desc">Information</p>
+                        <br />
 
                         <form>
                           <div class="row">
@@ -329,10 +331,7 @@
                           {{ "Adresse et contact" | translate }}
                         </h1>
 
-                        <p class="card-title-desc">
-                          {{ "Information" | translate }}
-                        </p>
-
+                        <br />
                         <form>
                           <div class="row">
                             <div class="col-sm-4">
@@ -509,7 +508,6 @@
 
                     <div class="card">
                       <div class="card-body">
-                       
                         <app-aggridadress></app-aggridadress>
                       </div>
                     </div>
@@ -540,8 +538,7 @@
                         <h1 class="card-title">
                           {{ "Niveau d'instruction" | translate }}
                         </h1>
-
-                        <p class="card-title-desc">Information</p>
+                        <br />
 
                         <app-gridetab></app-gridetab>
                       </div>

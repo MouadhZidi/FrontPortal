@@ -1,5 +1,8 @@
 <div class="container-fluid">
-  <app-page-title title="Informations Professionnel"></app-page-title>
+  <app-page-title
+    title="Informations Professionnel"
+    [breadcrumbItems]="breadCrumbItems"
+  ></app-page-title>
   <div class="checkout-tabs">
     <div class="row">
       <div class="col-xl-2 col-sm-3">
@@ -22,709 +25,762 @@
                         <h1 class="card-title">
                           {{ "Information Générale" | translate }}
                         </h1>
+<br>
+                     
+                                <form>
+                                  <div class="row">
+                                    <div class="col-sm-2">
+                                      <div class="mb-3">
+                                        <label for="productname"
+                                          >{{ "Date d'embauche" | translate }}
+                                        </label>
+                                        <input
+                                          [value]="perso11.dat_emb"
+                                          id="productname"
+                                          name="productname"
+                                          type="text"
+                                          disabled
+                                          class="form-control"
+                                        />
+                                      </div>
+                                    </div>
 
-                        <p class="card-title-desc">Information :</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                                    <div class="col-sm-2">
+                                      <div class="mb-3">
+                                        <label class="control-label">{{
+                                          "Date d'entrée adminisration"
+                                            | translate
+                                        }}</label>
+                                        <input
+                                          id="manufacturerbrand"
+                                          [value]="perso11.dat_ent"
+                                          name="manufacturerbrand"
+                                          type="text"
+                                          class="form-control"
+                                          disabled
+                                        />
+                                      </div>
+                                    </div>
 
-                <div class="row">
-                  <div class="col-12">
-                    <div class="card">
-                      <div class="card-body">
-                        <form>
-                          <div class="row">
-                            <div class="col-sm-2">
-                              <div class="mb-3">
-                                <label for="productname"
-                                  >{{ "Date d'embauche" | translate }}
-                                </label>
-                                <input
-                                  [value]="perso11.dat_emb"
-                                  id="productname"
-                                  name="productname"
-                                  type="text"
-                                  disabled
-                                  class="form-control"
-                                />
-                              </div>
-                            </div>
+                                    <div class="col-sm-2">
+                                      <div
+                                        *ngFor="let item of perso11.rens_pers"
+                                        class="mb-3"
+                                      >
+                                        <label for="manufacturername"
+                                          >{{ "Date Fin Fidelité" | translate }}
+                                        </label>
+                                        <input
+                                          value="{{ item.dt_fin_fidelite }}"
+                                          id="manufacturername"
+                                          name="manufacturername"
+                                          type="text"
+                                          disabled
+                                          class="form-control"
+                                        />
+                                      </div>
+                                    </div>
 
-                            <div class="col-sm-2">
-                              <div class="mb-3">
-                                <label class="control-label">{{
-                                  "Date d'entrée adminisration" | translate
-                                }}</label>
-                                <input
-                                  id="manufacturerbrand"
-                                  [value]="perso11.dat_ent"
-                                  name="manufacturerbrand"
-                                  type="text"
-                                  class="form-control"
-                                  disabled
-                                />
-                              </div>
-                            </div>
+                                    <div class="col-sm-2">
+                                      <div
+                                        *ngFor="let item of perso11.rens_pers"
+                                        class="mb-3"
+                                      >
+                                        <label for="manufacturername"
+                                          >{{ "Date Fin Fidelité" | translate }}
+                                        </label>
+                                        <input
+                                          value="{{ item.dt_fin_fidelite }}"
+                                          id="manufacturername"
+                                          name="manufacturername"
+                                          type="text"
+                                          disabled
+                                          class="form-control"
+                                        />
+                                      </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                      <div class="mb-3">
+                                        <label for="manufacturername"
+                                          >{{
+                                            "Date Titularisation" | translate
+                                          }}
+                                        </label>
+                                        <input
+                                          [value]="perso11.dat_tit"
+                                          id="manufacturername"
+                                          name="manufacturername"
+                                          type="text"
+                                          disabled
+                                          class="form-control"
+                                        />
+                                      </div>
+                                    </div>
+                                    <hr />
 
-                            <div class="col-sm-2">
-                              <div
-                                *ngFor="let item of perso11.rens_pers"
-                                class="mb-3"
-                              >
-                                <label for="manufacturername"
-                                  >{{ "Date Fin Fidelité" | translate }}
-                                </label>
-                                <input
-                                  value="{{ item.dt_fin_fidelite }}"
-                                  id="manufacturername"
-                                  name="manufacturername"
-                                  type="text"
-                                  disabled
-                                  class="form-control"
-                                />
-                              </div>
-                            </div>
+                                    <div class="col-sm-2">
+                                      <div class="mb-3">
+                                        <label class="control-label">{{
+                                          "Code convention" | translate
+                                        }}</label>
+                                        <input
+                                          id="manufacturerbrand"
+                                          [value]="perso11.cod_categ"
+                                          name="manufacturerbrand"
+                                          type="text"
+                                          disabled
+                                          class="form-control"
+                                        />
+                                      </div>
+                                      <div class="mb-3">
+                                        <label class="control-label">
+                                          {{
+                                            "Code Categorie" | translate
+                                          }}</label
+                                        >
+                                        <input
+                                          id="manufacturerbrand"
+                                          [value]="perso11.cod_cat"
+                                          name="manufacturerbrand"
+                                          type="text"
+                                          disabled
+                                          class="form-control"
+                                        />
+                                      </div>
+                                      <div class="mb-3">
+                                        <label class="control-label">
+                                          {{ "Code Grade" | translate }}</label
+                                        >
+                                        <input
+                                          id="manufacturerbrand"
+                                          [value]="perso11.cod_grad"
+                                          name="manufacturerbrand"
+                                          type="text"
+                                          disabled
+                                          class="form-control"
+                                        />
+                                      </div>
+                                      <div class="mb-3">
+                                        <label class="control-label">
+                                          {{
+                                            "Code Affectation" | translate
+                                          }}</label
+                                        >
+                                        <input
+                                          id="manufacturerbrand"
+                                          [value]="perso11.cod_serv"
+                                          name="manufacturerbrand"
+                                          type="text"
+                                          disabled
+                                          class="form-control"
+                                        />
+                                      </div>
+                                      <div class="mb-3">
+                                        <label class="control-label">
+                                          {{ "Code Classe" | translate }}</label
+                                        >
+                                        <input
+                                          id="manufacturerbrand"
+                                          [value]="perso11.cod_class"
+                                          name="manufacturerbrand"
+                                          type="text"
+                                          disabled
+                                          class="form-control"
+                                        />
+                                      </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                      <div
+                                        *ngIf="
+                                          perso11.libcaeg != 'Code inexistant'
+                                        "
+                                        class="mb-3"
+                                      >
+                                        <label class="control-label">{{
+                                          "Libelle convention" | translate
+                                        }}</label>
+                                        <input
+                                          id="manufacturerbrand"
+                                          [value]="perso11.libcaeg"
+                                          name="manufacturerbrand"
+                                          type="text"
+                                          disabled
+                                          class="form-control"
+                                        />
+                                      </div>
+                                      <div
+                                        *ngIf="
+                                          perso11.libcaeg == 'Code inexistant'
+                                        "
+                                        class="mb-3"
+                                      >
+                                        <label class="control-label">{{
+                                          "Libelle convention" | translate
+                                        }}</label>
+                                        <input
+                                          id="manufacturerbrand"
+                                          value=""
+                                          name="manufacturerbrand"
+                                          type="text"
+                                          disabled
+                                          class="form-control"
+                                        />
+                                      </div>
+                                      <div
+                                        *ngIf="
+                                          perso11.libcat != 'Code inexistant'
+                                        "
+                                        class="mb-3"
+                                      >
+                                        <label class="control-label">{{
+                                          "Libelle Categorie" | translate
+                                        }}</label>
+                                        <input
+                                          id="manufacturerbrand"
+                                          [value]="perso11.libcat"
+                                          name="manufacturerbrand"
+                                          type="text"
+                                          disabled
+                                          class="form-control"
+                                        />
+                                      </div>
+                                      <div
+                                        *ngIf="
+                                          perso11.libcat == 'Code inexistant'
+                                        "
+                                        class="mb-3"
+                                      >
+                                        <label class="control-label">{{
+                                          "Libelle Categorie" | translate
+                                        }}</label>
+                                        <input
+                                          id="manufacturerbrand"
+                                          value=""
+                                          name="manufacturerbrand"
+                                          type="text"
+                                          disabled
+                                          class="form-control"
+                                        />
+                                      </div>
+                                      <div
+                                        *ngIf="
+                                          perso11.lib_grad != 'Code inexistant'
+                                        "
+                                        class="mb-3"
+                                      >
+                                        <label class="control-label">{{
+                                          "Libelle Grade" | translate
+                                        }}</label>
+                                        <input
+                                          id="manufacturerbrand"
+                                          [value]="perso11.lib_grad"
+                                          name="manufacturerbrand"
+                                          type="text"
+                                          disabled
+                                          class="form-control"
+                                        />
+                                      </div>
+                                      <div
+                                        *ngIf="
+                                          perso11.lib_grad == 'Code inexistant'
+                                        "
+                                        class="mb-3"
+                                      >
+                                        <label class="control-label">{{
+                                          "Libelle Grade" | translate
+                                        }}</label>
+                                        <input
+                                          id="manufacturerbrand"
+                                          value=""
+                                          name="manufacturerbrand"
+                                          type="text"
+                                          disabled
+                                          class="form-control"
+                                        />
+                                      </div>
+                                      <div
+                                        *ngIf="
+                                          perso11.lib_serv != 'Code inexistant'
+                                        "
+                                        class="mb-3"
+                                      >
+                                        <label class="control-label">{{
+                                          "Affectation" | translate
+                                        }}</label>
+                                        <input
+                                          id="manufacturerbrand"
+                                          [value]="perso11.lib_serv"
+                                          name="manufacturerbrand"
+                                          type="text"
+                                          disabled
+                                          class="form-control"
+                                        />
+                                      </div>
+                                      <div
+                                        *ngIf="
+                                          perso11.lib_serv == 'Code inexistant'
+                                        "
+                                        class="mb-3"
+                                      >
+                                        <label class="control-label">{{
+                                          "Affectation" | translate
+                                        }}</label>
+                                        <input
+                                          id="manufacturerbrand"
+                                          value=""
+                                          name="manufacturerbrand"
+                                          type="text"
+                                          disabled
+                                          class="form-control"
+                                        />
+                                      </div>
+                                      <div
+                                        *ngIf="
+                                          perso11.lib_class != 'Code inexistant'
+                                        "
+                                        class="mb-3"
+                                      >
+                                        <label class="control-label">
+                                          {{ "Libelle classe" | translate }}
+                                        </label>
+                                        <input
+                                          id="manufacturerbrand"
+                                          [value]="perso11.lib_class"
+                                          name="manufacturerbrand"
+                                          type="text"
+                                          disabled
+                                          class="form-control"
+                                        />
+                                      </div>
+                                      <div
+                                        *ngIf="
+                                          perso11.lib_class == 'Code inexistant'
+                                        "
+                                        class="mb-3"
+                                      >
+                                        <label class="control-label">
+                                          {{ "Libelle classe" | translate }}
+                                        </label>
+                                        <input
+                                          id="manufacturerbrand"
+                                          value=""
+                                          name="manufacturerbrand"
+                                          type="text"
+                                          disabled
+                                          class="form-control"
+                                        />
+                                      </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                      <div class="mb-3">
+                                        <label class="control-label">{{
+                                          "Date Effet convention" | translate
+                                        }}</label>
+                                        <input
+                                          id="manufacturerbrand"
+                                          [value]="perso11.dat_categ"
+                                          name="manufacturerbrand"
+                                          type="text"
+                                          disabled
+                                          class="form-control"
+                                        />
+                                      </div>
+                                      <div class="mb-3">
+                                        <label class="control-label">{{
+                                          "Date Effet categorie" | translate
+                                        }}</label>
+                                        <input
+                                          id="manufacturerbrand"
+                                          [value]="perso11.dat_cat"
+                                          name="manufacturerbrand"
+                                          type="text"
+                                          disabled
+                                          class="form-control"
+                                        />
+                                      </div>
 
-                            <div class="col-sm-2">
-                              <div
-                                *ngFor="let item of perso11.rens_pers"
-                                class="mb-3"
-                              >
-                                <label for="manufacturername"
-                                  >{{ "Date Fin Fidelité" | translate }}
-                                </label>
-                                <input
-                                  value="{{ item.dt_fin_fidelite }}"
-                                  id="manufacturername"
-                                  name="manufacturername"
-                                  type="text"
-                                  disabled
-                                  class="form-control"
-                                />
-                              </div>
-                            </div>
-                            <div class="col-sm-2">
-                              <div class="mb-3">
-                                <label for="manufacturername"
-                                  >{{ "Date Titularisation" | translate }}
-                                </label>
-                                <input
-                                  [value]="perso11.dat_tit"
-                                  id="manufacturername"
-                                  name="manufacturername"
-                                  type="text"
-                                  disabled
-                                  class="form-control"
-                                />
-                              </div>
-                            </div>
-                            <hr />
+                                      <div class="mb-3">
+                                        <label class="control-label">
+                                          {{ "Date Effet grade" | translate }}
+                                        </label>
+                                        <input
+                                          id="manufacturerbrand"
+                                          [value]="perso11.dat_grad"
+                                          name="manufacturerbrand"
+                                          type="text"
+                                          disabled
+                                          class="form-control"
+                                        />
+                                      </div>
 
-                            <div class="col-sm-2">
-                              <div class="mb-3">
-                                <label class="control-label">{{
-                                  "Code convention" | translate
-                                }}</label>
-                                <input
-                                  id="manufacturerbrand"
-                                  [value]="perso11.cod_categ"
-                                  name="manufacturerbrand"
-                                  type="text"
-                                  disabled
-                                  class="form-control"
-                                />
-                              </div>
-                              <div class="mb-3">
-                                <label class="control-label">
-                                  {{ "Code Categorie" | translate }}</label
-                                >
-                                <input
-                                  id="manufacturerbrand"
-                                  [value]="perso11.cod_cat"
-                                  name="manufacturerbrand"
-                                  type="text"
-                                  disabled
-                                  class="form-control"
-                                />
-                              </div>
-                              <div class="mb-3">
-                                <label class="control-label">
-                                  {{ "Code Grade" | translate }}</label
-                                >
-                                <input
-                                  id="manufacturerbrand"
-                                  [value]="perso11.cod_grad"
-                                  name="manufacturerbrand"
-                                  type="text"
-                                  disabled
-                                  class="form-control"
-                                />
-                              </div>
-                              <div class="mb-3">
-                                <label class="control-label">
-                                  {{ "Code Affectation" | translate }}</label
-                                >
-                                <input
-                                  id="manufacturerbrand"
-                                  [value]="perso11.cod_serv"
-                                  name="manufacturerbrand"
-                                  type="text"
-                                  disabled
-                                  class="form-control"
-                                />
-                              </div>
-                              <div class="mb-3">
-                                <label class="control-label">
-                                  {{ "Code Classe" | translate }}</label
-                                >
-                                <input
-                                  id="manufacturerbrand"
-                                  [value]="perso11.cod_class"
-                                  name="manufacturerbrand"
-                                  type="text"
-                                  disabled
-                                  class="form-control"
-                                />
-                              </div>
-                            </div>
-                            <div class="col-sm-2">
-                              <div
-                                *ngIf="perso11.libcaeg != 'Code inexistant'"
-                                class="mb-3"
-                              >
-                                <label class="control-label">{{
-                                  "Libelle convention" | translate
-                                }}</label>
-                                <input
-                                  id="manufacturerbrand"
-                                  [value]="perso11.libcaeg"
-                                  name="manufacturerbrand"
-                                  type="text"
-                                  disabled
-                                  class="form-control"
-                                />
-                              </div>
-                              <div
-                                *ngIf="perso11.libcaeg == 'Code inexistant'"
-                                class="mb-3"
-                              >
-                                <label class="control-label">{{
-                                  "Libelle convention" | translate
-                                }}</label>
-                                <input
-                                  id="manufacturerbrand"
-                                  value=""
-                                  name="manufacturerbrand"
-                                  type="text"
-                                  disabled
-                                  class="form-control"
-                                />
-                              </div>
-                              <div
-                                *ngIf="perso11.libcat != 'Code inexistant'"
-                                class="mb-3"
-                              >
-                                <label class="control-label">{{
-                                  "Libelle Categorie" | translate
-                                }}</label>
-                                <input
-                                  id="manufacturerbrand"
-                                  [value]="perso11.libcat"
-                                  name="manufacturerbrand"
-                                  type="text"
-                                  disabled
-                                  class="form-control"
-                                />
-                              </div>
-                              <div
-                                *ngIf="perso11.libcat == 'Code inexistant'"
-                                class="mb-3"
-                              >
-                                <label class="control-label">{{
-                                  "Libelle Categorie" | translate
-                                }}</label>
-                                <input
-                                  id="manufacturerbrand"
-                                  value=""
-                                  name="manufacturerbrand"
-                                  type="text"
-                                  disabled
-                                  class="form-control"
-                                />
-                              </div>
-                              <div
-                                *ngIf="perso11.lib_grad != 'Code inexistant'"
-                                class="mb-3"
-                              >
-                                <label class="control-label">{{
-                                  "Libelle Grade" | translate
-                                }}</label>
-                                <input
-                                  id="manufacturerbrand"
-                                  [value]="perso11.lib_grad"
-                                  name="manufacturerbrand"
-                                  type="text"
-                                  disabled
-                                  class="form-control"
-                                />
-                              </div>
-                              <div
-                                *ngIf="perso11.lib_grad == 'Code inexistant'"
-                                class="mb-3"
-                              >
-                                <label class="control-label">{{
-                                  "Libelle Grade" | translate
-                                }}</label>
-                                <input
-                                  id="manufacturerbrand"
-                                  value=""
-                                  name="manufacturerbrand"
-                                  type="text"
-                                  disabled
-                                  class="form-control"
-                                />
-                              </div>
-                              <div
-                                *ngIf="perso11.lib_serv != 'Code inexistant'"
-                                class="mb-3"
-                              >
-                                <label class="control-label">{{
-                                  "Affectation" | translate
-                                }}</label>
-                                <input
-                                  id="manufacturerbrand"
-                                  [value]="perso11.lib_serv"
-                                  name="manufacturerbrand"
-                                  type="text"
-                                  disabled
-                                  class="form-control"
-                                />
-                              </div>
-                              <div
-                                *ngIf="perso11.lib_serv == 'Code inexistant'"
-                                class="mb-3"
-                              >
-                                <label class="control-label">{{
-                                  "Affectation" | translate
-                                }}</label>
-                                <input
-                                  id="manufacturerbrand"
-                                  value=""
-                                  name="manufacturerbrand"
-                                  type="text"
-                                  disabled
-                                  class="form-control"
-                                />
-                              </div>
-                              <div
-                                *ngIf="perso11.lib_class != 'Code inexistant'"
-                                class="mb-3"
-                              >
-                                <label class="control-label">
-                                  {{ "Libelle classe" | translate }}
-                                </label>
-                                <input
-                                  id="manufacturerbrand"
-                                  [value]="perso11.lib_class"
-                                  name="manufacturerbrand"
-                                  type="text"
-                                  disabled
-                                  class="form-control"
-                                />
-                              </div>
-                              <div
-                                *ngIf="perso11.lib_class == 'Code inexistant'"
-                                class="mb-3"
-                              >
-                                <label class="control-label">
-                                  {{ "Libelle classe" | translate }}
-                                </label>
-                                <input
-                                  id="manufacturerbrand"
-                                  value=""
-                                  name="manufacturerbrand"
-                                  type="text"
-                                  disabled
-                                  class="form-control"
-                                />
-                              </div>
-                            </div>
-                            <div class="col-sm-2">
-                              <div class="mb-3">
-                                <label class="control-label">{{
-                                  "Date Effet convention" | translate
-                                }}</label>
-                                <input
-                                  id="manufacturerbrand"
-                                  [value]="perso11.dat_categ"
-                                  name="manufacturerbrand"
-                                  type="text"
-                                  disabled
-                                  class="form-control"
-                                />
-                              </div>
-                              <div class="mb-3">
-                                <label class="control-label">{{
-                                  "Date Effet categorie" | translate
-                                }}</label>
-                                <input
-                                  id="manufacturerbrand"
-                                  [value]="perso11.dat_cat"
-                                  name="manufacturerbrand"
-                                  type="text"
-                                  disabled
-                                  class="form-control"
-                                />
-                              </div>
+                                      <div class="mb-3">
+                                        <label class="control-label">
+                                          {{
+                                            "Date Effet affectation" | translate
+                                          }}
+                                        </label>
+                                        <input
+                                          id="manufacturerbrand"
+                                          [value]="perso11.dat_qualf"
+                                          name="manufacturerbrand"
+                                          type="text"
+                                          disabled
+                                          class="form-control"
+                                        />
+                                      </div>
+                                    </div>
 
-                              <div class="mb-3">
-                                <label class="control-label">
-                                  {{ "Date Effet grade" | translate }}
-                                </label>
-                                <input
-                                  id="manufacturerbrand"
-                                  [value]="perso11.dat_grad"
-                                  name="manufacturerbrand"
-                                  type="text"
-                                  disabled
-                                  class="form-control"
-                                />
-                              </div>
+                                    <div class="col-sm-2">
+                                      <div class="mb-3">
+                                        <label class="control-label">
+                                          {{
+                                            "Code Fonction" | translate
+                                          }}</label
+                                        >
+                                        <input
+                                          id="manufacturerbrand"
+                                          [value]="perso11.cod_fonct"
+                                          name="manufacturerbrand"
+                                          type="text"
+                                          disabled
+                                          class="form-control"
+                                        />
+                                      </div>
+                                      <div class="mb-3">
+                                        <label class="control-label">
+                                          {{ "Code Qualification" | translate }}
+                                        </label>
+                                        <input
+                                          id="manufacturerbrand"
+                                          [value]="perso11.poste_trav"
+                                          name="manufacturerbrand"
+                                          type="text"
+                                          disabled
+                                          class="form-control"
+                                        />
+                                      </div>
+                                      <div class="mb-3">
+                                        <label class="control-label">
+                                          {{ "Code Region" | translate }}</label
+                                        >
+                                        <input
+                                          id="manufacturerbrand"
+                                          [value]="perso11.cod_lieu_geog"
+                                          name="manufacturerbrand"
+                                          type="text"
+                                          disabled
+                                          class="form-control"
+                                        />
+                                      </div>
+                                      <div class="mb-3">
+                                        <label class="control-label">
+                                          {{
+                                            "Code Filliére" | translate
+                                          }}</label
+                                        >
+                                        <input
+                                          id="manufacturerbrand"
+                                          [value]="perso11.cod_fil"
+                                          name="manufacturerbrand"
+                                          type="text"
+                                          disabled
+                                          class="form-control"
+                                        />
+                                      </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                      <div
+                                        *ngIf="
+                                          perso11.lib_fonct != 'Code inexistant'
+                                        "
+                                        class="mb-3"
+                                      >
+                                        <label class="control-label">
+                                          {{ "Libelle Fonction" | translate }}
+                                        </label>
+                                        <input
+                                          id="manufacturerbrand"
+                                          [value]="perso11.lib_fonct"
+                                          name="manufacturerbrand"
+                                          type="text"
+                                          disabled
+                                          class="form-control"
+                                        />
+                                      </div>
+                                      <div
+                                        *ngIf="
+                                          perso11.lib_fonct == 'Code inexistant'
+                                        "
+                                        class="mb-3"
+                                      >
+                                        <label class="control-label">
+                                          {{ "Libelle Fonction" | translate }}
+                                        </label>
+                                        <input
+                                          id="manufacturerbrand"
+                                          [value]=""
+                                          name="manufacturerbrand"
+                                          type="text"
+                                          disabled
+                                          class="form-control"
+                                        />
+                                      </div>
 
-                              <div class="mb-3">
-                                <label class="control-label">
-                                  {{ "Date Effet affectation" | translate }}
-                                </label>
-                                <input
-                                  id="manufacturerbrand"
-                                  [value]="perso11.dat_qualf"
-                                  name="manufacturerbrand"
-                                  type="text"
-                                  disabled
-                                  class="form-control"
-                                />
-                              </div>
-                            </div>
+                                      <div
+                                        *ngIf="
+                                          perso11.lib_poste_trav !=
+                                          'Code inexistant'
+                                        "
+                                        class="mb-3"
+                                      >
+                                        <label class="control-label">
+                                          {{
+                                            "Libelle Qualification" | translate
+                                          }}
+                                        </label>
+                                        <input
+                                          id="manufacturerbrand"
+                                          [value]="perso11.lib_poste_trav"
+                                          name="manufacturerbrand"
+                                          type="text"
+                                          disabled
+                                          class="form-control"
+                                        />
+                                      </div>
+                                      <div
+                                        *ngIf="
+                                          perso11.lib_poste_trav ==
+                                          'Code inexistant'
+                                        "
+                                        class="mb-3"
+                                      >
+                                        <label class="control-label">
+                                          {{
+                                            "Libelle Qualification" | translate
+                                          }}
+                                        </label>
+                                        <input
+                                          id="manufacturerbrand"
+                                          value=""
+                                          name="manufacturerbrand"
+                                          type="text"
+                                          disabled
+                                          class="form-control"
+                                        />
+                                      </div>
+                                      <div
+                                        *ngIf="
+                                          perso11.lib_lieu_geog !=
+                                          'Code inexistant'
+                                        "
+                                        class="mb-3"
+                                      >
+                                        <label class="control-label">
+                                          {{ "Libelle Region" | translate }}
+                                        </label>
+                                        <input
+                                          id="manufacturerbrand"
+                                          [value]="perso11.lib_lieu_geog"
+                                          name="manufacturerbrand"
+                                          type="text"
+                                          disabled
+                                          class="form-control"
+                                        />
+                                      </div>
+                                      <div
+                                        *ngIf="
+                                          perso11.lib_lieu_geog ==
+                                          'Code inexistant'
+                                        "
+                                        class="mb-3"
+                                      >
+                                        <label class="control-label">
+                                          {{ "Libelle Region" | translate }}
+                                        </label>
+                                        <input
+                                          id="manufacturerbrand"
+                                          value=""
+                                          name="manufacturerbrand"
+                                          type="text"
+                                          disabled
+                                          class="form-control"
+                                        />
+                                      </div>
+                                      <div
+                                        *ngIf="
+                                          perso11.lib_fil != 'Code inexistant'
+                                        "
+                                        class="mb-3"
+                                      >
+                                        <label class="control-label">
+                                          {{ "Libelle Filliére" | translate }}
+                                        </label>
+                                        <input
+                                          id="manufacturerbrand"
+                                          [value]="perso11.lib_fil"
+                                          name="manufacturerbrand"
+                                          type="text"
+                                          disabled
+                                          class="form-control"
+                                        />
+                                      </div>
+                                      <div
+                                        *ngIf="
+                                          perso11.lib_fil == 'Code inexistant'
+                                        "
+                                        class="mb-3"
+                                      >
+                                        <label class="control-label">
+                                          {{ "Libelle Filliére" | translate }}
+                                        </label>
+                                        <input
+                                          id="manufacturerbrand"
+                                          [value]=""
+                                          name="manufacturerbrand"
+                                          type="text"
+                                          disabled
+                                          class="form-control"
+                                        />
+                                      </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                      <div class="mb-3">
+                                        <label class="control-label">
+                                          {{ "Date Effet Classe" | translate }}
+                                        </label>
+                                        <input
+                                          id="manufacturerbrand"
+                                          [value]="perso11.dat_class"
+                                          name="manufacturerbrand"
+                                          type="text"
+                                          disabled
+                                          class="form-control"
+                                        />
+                                      </div>
 
-                            <div class="col-sm-2">
-                              <div class="mb-3">
-                                <label class="control-label">
-                                  {{ "Code Fonction" | translate }}</label
-                                >
-                                <input
-                                  id="manufacturerbrand"
-                                  [value]="perso11.cod_fonct"
-                                  name="manufacturerbrand"
-                                  type="text"
-                                  disabled
-                                  class="form-control"
-                                />
-                              </div>
-                              <div class="mb-3">
-                                <label class="control-label">
-                                  {{ "Code Qualification" | translate }}
-                                </label>
-                                <input
-                                  id="manufacturerbrand"
-                                  [value]="perso11.poste_trav"
-                                  name="manufacturerbrand"
-                                  type="text"
-                                  disabled
-                                  class="form-control"
-                                />
-                              </div>
-                              <div class="mb-3">
-                                <label class="control-label">
-                                  {{ "Code Region" | translate }}</label
-                                >
-                                <input
-                                  id="manufacturerbrand"
-                                  [value]="perso11.cod_lieu_geog"
-                                  name="manufacturerbrand"
-                                  type="text"
-                                  disabled
-                                  class="form-control"
-                                />
-                              </div>
-                              <div class="mb-3">
-                                <label class="control-label">
-                                  {{ "Code Filliére" | translate }}</label
-                                >
-                                <input
-                                  id="manufacturerbrand"
-                                  [value]="perso11.cod_fil"
-                                  name="manufacturerbrand"
-                                  type="text"
-                                  disabled
-                                  class="form-control"
-                                />
-                              </div>
-                            </div>
-                            <div class="col-sm-2">
-                              <div
-                                *ngIf="perso11.lib_fonct != 'Code inexistant'"
-                                class="mb-3"
-                              >
-                                <label class="control-label">
-                                  {{ "Libelle Fonction" | translate }}
-                                </label>
-                                <input
-                                  id="manufacturerbrand"
-                                  [value]="perso11.lib_fonct"
-                                  name="manufacturerbrand"
-                                  type="text"
-                                  disabled
-                                  class="form-control"
-                                />
-                              </div>
-                              <div
-                                *ngIf="perso11.lib_fonct == 'Code inexistant'"
-                                class="mb-3"
-                              >
-                                <label class="control-label">
-                                  {{ "Libelle Fonction" | translate }}
-                                </label>
-                                <input
-                                  id="manufacturerbrand"
-                                  [value]=""
-                                  name="manufacturerbrand"
-                                  type="text"
-                                  disabled
-                                  class="form-control"
-                                />
-                              </div>
+                                      <div class="mb-3">
+                                        <label class="control-label"
+                                          >{{
+                                            "Date Effet Fonction" | translate
+                                          }}
+                                        </label>
+                                        <input
+                                          id="manufacturerbrand"
+                                          [value]="perso11.dat_fonct"
+                                          name="manufacturerbrand"
+                                          type="text"
+                                          disabled
+                                          class="form-control"
+                                        />
+                                      </div>
+                                      <div class="mb-3">
+                                        <label class="control-label">
+                                          {{
+                                            "Date Effet Qualification"
+                                              | translate
+                                          }}
+                                        </label>
+                                        <input
+                                          id="manufacturerbrand"
+                                          [value]="perso11.dat_qualf"
+                                          name="manufacturerbrand"
+                                          type="text"
+                                          disabled
+                                          class="form-control"
+                                        />
+                                      </div>
+                                      <div class="mb-3">
+                                        <label class="control-label">
+                                          {{
+                                            "Date Effet Filliére" | translate
+                                          }}
+                                        </label>
+                                        <input
+                                          id="manufacturerbrand"
+                                          [value]="perso11.dat_fil"
+                                          name="manufacturerbrand"
+                                          type="text"
+                                          disabled
+                                          class="form-control"
+                                        />
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <hr />
+                                  <div class="row">
+                                    <div class="col-sm-3">
+                                      <div class="mb-3">
+                                        <label class="control-label">
+                                          {{ "Status" | translate }}
+                                        </label>
+                                        <input
+                                          id="manufacturerbrand"
+                                          [value]="perso11.lib_affect"
+                                          name="manufacturerbrand"
+                                          type="text"
+                                          disabled
+                                          class="form-control"
+                                        />
+                                      </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                      <div class="mb-3">
+                                        <label class="control-label">
+                                          {{ "Position" | translate }}
+                                        </label>
+                                        <input
+                                          id="manufacturerbrand"
+                                          [value]="perso11.lib_motif"
+                                          name="manufacturerbrand"
+                                          type="text"
+                                          disabled
+                                          class="form-control"
+                                        />
+                                      </div>
+                                    </div>
 
-                              <div
-                                *ngIf="
-                                  perso11.lib_poste_trav != 'Code inexistant'
-                                "
-                                class="mb-3"
-                              >
-                                <label class="control-label">
-                                  {{ "Libelle Qualification" | translate }}
-                                </label>
-                                <input
-                                  id="manufacturerbrand"
-                                  [value]="perso11.lib_poste_trav"
-                                  name="manufacturerbrand"
-                                  type="text"
-                                  disabled
-                                  class="form-control"
-                                />
-                              </div>
-                              <div
-                                *ngIf="
-                                  perso11.lib_poste_trav == 'Code inexistant'
-                                "
-                                class="mb-3"
-                              >
-                                <label class="control-label">
-                                  {{ "Libelle Qualification" | translate }}
-                                </label>
-                                <input
-                                  id="manufacturerbrand"
-                                  value=""
-                                  name="manufacturerbrand"
-                                  type="text"
-                                  disabled
-                                  class="form-control"
-                                />
-                              </div>
-                              <div
-                                *ngIf="
-                                  perso11.lib_lieu_geog != 'Code inexistant'
-                                "
-                                class="mb-3"
-                              >
-                                <label class="control-label">
-                                  {{ "Libelle Region" | translate }}
-                                </label>
-                                <input
-                                  id="manufacturerbrand"
-                                  [value]="perso11.lib_lieu_geog"
-                                  name="manufacturerbrand"
-                                  type="text"
-                                  disabled
-                                  class="form-control"
-                                />
-                              </div>
-                              <div
-                                *ngIf="
-                                  perso11.lib_lieu_geog == 'Code inexistant'
-                                "
-                                class="mb-3"
-                              >
-                                <label class="control-label">
-                                  {{ "Libelle Region" | translate }}
-                                </label>
-                                <input
-                                  id="manufacturerbrand"
-                                  value=""
-                                  name="manufacturerbrand"
-                                  type="text"
-                                  disabled
-                                  class="form-control"
-                                />
-                              </div>
-                              <div
-                                *ngIf="perso11.lib_fil != 'Code inexistant'"
-                                class="mb-3"
-                              >
-                                <label class="control-label">
-                                  {{ "Libelle Filliére" | translate }}
-                                </label>
-                                <input
-                                  id="manufacturerbrand"
-                                  [value]="perso11.lib_fil"
-                                  name="manufacturerbrand"
-                                  type="text"
-                                  disabled
-                                  class="form-control"
-                                />
-                              </div>
-                              <div
-                                *ngIf="perso11.lib_fil == 'Code inexistant'"
-                                class="mb-3"
-                              >
-                                <label class="control-label">
-                                  {{ "Libelle Filliére" | translate }}
-                                </label>
-                                <input
-                                  id="manufacturerbrand"
-                                  [value]=""
-                                  name="manufacturerbrand"
-                                  type="text"
-                                  disabled
-                                  class="form-control"
-                                />
-                              </div>
-                            </div>
-                            <div class="col-sm-2">
-                              <div class="mb-3">
-                                <label class="control-label">
-                                  {{ "Date Effet Classe" | translate }}
-                                </label>
-                                <input
-                                  id="manufacturerbrand"
-                                  [value]="perso11.dat_class"
-                                  name="manufacturerbrand"
-                                  type="text"
-                                  disabled
-                                  class="form-control"
-                                />
-                              </div>
+                                    <div class="col-sm-3">
+                                      <div class="mb-3">
+                                        <label class="control-label">
+                                          {{ "Status 2éme langue" | translate }}
+                                        </label>
+                                        <input
+                                          id="manufacturerbrand"
+                                          [value]="perso11.lib_affect2"
+                                          name="manufacturerbrand"
+                                          type="text"
+                                          disabled
+                                          class="form-control"
+                                        />
+                                      </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                      <div class="mb-3">
+                                        <label class="control-label">
+                                          {{
+                                            "Position 2éme langue" | translate
+                                          }}
+                                        </label>
+                                        <input
+                                          id="manufacturerbrand"
+                                          [value]="perso11.libmotif22"
+                                          name="manufacturerbrand"
+                                          type="text"
+                                          disabled
+                                          class="form-control"
+                                        />
+                                      </div>
+                                    </div>
+                                  </div>
 
-                              <div class="mb-3">
-                                <label class="control-label"
-                                  >{{ "Date Effet Fonction" | translate }}
-                                </label>
-                                <input
-                                  id="manufacturerbrand"
-                                  [value]="perso11.dat_fonct"
-                                  name="manufacturerbrand"
-                                  type="text"
-                                  disabled
-                                  class="form-control"
-                                />
-                              </div>
-                              <div class="mb-3">
-                                <label class="control-label">
-                                  {{ "Date Effet Qualification" | translate }}
-                                </label>
-                                <input
-                                  id="manufacturerbrand"
-                                  [value]="perso11.dat_qualf"
-                                  name="manufacturerbrand"
-                                  type="text"
-                                  disabled
-                                  class="form-control"
-                                />
-                              </div>
-                              <div class="mb-3">
-                                <label class="control-label">
-                                  {{ "Date Effet Filliére" | translate }}
-                                </label>
-                                <input
-                                  id="manufacturerbrand"
-                                  [value]="perso11.dat_fil"
-                                  name="manufacturerbrand"
-                                  type="text"
-                                  disabled
-                                  class="form-control"
-                                />
+                                  <div
+                                    class="d-flex flex-wrap gap-2 mt-2"
+                                  ></div>
+                                </form>
                               </div>
                             </div>
-                          </div>
-                          <hr />
-                          <div class="row">
-                            <div class="col-sm-3">
-                              <div class="mb-3">
-                                <label class="control-label">
-                                  {{ "Status" | translate }}
-                                </label>
-                                <input
-                                  id="manufacturerbrand"
-                                  [value]="perso11.lib_affect"
-                                  name="manufacturerbrand"
-                                  type="text"
-                                  disabled
-                                  class="form-control"
-                                />
-                              </div>
-                            </div>
-                            <div class="col-sm-3">
-                              <div class="mb-3">
-                                <label class="control-label">
-                                  {{ "Position" | translate }}
-                                </label>
-                                <input
-                                  id="manufacturerbrand"
-                                  [value]="perso11.lib_motif"
-                                  name="manufacturerbrand"
-                                  type="text"
-                                  disabled
-                                  class="form-control"
-                                />
-                              </div>
-                            </div>
-
-                            <div class="col-sm-3">
-                              <div class="mb-3">
-                                <label class="control-label">
-                                  {{ "Status 2éme langue" | translate }}
-                                </label>
-                                <input
-                                  id="manufacturerbrand"
-                                  [value]="perso11.lib_affect2"
-                                  name="manufacturerbrand"
-                                  type="text"
-                                  disabled
-                                  class="form-control"
-                                />
-                              </div>
-                            </div>
-                            <div class="col-sm-3">
-                              <div class="mb-3">
-                                <label class="control-label">
-                                  {{ "Position 2éme langue" | translate }}
-                                </label>
-                                <input
-                                  id="manufacturerbrand"
-                                  [value]="perso11.libmotif22"
-                                  name="manufacturerbrand"
-                                  type="text"
-                                  disabled
-                                  class="form-control"
-                                />
-                              </div>
-                            </div>
-                          </div>
-
-                          <div class="d-flex flex-wrap gap-2 mt-2"></div>
-                        </form>
-                      </div>
-                    </div>
+                        
+                  
                   </div>
                 </div>
                 <!-- end row -->
@@ -748,10 +804,7 @@
                     <div class="card">
                       <div class="card-body">
                         <h1 class="card-title">{{ "Pointage" | translate }}</h1>
-                        <p class="card-title-desc">
-                          {{ "Information" | translate }}
-                        </p>
-
+                       <br>
                         <form>
                           <div class="row">
                             <div class="col-sm-3">
@@ -1038,9 +1091,7 @@
                         <h4 class="card-title mb-4">
                           {{ "Variables d'octroi et d'indemnité" | translate }}
                         </h4>
-                        <p class="card-title-desc">
-                          {{ "Information" | translate }} :
-                        </p>
+                     <br>
 
                         <form>
                           <div class="row">
@@ -1399,8 +1450,8 @@
                         <h1 class="card-title">
                           {{ "Experiences Professionnel" | translate }}
                         </h1>
-
-                        <p class="card-title-desc">Information</p>
+<br>
+                        
 
                         <app-exprienceprof></app-exprienceprof>
                       </div>
@@ -1433,7 +1484,6 @@
                           {{ "Indemnité" | translate }}
                         </h1>
 
-                        <p class="card-title-desc">Information</p>
 
                         <app-indimnite></app-indimnite>
                       </div>

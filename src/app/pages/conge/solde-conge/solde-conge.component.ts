@@ -23,7 +23,8 @@ export class SoldeCongeComponent implements OnInit {
   rowData: any[] = [];
   api!: GridApi;
   row: any = [];
-  
+  breadCrumbItems: Array<{}>;
+
 
   public columns = ["Année congé", "Libélle congé", "Date Congé", "Date début","Date fin","Nbr Jours","Date retour prévu","Date Retour","Motif congé"];
 
@@ -45,6 +46,10 @@ export class SoldeCongeComponent implements OnInit {
         return col;
       });
     });
+
+
+    this.breadCrumbItems = [{ label: 'Espace de congé' }, { label: 'Historique des congés', active: true }];
+
   }
   changeLanguage() {
     const currentLanguage = this.ser.languageSubject.value;

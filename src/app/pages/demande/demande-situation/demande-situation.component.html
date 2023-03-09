@@ -1,4 +1,7 @@
 <div class="container-fluid">
+  <app-page-title title="Demande de situation " [breadcrumbItems]="breadCrumbItems">
+  </app-page-title>
+
   <div class="row">
     <div class="col-12">
       <div class="card">
@@ -14,6 +17,7 @@
                     type="text"
                     class="form-control"
                     formControlName="dateDemande"
+                    
                     readonly
                   />
                 </div>
@@ -38,12 +42,15 @@
                     type="text"
                     class="form-control"
                     formControlName="txtDem"
+                    title="Veuillez entrer un text"
                   ></textarea>
                 </div>
               </div> 
               </div>
               <div class="d-flex flex-wrap gap-2 mt-2">
-                <button type="submit" class="btn btn-primary">
+                <button type="submit" class="btn btn-primary"
+                [disabled]="dataForm.invalid">
+                  
                   {{"Enregistrer" | translate}}
                 </button>
             </div>

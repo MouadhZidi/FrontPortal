@@ -1,4 +1,7 @@
 <div class="container-fluid">
+  <app-page-title title="Demande d'autorisation" [breadcrumbItems]="breadCrumbItems">
+  </app-page-title>
+
   <div class="row">
     <div class="col-12">
       <div class="card">
@@ -31,6 +34,7 @@
                     formControlName="heurS"
                     mask="00"
                     [showMaskTyped]="true"
+                    title="Veuillez entrer le montant"
                   />
                   </div>
                   <div class="mb-3">
@@ -43,6 +47,7 @@
                       formControlName="heurR"
                       mask="00"
                       [showMaskTyped]="true"
+                      title="Veuillez entrer l'heure de retour"
                       
                     />
                   </div>
@@ -57,7 +62,7 @@
                   <input
                     type="text"
                     class="form-control"
-                    
+                    title="Veuillez entrer la date de début"
                     placeholder="jj/MM/yyyy"
                     formControlName="datDebut"
                     #myInputDateEmbauche
@@ -71,6 +76,7 @@
                     name="manufacturername"
                     type="text"
                     class="form-control"
+                    title="Veuillez entrer l'heure de sortie"
                     mask="00"
                     formControlName="minS"
                     [showMaskTyped]="true"
@@ -89,6 +95,7 @@
                     type="text"
                     class="form-control"
                     formControlName="minR"
+                    title="Veuillez entrer la minute de retour"
                     mask="00"
                     [showMaskTyped]="true"
                   />
@@ -104,6 +111,7 @@
                   class="form-select"
                   aria-label="Default select example"
                   formControlName="codAut"
+                  title="Veuillez choisir le type d'autorisation"
                 >
                   <option
                     *ngFor="let i of listTypeAutorisation"
@@ -118,6 +126,7 @@
                 <textarea
                   id="manufacturername"
                   name="manufacturername"
+                  title="Veuillez choisir le motif"
                   type="text"
                   class="form-control"
                   formControlName="txtDem"
@@ -138,7 +147,9 @@
           </div>
             
             <div class="d-flex flex-wrap gap-2 mt-2">
-              <button type="submit" class="btn btn-primary">{{"Enregistrer" | translate}}</button>
+              <button type="submit" 
+              [disabled]="formAutorisation.invalid"
+              class="btn btn-primary">{{"Enregistrer" | translate}}</button>
             </div>
           </form>
         </div>

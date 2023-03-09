@@ -1,7 +1,8 @@
 <div class="container-fluid">
 
-  <app-page-title title="Liste des congées de : "
-    ><h6 style="color: #001b85"></h6
+  <app-page-title
+    title="Solde de congé"
+    [breadcrumbItems]="breadCrumbItems"
   ></app-page-title>
 
 
@@ -10,15 +11,8 @@
       <div class="card">
         <div class="card-body">
           <h2 class="card-title-desc"><i class="bx bx-user-pin"></i>  {{ nom }} {{ prenom }}</h2>
-          <div class="button-items">
-            <button type="button" class="btn btn-success" (click)="exportAsXLSX()">
-                <i class="bx bx-file-blank font-size-16 align-middle me-2"  ></i> {{"Télécharger en EXCEL"|translate}}
-            </button>
-            <button type="button" class="btn btn-danger" (click)="openPDF()">
-                <i class="bx bxs-file-pdf  font-size-16 align-middle me-2"  ></i> {{"Télécharger en PDF"|translate}}
-            </button>
-            </div>
-            <br>
+         
+            
           <ag-grid-angular
             style="display: flex; flex-direction: column; height: 500px"
             class="ag-theme-alpine"
@@ -30,8 +24,20 @@
             [animateRows]="true"
           >
           </ag-grid-angular>
+          <br>
+          <div class="button-items">
+            <button type="button" class="btn btn-success" (click)="exportAsXLSX()">
+                <i class="bx bx-file-blank font-size-16 align-middle me-2"  ></i> {{"Télécharger en EXCEL"|translate}}
+            </button>
+            <button type="button" class="btn btn-danger" (click)="openPDF()">
+                <i class="bx bxs-file-pdf  font-size-16 align-middle me-2"  ></i> {{"Télécharger en PDF"|translate}}
+            </button>
+            </div>
+
         </div>
+       
       </div>
+      
     </div>
   </div>
 </div>

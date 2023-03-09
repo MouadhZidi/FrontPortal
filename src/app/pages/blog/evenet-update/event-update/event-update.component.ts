@@ -18,8 +18,8 @@ export class EventUpdateComponent implements OnInit {
 
   ngOnInit(): void {
     this.breadCrumbItems = [
-      { label: "Blog" },
-      { label: "Blog Grid", active: true },
+      { label: "Espace d`évenement" },
+      { label: "Liste des évenements", active: true },
     ];
 
     this.serv.getbyD().subscribe((events:Event_Entite[]) => {

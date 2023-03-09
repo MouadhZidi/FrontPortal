@@ -44,7 +44,7 @@ export class CalendarComponent implements OnInit {
   currentEvents: EventApi[] = [];
 
   ngOnInit(): void {
-    this.breadCrumbItems = [{ label: 'Portail ArabSoft' }, { label: 'Calendar', active: true }];
+    this.breadCrumbItems = [{ label: 'Espace d`évenement' }, { label: 'Calendrier des évenements', active: true }];
 
     this.formData = this.formBuilder.group({
       title: ['', [Validators.required]],

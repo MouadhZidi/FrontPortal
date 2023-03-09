@@ -60,6 +60,8 @@ etat_notif:""
     private modalService: NgbModal,
     private websocketService: WebsocketService,private persServ: AjoutPersService) { }
   ngOnInit(): void {
+    this.breadCrumbItems = [{ label: 'Espace demande' }, { label: 'Demande congé', active: true }];
+
     this.formConge = this.formBuilder.group({
 
       dateDemande : [(new Date()).toLocaleDateString().substring(0,10),Validators.required],

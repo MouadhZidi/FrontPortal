@@ -17,6 +17,7 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./demande-situation.component.scss']
 })
 export class DemandeSituationComponent implements OnInit {
+  breadCrumbItems: Array<{}>;
   matRh:any
   dataForm:FormGroup
   rowData:any[]=[]
@@ -52,12 +53,15 @@ etat_notif:""
     private websocketService: WebsocketService) { }
 
   ngOnInit(): void {
+
+    this.breadCrumbItems = [{ label: 'Espace demande' }, { label: 'Demande situation', active: true }];
+
     this.dataForm = this.formBuilder.group({
       id_libre_demande : [''],
       
 
       dateDemande : [(new Date()).toLocaleDateString().substring(0,10),Validators.required],
-      txtDem: [''],
+      txtDem: ['', Validators.required],
       reponse:[''],
       typDemande:['S'],
       matPers:[this.tokenService.getUser().matpers],

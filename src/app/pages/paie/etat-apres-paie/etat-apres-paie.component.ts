@@ -1,44 +1,58 @@
-import { Component, OnDestroy, OnInit,ViewChild ,HostListener} from "@angular/core";
+import {
+  Component,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+  HostListener,
+} from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ClientSideRowModelModule } from "@ag-grid-community/client-side-row-model";
 import { PaieService } from "../paie.service";
-import { AgGridAngular } from '@ag-grid-community/angular';
-import {  ColDef,
+import { AgGridAngular } from "@ag-grid-community/angular";
+import {
+  ColDef,
   ColumnApi,
   GridApi,
   GridReadyEvent,
-  Module } from "@ag-grid-community/core";
+  Module,
+} from "@ag-grid-community/core";
 import { TokenStorage } from "src/app/core/services/token-storage.service";
 import { ComptepersService } from "../../Employe/comptepers.service";
-import { aggridModules } from '../../../aggrid-modules';
-import { Subject } from 'rxjs';
+import { aggridModules } from "../../../aggrid-modules";
+import { Subject } from "rxjs";
 import * as jspdf from "jspdf";
 import "jspdf-autotable";
 import { PersonnelService } from "../../Employe/personnel.service";
 import { TranslateService } from "@ngx-translate/core";
 
 @Component({
-  selector: 'app-etat-apres-paie',
-  templateUrl: './etat-apres-paie.component.html',
-  styleUrls: ['./etat-apres-paie.component.scss']
+  selector: "app-etat-apres-paie",
+  templateUrl: "./etat-apres-paie.component.html",
+  styleUrls: ["./etat-apres-paie.component.scss"],
 })
-export class EtatApresPaieComponent implements OnInit ,OnDestroy{
+export class EtatApresPaieComponent implements OnInit, OnDestroy {
   @ViewChild(AgGridAngular) aggrid: AgGridAngular;
 
   readonly modulesAggrid: Module[] = aggridModules;
 
   private readonly destroyed$ = new Subject<void>();
-
+  breadCrumbItems: Array<{}>;
   row: any = [];
-  ereur=false
-  
+  ereur = false;
 
-  public columns = ["Abréviation Fixe", "Libélle", "Montant", "Date Indemnité","Numéro Niveau","Code Niveau","Type Rubrique"];
+  public columns = [
+    "Abréviation Fixe",
+    "Libélle",
+    "Montant",
+    "Date Indemnité",
+    "Numéro Niveau",
+    "Code Niveau",
+    "Type Rubrique",
+  ];
   gridApi: GridApi;
   columnApi: ColumnApi;
 
-
-list:any=[]
+  list: any = [];
   listInfo: any;
   ListTypeBull!: any[];
 
@@ -48,7 +62,6 @@ list:any=[]
   possVH: any;
   nom: any;
   prenom: any;
-
 
   dt_bul: any;
   mat_pers: any;
@@ -72,7 +85,8 @@ list:any=[]
   a!: string;
 
   constructor(
-    public translatee: TranslateService,private servv: PersonnelService,
+    public translatee: TranslateService,
+    private servv: PersonnelService,
     private serv: PaieService,
     private serv2: ComptepersService,
 
@@ -95,16 +109,21 @@ list:any=[]
     const currentLang = this.translatee.getBrowserLang();
     this.translatee.onLangChange.subscribe(() => {
       this.columnDefs = this.columnDefs.map((col) => {
-        col.headerName = this.translatee.instant(col.headerName,currentLang);
+        col.headerName = this.translatee.instant(col.headerName, currentLang);
         return col;
       });
     });
+    this.breadCrumbItems = [
+      { label: "Paimenet" },
+      { label: "Etat aprés paie", active: true },
+      { label: "Edition fiche de paie", active: true },
+    ];
 
     // this.getTypeBull();
   }
   changeLanguage() {
     const currentLanguage = this.servv.languageSubject.value;
-    this.servv.setLanguage(currentLanguage === 'en' ? 'fr' : 'en');
+    this.servv.setLanguage(currentLanguage === "en" ? "fr" : "en");
   }
 
   translateHeaderNames(language: string) {
@@ -137,9 +156,7 @@ list:any=[]
       floatingFilter: true,
       width: 680,
       pinned: true,
-    
     },
-
 
     // {
     //   headerName: "Libellé bulletin",
@@ -230,7 +247,7 @@ list:any=[]
     this.serv.GetBull(this.formDocument.value).subscribe(
       (data: any) => {
         this.listInfo = data;
-        this.ereur=false
+        this.ereur = false;
         this.rowData = this.listInfo.possVH;
         for (var k = 0; k < this.rowData.length; k++) {
           this.row.push([
@@ -243,12 +260,13 @@ list:any=[]
             this.rowData[k].montant,
           ]);
         }
+      
         console.log(data);
       },
       (error) => {
         console.log(error);
-        this.ereur=true
-        this.listInfo=null
+        this.ereur = true;
+        this.listInfo = null;
       }
     );
   }
@@ -270,8 +288,7 @@ list:any=[]
     filter: true,
   };
 
-
-  @HostListener('window:beforeunload')
+  @HostListener("window:beforeunload")
   ngOnDestroy(): void {
     this.destroyed$.next();
     this.destroyed$.complete();
@@ -290,19 +307,20 @@ list:any=[]
     const doc = new jspdf("portrait", "px", "a4");
     doc.text(170, 15, "Liste des bulletain:");
     doc.autoTable(this.columns, this.row);
-    let now=new Date()
-    var today = now.getDate()+"/"+(now.getMonth()+1)+"/"+now.getFullYear();
+    let now = new Date();
+    var today =
+      now.getDate() + "/" + (now.getMonth() + 1) + "/" + now.getFullYear();
     doc.setFont("serif");
     doc.setFontSize(10);
-    var newdat = "Date: "+ today;
-    doc.text(350,15,newdat);
+    var newdat = "Date: " + today;
+    doc.text(350, 15, newdat);
     var pageCount = doc.internal.getNumberOfPages(); //Total Page Number
-for(let i = 0; i < pageCount; i++) { 
-  doc.setPage(i); 
-  let pageCurrent = doc.internal.getCurrentPageInfo().pageNumber; //Current Page
-  doc.setFontSize(12);
-  doc.text('page: ' + pageCurrent + '/' + pageCount, 10, 10);
-}
+    for (let i = 0; i < pageCount; i++) {
+      doc.setPage(i);
+      let pageCurrent = doc.internal.getCurrentPageInfo().pageNumber; //Current Page
+      doc.setFontSize(12);
+      doc.text("page: " + pageCurrent + "/" + pageCount, 10, 10);
+    }
     doc.save("Liste des bulletain.pdf");
   }
   modules: Module[] = [ClientSideRowModelModule];

@@ -79,6 +79,7 @@ matChef:any
   ) {}
 
   ngOnInit(): void {
+    
     this.formPretAvance = this.formBuilder.group({
       dateDemande: [
         new Date().toLocaleDateString().substring(0, 10),
@@ -108,6 +109,12 @@ matChef:any
        return col;
      });
    });
+
+
+   this.breadCrumbItems = [{ label: 'Espace demande' }, { label: 'Demande prêt et avance', active: true }];
+
+
+
 
   }
 
@@ -227,6 +234,11 @@ if(this.file==null)
         }
     );
    }
+
+
+
+
+
   }
   onSelect1(event1: any) {
     this.service.GetTypePret(event1.target.value).subscribe(

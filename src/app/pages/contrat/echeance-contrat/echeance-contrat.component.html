@@ -6,26 +6,26 @@
           <li [ngbNavItem]="1">
             <a ngbNavLink>
               <i class="bx bx-notepad d-block check-nav-icon mt-4 mb-2"></i>
-              <p class="fw-bold mb-4">{{'Agenda de contrat' | translate}}</p>
+              <p class="fw-bold mb-4">{{ "Agenda de contrat" | translate }}</p>
             </a>
             <ng-template ngbNavContent>
               <div class="row">
                 <div class="col-3"></div>
-            
+
                 <div class="col-6">
                   <div class="card">
                     <div class="card-body">
                       <div class="app-calendar">
                         <!-- calendar -->
-                        <full-calendar [options]="calendarOptions"></full-calendar>
+                        <full-calendar
+                          [options]="calendarOptions"
+                        ></full-calendar>
                       </div>
                     </div>
                   </div>
                 </div>
-            
-                <div class="col-3">
-            
-                </div>
+
+                <div class="col-3"></div>
               </div>
             </ng-template>
           </li>
@@ -33,7 +33,7 @@
           <li [ngbNavItem]="2">
             <a ngbNavLink>
               <i class="bx bxs-user d-block check-nav-icon mt-4 mb-2"></i>
-              <p class="fw-bold mb-4">{{'Recherche par date' | translate}}</p>
+              <p class="fw-bold mb-4">{{ "Recherche par date" | translate }}</p>
             </a>
             <ng-template ngbNavContent>
               <div class="container-fluid">
@@ -45,15 +45,17 @@
                   <div class="col-12">
                     <div class="card">
                       <div class="card-body">
-                        <h1 class="card-title">{{'Consultation contrat' | translate}}</h1>
-                        
+                        <h1 class="card-title">
+                          {{ "Consultation contrat" | translate }}
+                        </h1>
 
                         <form #gfg="ngForm">
-                          
                           <div class="row">
                             <div class="col-sm-4">
                               <div class="mb-3">
-                                <label for="productname"> {{'Date de début' | translate}}</label>
+                                <label for="productname">
+                                  {{ "Date de début" | translate }}</label
+                                >
                                 <input
                                   [(ngModel)]="date1"
                                   id="date1"
@@ -66,7 +68,9 @@
 
                             <div class="col-sm-4">
                               <div class="mb-3">
-                                <label for="price"> {{'Date de fin' | translate}} </label>
+                                <label for="price">
+                                  {{ "Date de fin" | translate }}
+                                </label>
                                 <input
                                   [(ngModel)]="date2"
                                   name="date2"
@@ -77,39 +81,60 @@
                                 <div class="invalid-feedback"></div>
                               </div>
                             </div>
-                            
                           </div>
                           <div class="col-sm-4">
                             <div class="mb-3">
-                            
                               <button
                                 (click)="onGetValue()"
                                 class="fc-dayGridWeek-button btn btn-primary"
                                 value=""
-                                
                               >
-                                {{'Chercher' | translate}}
+                                {{ "Chercher" | translate }}
                               </button>
+                              
                             </div>
-                            
                           </div>
                         </form>
+                        
                       </div>
                     </div>
+                   
+                    <div *ngIf="ereur">
+                      
+                      <div class="alert alert-danger" role="alert">
+                        <h4 class="alert-heading">Alert!</h4>
+                        <p>Pas d'information à afficher</p>
+                        
+                      </div>
+                    
                   </div>
-
-
-
+                  </div>
+             
                   <div class="button-items" *ngIf="list">
-                    <button type="button" class="btn btn-success" (click)="exportAsXLSX()">
-                        <i class="bx bx-file-blank font-size-16 align-middle me-2"  ></i> {{"Télécharger en EXCEL"|translate}}
+                    <button
+                      type="button"
+                      class="btn btn-success"
+                      (click)="exportAsXLSX()"
+                    >
+                      <i
+                        class="bx bx-file-blank font-size-16 align-middle me-2"
+                      ></i>
+                      {{ "Télécharger en EXCEL" | translate }}
                     </button>
-                    <button type="button" class="btn btn-danger" (click)="openPDF()">
-                        <i class="bx bxs-file-pdf  font-size-16 align-middle me-2"  ></i> {{"Télécharger en PDF"|translate}}
+                    <button
+                      type="button"
+                      class="btn btn-danger"
+                      (click)="openPDF()"
+                    >
+                      <i
+                        class="bx bxs-file-pdf font-size-16 align-middle me-2"
+                      ></i>
+                      {{ "Télécharger en PDF" | translate }}
                     </button>
-                    </div>
-<br><br>
-                  <div class="row">
+                  </div>
+                  
+                  <br /><br />
+                  <div class="row" *ngIf="list">
                     <div class="col-12">
                       <ag-grid-angular
                         style="

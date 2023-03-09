@@ -262,7 +262,7 @@ rep_chef:""
  this.websocketService.AjouNotif(this.Notification).subscribe(
   (event: any) => {
     console.log(this.Notification)
-    this.getpers()
+   this.getpers()
   }
 );
  // this.toastr.success(' agence updated!', 'update effectuée avec succés.');
