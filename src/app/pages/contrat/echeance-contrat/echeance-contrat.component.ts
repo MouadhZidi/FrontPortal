@@ -90,7 +90,7 @@ export class EcheanceContratComponent implements OnInit {
   ngOnInit(): void {
     this.breadCrumbItems = [
       { label: "Portail ArabSoft" },
-      { label: "Calendar", active: true },
+      { label: "Echéance des contrats", active: true },
     ];
 
     this.formData = this.formBuilder.group({
@@ -326,6 +326,7 @@ export class EcheanceContratComponent implements OnInit {
       editable: true,
       floatingFilter: true,
       filter: true,
+      width:500
     },
     {
       headerName: "Matricule",

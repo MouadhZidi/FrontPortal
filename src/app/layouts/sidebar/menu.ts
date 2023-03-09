@@ -356,7 +356,21 @@ export const MENU: MenuItem[] = [
                     id: 133,
                     label: 'MENUITEMS.ESPACECHEF.LIST.CONSCONT',
                     link: '/contrat/contrat',
-                    parentId: 127
+                    parentId: 127,
+                    subItems: [
+                        {
+                            id: 130,
+                            label: 'Echéance des contrats',
+                            link: '/contrat/contrat',
+                            parentId: 133
+                        },
+                        {
+                            id: 130,
+                            label: 'Calendrier des contrats',
+                            link: '/contrat/calendrier-contrat',
+                            parentId: 133
+                        },
+                    ]
                 },
                 {
                     id: 134,

@@ -22,6 +22,7 @@ import interactionPlugin from '@fullcalendar/interaction'; // a plugin
 import bootstrapPlugin from "@fullcalendar/bootstrap";
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { TranslateModule } from '@ngx-translate/core';
+import { CalendrierContratComponent } from './calendrier-contrat/calendrier-contrat.component';
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
   interactionPlugin,
@@ -30,7 +31,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
 
 @NgModule({
   declarations: [
-    EcheanceContratComponent
+    EcheanceContratComponent,
+    CalendrierContratComponent
   ],
   imports: [
     CommonModule,
